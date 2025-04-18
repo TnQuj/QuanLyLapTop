@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace QuanLyLapTop.Data
+{
+    public class SanPham
+    {
+        public int ID { get; set; }
+        public string? TenSanPham { get; set; }
+        public decimal GiaBan { get; set; }
+        public int SoLuongTon { get; set; }
+        public DateTime NgayNhap { get; set; }
+        public string? HinhAnh { get; set; }
+        public string? MoTa { get; set; }
+        public int HangSanXuatID { get; set; }
+        public int NhaCungCapID { get; set; }
+        public int CauHinhID{ get; set; }
+        // Navigation properties
+        public virtual ICollection<HoaDonChiTiet> HoaDon_ChiTiet { get; } = new List<HoaDonChiTiet>();
+        public virtual HangSanXuat? HangSanXuat { get; set; }
+        public virtual NhaCungCap? NhaCungCap { get; set; }
+        public virtual CauHinh? CauHinh { get; set; }
+    }
+}
