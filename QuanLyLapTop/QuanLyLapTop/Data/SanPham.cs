@@ -16,12 +16,16 @@ namespace QuanLyLapTop.Data
         public string? HinhAnh { get; set; }
         public string? MoTa { get; set; }
         public int HangSanXuatID { get; set; }
+        public int LoaiSanPhamID { get; set; }
         public int NhaCungCapID { get; set; }
+        public int KhuyenMaiID { get; set; }
         public int CauHinhID{ get; set; }
         // Navigation properties
         public virtual ICollection<HoaDonChiTiet> HoaDon_ChiTiet { get; } = new List<HoaDonChiTiet>();
+        public virtual LoaiSanPham? LoaiSanPham { get; set; }
         public virtual HangSanXuat? HangSanXuat { get; set; }
         public virtual NhaCungCap? NhaCungCap { get; set; }
         public virtual CauHinh? CauHinh { get; set; }
+        public virtual KhuyenMai? KhuyenMai { get; set; } 
     }
 }

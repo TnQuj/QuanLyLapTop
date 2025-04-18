@@ -10,6 +10,8 @@ namespace QuanLyLapTop.Data
     public class QLBHDbContext : DbContext
     {
         
+        public DbSet<KhuyenMai>KhuyenMai { get; set; }
+        public DbSet<LoaiSanPham> LoaiSanPham { get; set; }
         public DbSet<NhaCungCap> NhaCungCap { get; set; }
         public DbSet<HangSanXuat> HangSanXuat { get; set; }
         public DbSet<SanPham> SanPham { get; set; }

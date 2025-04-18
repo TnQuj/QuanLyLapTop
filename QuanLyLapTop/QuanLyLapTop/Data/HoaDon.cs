@@ -13,6 +13,7 @@ namespace QuanLyLapTop.Data
         public int KhachHangID { get; set; }
         public DateTime NgayLap { get; set; }
         public string? GhiChuHoaDon { get; set; }
+        public string HinhThucThanhToan { get; set; } = null!;
         public virtual ICollection<HoaDonChiTiet> HoaDonChiTiet { get; } = new List<HoaDonChiTiet>();
         public virtual KhachHang KhachHang { get; set; } = null!;
         public virtual NhanVien NhanVien { get; set; } = null!;
