@@ -12,6 +12,7 @@ namespace QuanLyLapTop.Data
         public string? TenHangSanXuat { get; set; }
         public string? Email { get; set; } 
         public string? DiaChi { get; set; }
+        public string? HinhAnh { get; set; }
         // Navigation property
         public virtual ICollection<SanPham> SanPham { get; set; } = new HashSet<SanPham>();    
     }

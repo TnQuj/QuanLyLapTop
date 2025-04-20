@@ -64,6 +64,7 @@
             Name = "frmLoading";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Loading";
+            WindowState = FormWindowState.Maximized;
             Load += frmLoading_Load;
             ResumeLayout(false);
         }
