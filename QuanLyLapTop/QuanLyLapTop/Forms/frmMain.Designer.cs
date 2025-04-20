@@ -70,7 +70,7 @@
             mnuLaptop.Items.AddRange(new ToolStripItem[] { mnuHeThong, mnuQuanLy, toolStripMenuItem2, mnuBaoCao_ThongKe, mnuTroGiup });
             mnuLaptop.Location = new Point(0, 0);
             mnuLaptop.Name = "mnuLaptop";
-            mnuLaptop.Size = new Size(984, 28);
+            mnuLaptop.Size = new Size(982, 28);
             mnuLaptop.TabIndex = 0;
             mnuLaptop.Text = "menuStrip1";
             // 
@@ -86,31 +86,31 @@
             // 
             mnuDangNhap.Name = "mnuDangNhap";
             mnuDangNhap.ShortcutKeys = Keys.Control | Keys.A;
-            mnuDangNhap.Size = new Size(224, 26);
+            mnuDangNhap.Size = new Size(217, 26);
             mnuDangNhap.Text = "Đăng &nhập";
             // 
             // mnuDangXuat
             // 
             mnuDangXuat.Name = "mnuDangXuat";
-            mnuDangXuat.Size = new Size(224, 26);
+            mnuDangXuat.Size = new Size(217, 26);
             mnuDangXuat.Text = "Đăng &xuất";
             // 
             // mnuDoiMatKhau
             // 
             mnuDoiMatKhau.Name = "mnuDoiMatKhau";
-            mnuDoiMatKhau.Size = new Size(224, 26);
+            mnuDoiMatKhau.Size = new Size(217, 26);
             mnuDoiMatKhau.Text = "Đổi &mật khẩu";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(221, 6);
+            toolStripSeparator1.Size = new Size(214, 6);
             // 
             // mnuThoat
             // 
             mnuThoat.Name = "mnuThoat";
             mnuThoat.ShortcutKeys = Keys.Alt | Keys.F4;
-            mnuThoat.Size = new Size(224, 26);
+            mnuThoat.Size = new Size(217, 26);
             mnuThoat.Text = "Thoát ";
             // 
             // mnuQuanLy
@@ -241,7 +241,7 @@
             staStp_LienKet.Items.AddRange(new ToolStripItem[] { lblTrangThai, toolStripStatusLabel1, toolStripStatusLabel2 });
             staStp_LienKet.Location = new Point(0, 727);
             staStp_LienKet.Name = "staStp_LienKet";
-            staStp_LienKet.Size = new Size(984, 26);
+            staStp_LienKet.Size = new Size(982, 26);
             staStp_LienKet.TabIndex = 1;
             staStp_LienKet.Text = "statusStrip1";
             // 
@@ -254,7 +254,7 @@
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(692, 20);
+            toolStripStatusLabel1.Size = new Size(690, 20);
             toolStripStatusLabel1.Spring = true;
             // 
             // toolStripStatusLabel2
@@ -268,7 +268,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(984, 753);
+            ClientSize = new Size(982, 753);
             Controls.Add(staStp_LienKet);
             Controls.Add(mnuLaptop);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -276,6 +276,7 @@
             Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LaptopVie";
+            Load += frmMain_Load;
             mnuLaptop.ResumeLayout(false);
             mnuLaptop.PerformLayout();
             staStp_LienKet.ResumeLayout(false);

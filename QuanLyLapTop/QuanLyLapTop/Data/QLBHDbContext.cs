@@ -18,10 +18,10 @@ namespace QuanLyLapTop.Data
         public DbSet<NhanVien> NhanVien { get; set; }
         public DbSet<KhachHang> KhachHang { get; set; }
         public DbSet<HoaDon> HoaDon { get; set; }
-        public DbSet<HoaDonChiTiet> HoaDon_ChiTiet { get; set; }
-        public DbSet<CauHinh> CauHinh { get; set; }
+        public DbSet<HoaDon_ChiTiet> HoaDon_ChiTiet { get; set; }
+        public DbSet<SanPham_ChiTiet> SanPham_ChiTiet { get; set; }
         public DbSet<PhieuNhap> PhieuNhap { get; set; }
-        public DbSet<PhieuNhapChiTiet> PhieuNhap_ChiTiet { get; set; }
+        public DbSet<PhieuNhap_ChiTiet> PhieuNhap_ChiTiet { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

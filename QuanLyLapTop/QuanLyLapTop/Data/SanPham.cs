@@ -15,17 +15,20 @@ namespace QuanLyLapTop.Data
         public DateTime NgayNhap { get; set; }
         public string? HinhAnh { get; set; }
         public string? MoTa { get; set; }
+        //Khóa 5
         public int HangSanXuatID { get; set; }
         public int LoaiSanPhamID { get; set; }
         public int NhaCungCapID { get; set; }
         public int KhuyenMaiID { get; set; }
-        public int CauHinhID{ get; set; }
+        public int SanPham_ChiTietID{ get; set; }
         // Navigation properties
-        public virtual ICollection<HoaDonChiTiet> HoaDon_ChiTiet { get; } = new List<HoaDonChiTiet>();
+        public virtual ICollection<HoaDon_ChiTiet> HoaDon_ChiTiet { get; } = new List<HoaDon_ChiTiet>();
+        public virtual ICollection<PhieuNhap_ChiTiet> PhieuNhap_ChiTiet { get; } = new List<PhieuNhap_ChiTiet>();
+        //
         public virtual LoaiSanPham? LoaiSanPham { get; set; }
         public virtual HangSanXuat? HangSanXuat { get; set; }
         public virtual NhaCungCap? NhaCungCap { get; set; }
-        public virtual CauHinh? CauHinh { get; set; }
+        public virtual SanPham_ChiTiet? SanPham_ChiTiet { get; set; }
         public virtual KhuyenMai? KhuyenMai { get; set; } 
     }
 }

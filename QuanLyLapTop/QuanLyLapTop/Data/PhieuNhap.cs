@@ -10,10 +10,10 @@ namespace QuanLyLapTop.Data
     {
         public int ID { get; set; }
         public int NhaCungCapID { get; set; }
-        public int NhanVienID { get; set; }
+        public int NhanVienID { get; set; } //user admin
         public DateTime NgayLap { get; set; }
         public string? GhiChuPhieuNhap { get; set; }
-        public virtual ICollection<PhieuNhapChiTiet> PhieuNhapChiTiet { get; } = new List<PhieuNhapChiTiet>();
+        public virtual ICollection<PhieuNhap_ChiTiet> PhieuNhapChiTiet { get; } = new List<PhieuNhap_ChiTiet>();
         public virtual NhaCungCap NhaCungCap { get; set; } = null!;
         public virtual NhanVien NhanVien { get; set; } = null!;
 

@@ -45,12 +45,11 @@
             progressBar1.Cursor = Cursors.AppStarting;
             progressBar1.Dock = DockStyle.Bottom;
             progressBar1.ForeColor = Color.Lime;
-            progressBar1.Location = new Point(0, 429);
+            progressBar1.Location = new Point(0, 724);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(844, 29);
+            progressBar1.Size = new Size(982, 29);
             progressBar1.Style = ProgressBarStyle.Continuous;
             progressBar1.TabIndex = 0;
-            progressBar1.Click += progressBar1_Click;
             // 
             // frmLoading
             // 
@@ -58,13 +57,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(844, 458);
+            ClientSize = new Size(982, 753);
             Controls.Add(progressBar1);
+            ForeColor = SystemColors.ControlLight;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmLoading";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Loading";
-            WindowState = FormWindowState.Maximized;
             Load += frmLoading_Load;
             ResumeLayout(false);
         }

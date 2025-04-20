@@ -7,7 +7,6 @@ D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLy
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.AssemblyInfo.cs
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.csproj.CoreCompileInputs.cache
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\bin\Debug\net9.0-windows\QuanLyLapTop.exe
-D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\bin\Debug\net9.0-windows\QuanLyLapTop.dll.config
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\bin\Debug\net9.0-windows\QuanLyLapTop.deps.json
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\bin\Debug\net9.0-windows\QuanLyLapTop.runtimeconfig.json
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\bin\Debug\net9.0-windows\QuanLyLapTop.dll
@@ -400,3 +399,11 @@ D:\HK2-NH2024-2025\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windo
 D:\HK2-NH2024-2025\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmHoaDon.resources
 D:\HK2-NH2024-2025\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmLoaiSanPham.resources
 D:\HK2-NH2024-2025\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmNhanVien.resources
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmDangNhap.resources
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmHangSanXuat.resources
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmHoaDon.resources
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmLoading.resources
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmLoaiSanPham.resources
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmNhanVien.resources
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.sourcelink.json
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\bin\Debug\net9.0-windows\QuanLyLapTop.dll.config

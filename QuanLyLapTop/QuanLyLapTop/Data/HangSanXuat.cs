@@ -10,10 +10,9 @@ namespace QuanLyLapTop.Data
     {
         public int ID { get; set; }
         public string? TenHangSanXuat { get; set; }
-        public string? Email { get; set; } 
-        public string? DiaChi { get; set; }
+        public string? QuocGia { get; set; }
         public string? HinhAnh { get; set; }
         // Navigation property
-        public virtual ICollection<SanPham> SanPham { get; set; } = new HashSet<SanPham>();    
+        public virtual ICollection<SanPham> SanPham { get; set; } = new List<SanPham>();    
     }
 }

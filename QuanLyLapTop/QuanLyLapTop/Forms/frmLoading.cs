@@ -31,10 +31,5 @@ namespace QuanLyLapTop.Forms
             this.TransparencyKey = Color.Wheat;
             this.BackColor = Color.Wheat;
         }
-
-        private void progressBar1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -12,11 +12,9 @@ namespace QuanLyLapTop.Data
         public string TenNhaCungCap { get; set; } = null!;
         public string? DiaChi { get; set; }
         public string? DienThoai { get; set; }
-        public string? Email { get; set; }
         // Navigation property
-        public virtual ICollection<SanPham> SanPham { get; set; } = new HashSet<SanPham>();
-        public virtual ICollection<PhieuNhap> PhieuNhap { get; set; } = new HashSet<PhieuNhap>();
-        public virtual ICollection<PhieuNhapChiTiet> PhieuNhapChiTiet { get; set; } = new HashSet<PhieuNhapChiTiet>();
+        public virtual ICollection<SanPham> SanPham { get; set; } = new List<SanPham>();
+        public virtual ICollection<PhieuNhap> PhieuNhap { get; set; } = new List<PhieuNhap>();
 
     }
 }
