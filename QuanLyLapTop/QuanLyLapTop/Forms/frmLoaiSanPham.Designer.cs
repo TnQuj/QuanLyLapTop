@@ -37,7 +37,7 @@
             toolStrip = new ToolStrip();
             btnNhap = new ToolStripButton();
             dataGridView = new DataGridView();
-            ID1 = new DataGridViewTextBoxColumn();
+            ID = new DataGridViewTextBoxColumn();
             TenLoaiSanPham = new DataGridViewTextBoxColumn();
             groupBox2 = new GroupBox();
             txtTenLoaiSanPham = new TextBox();
@@ -50,11 +50,16 @@
             btnSua = new Button();
             btnThem = new Button();
             btnXoa = new Button();
+            staStp_LienKet = new StatusStrip();
+            lblTrangThai = new ToolStripStatusLabel();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            toolStripStatusLabel2 = new ToolStripStatusLabel();
             toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox3.SuspendLayout();
+            staStp_LienKet.SuspendLayout();
             SuspendLayout();
             // 
             // btnXuat
@@ -64,6 +69,7 @@
             btnXuat.Name = "btnXuat";
             btnXuat.Size = new Size(76, 28);
             btnXuat.Text = "Xuất...";
+            btnXuat.Click += btnXuat_Click;
             // 
             // toolStripSeparator1
             // 
@@ -77,12 +83,14 @@
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(62, 28);
             btnTimKiem.Text = "Tìm";
+            btnTimKiem.Click += btnTimKiem_Click;
             // 
             // txtTuKhoa
             // 
             txtTuKhoa.BorderStyle = BorderStyle.FixedSingle;
             txtTuKhoa.Name = "txtTuKhoa";
             txtTuKhoa.Size = new Size(160, 31);
+            txtTuKhoa.KeyDown += txtTuKhoa_KeyDown;
             // 
             // toolStripLabel1
             // 
@@ -106,6 +114,7 @@
             btnNhap.Name = "btnNhap";
             btnNhap.Size = new Size(82, 28);
             btnNhap.Text = "Nhập...";
+            btnNhap.Click += btnNhap_Click;
             // 
             // dataGridView
             // 
@@ -113,7 +122,7 @@
             dataGridView.AllowUserToDeleteRows = false;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { ID1, TenLoaiSanPham });
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { ID, TenLoaiSanPham });
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.Location = new Point(2, 53);
             dataGridView.Margin = new Padding(2);
@@ -123,18 +132,18 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 62;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(486, 298);
+            dataGridView.Size = new Size(486, 272);
             dataGridView.TabIndex = 1;
             // 
-            // ID1
+            // ID
             // 
-            ID1.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            ID1.DataPropertyName = "ID";
-            ID1.HeaderText = "ID";
-            ID1.MinimumWidth = 6;
-            ID1.Name = "ID1";
-            ID1.ReadOnly = true;
-            ID1.Width = 50;
+            ID.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            ID.DataPropertyName = "ID";
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 6;
+            ID.Name = "ID";
+            ID.ReadOnly = true;
+            ID.Width = 60;
             // 
             // TenLoaiSanPham
             // 
@@ -153,7 +162,7 @@
             groupBox2.Margin = new Padding(2);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(2);
-            groupBox2.Size = new Size(490, 353);
+            groupBox2.Size = new Size(490, 327);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách loại sản phẩm";
@@ -181,12 +190,11 @@
             groupBox1.Controls.Add(groupBox3);
             groupBox1.Controls.Add(txtTenLoaiSanPham);
             groupBox1.Controls.Add(label1);
-            groupBox1.Dock = DockStyle.Left;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(2);
-            groupBox1.Size = new Size(248, 353);
+            groupBox1.Size = new Size(248, 327);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin loại sản phẩm";
@@ -276,11 +284,42 @@
             btnXoa.UseVisualStyleBackColor = true;
             btnXoa.Click += btnXoa_Click;
             // 
+            // staStp_LienKet
+            // 
+            staStp_LienKet.BackColor = Color.MediumSpringGreen;
+            staStp_LienKet.ImageScalingSize = new Size(20, 20);
+            staStp_LienKet.Items.AddRange(new ToolStripItem[] { lblTrangThai, toolStripStatusLabel1, toolStripStatusLabel2 });
+            staStp_LienKet.Location = new Point(0, 327);
+            staStp_LienKet.Name = "staStp_LienKet";
+            staStp_LienKet.Size = new Size(742, 26);
+            staStp_LienKet.TabIndex = 5;
+            staStp_LienKet.Text = "statusStrip1";
+            // 
+            // lblTrangThai
+            // 
+            lblTrangThai.Name = "lblTrangThai";
+            lblTrangThai.Size = new Size(121, 20);
+            lblTrangThai.Text = "Chưa đăng nhập.";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(450, 20);
+            toolStripStatusLabel1.Spring = true;
+            // 
+            // toolStripStatusLabel2
+            // 
+            toolStripStatusLabel2.IsLink = true;
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new Size(156, 20);
+            toolStripStatusLabel2.Text = "© Khoa CNTT - ĐHAG";
+            // 
             // frmLoaiSanPham
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(742, 353);
+            Controls.Add(staStp_LienKet);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -298,7 +337,10 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox3.ResumeLayout(false);
+            staStp_LienKet.ResumeLayout(false);
+            staStp_LienKet.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -322,7 +364,11 @@
         private Button btnThoat;
         private Button btnXoa;
         private Button btnHuyBo;
-        private DataGridViewTextBoxColumn ID1;
+        private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn TenLoaiSanPham;
+        private StatusStrip staStp_LienKet;
+        private ToolStripStatusLabel lblTrangThai;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel toolStripStatusLabel2;
     }
 }

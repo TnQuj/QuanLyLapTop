@@ -11,14 +11,15 @@ using ClosedXML.Excel;
 using QuanLyLapTop.Data;
 namespace QuanLyLapTop.Forms
 {
-    public partial class frmLoaiSanPham : Form
+    public partial class frmKhachHang : Form
     {
-        public frmLoaiSanPham()
+        public frmKhachHang()
         {
             InitializeComponent();
         }
         QLBHDbContext context = new QLBHDbContext();
         int id;
+
         public void BatTatChucNang(bool giaTri)
         {
             btnThem.Enabled = !giaTri;
@@ -26,79 +27,105 @@ namespace QuanLyLapTop.Forms
             btnSua.Enabled = !giaTri;
             btnLuu.Enabled = giaTri;
             btnHuyBo.Enabled = giaTri;
-            txtTenLoaiSanPham.Enabled = giaTri;
+            txtHoVaTen.Enabled = giaTri;
+            txtDienThoai.Enabled = giaTri;
+            txtDiaChi.Enabled = giaTri;
         }
-        private void frmLoaiSanPham_Load(object sender, EventArgs e)
+        private void frmKhachHang_Load(object sender, EventArgs e)
         {
             BatTatChucNang(false);
             dataGridView.AutoGenerateColumns = false;
-            var lsp = context.LoaiSanPham.ToList();
-            dataGridView.DataSource = lsp;
+            var kh = context.KhachHang.ToList();
+            dataGridView.DataSource = kh;
 
-            txtTenLoaiSanPham.DataBindings.Clear();
-            txtTenLoaiSanPham.DataBindings.Add("Text", lsp, "TenLoaiSanPham", false, DataSourceUpdateMode.Never);
+            //đổ dữ liệu lên các textbox
+            txtHoVaTen.DataBindings.Clear();
+            txtHoVaTen.DataBindings.Add("Text", kh, "HoVaTen", false, DataSourceUpdateMode.Never);
+            txtDienThoai.DataBindings.Clear();
+            txtDienThoai.DataBindings.Add("Text", kh, "DienThoai", false, DataSourceUpdateMode.Never);
+            txtDiaChi.DataBindings.Clear();
+            txtDiaChi.DataBindings.Add("Text", kh, "DiaChi", false, DataSourceUpdateMode.Never);
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
             BatTatChucNang(true);
-            txtTenLoaiSanPham.Clear();
-            txtTenLoaiSanPham.Focus();
+            id = 0;
+            txtHoVaTen.Text = "";
+            txtDienThoai.Text = "";
+            txtDiaChi.Text = "";
+            txtHoVaTen.Focus();
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                id = Convert.ToInt32(dataGridView.CurrentRow?.Cells["ID"].Value?.ToString());
+                var kh = context.KhachHang.Find(id)!;
+                if (kh != null)
+                {
+                    context.KhachHang.Remove(kh);
+                    context.SaveChanges();
+                    MessageBox.Show("Xóa thành công - " + HoVaTen.Name);
+                    frmKhachHang_Load(sender, e);
+                }
+            }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
             BatTatChucNang(true);
             id = Convert.ToInt32(dataGridView.CurrentRow?.Cells["ID"].Value?.ToString());
-            txtTenLoaiSanPham.Focus();
+            txtHoVaTen.Clear();
+            txtDienThoai.Clear();
+            txtDiaChi.Clear();
+            txtHoVaTen.Focus();
 
-        }
-
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                id = Convert.ToInt32(dataGridView.CurrentRow?.Cells["ID"].Value?.ToString());
-                var lsp = context.LoaiSanPham.Find(id)!;
-                context.LoaiSanPham.Remove(lsp);
-                context.SaveChanges();
-                frmLoaiSanPham_Load(sender, e);
-            }
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtTenLoaiSanPham.Text))
+            if (string.IsNullOrEmpty(txtHoVaTen.Text))
+            { MessageBox.Show("Bạn chưa nhập họ và tên"); txtHoVaTen.Focus(); return; }
+            else if (string.IsNullOrEmpty(txtDienThoai.Text))
             {
-                MessageBox.Show("Vui lòng nhập tên loại sản phẩm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtTenLoaiSanPham.Focus();
-                return;
+                MessageBox.Show("Bạn chưa nhập điện thoại");txtDienThoai.Focus(); return;
+            }
+            else if (string.IsNullOrEmpty(txtDiaChi.Text))
+            {
+                MessageBox.Show("Bạn chưa nhập địa chỉ");txtDiaChi.Focus();return;
             }
             else
             {
-                if (id == 0)
+                if(id == 0)
                 {
-                    LoaiSanPham lsp = new LoaiSanPham();
-                    lsp.TenLoaiSanPham = txtTenLoaiSanPham.Text;
-                    context.LoaiSanPham.Add(lsp);
+                    KhachHang kh = new KhachHang();
+                    kh.HoVaTen = txtHoVaTen.Text;
+                    kh.DienThoai = txtDienThoai.Text;
+                    kh.DiaChi = txtDiaChi.Text;
+                    context.KhachHang.Add(kh);
                     context.SaveChanges();
                 }
                 else
                 {
-                    var lsp = context.LoaiSanPham.Find(id)!;
-                    lsp.TenLoaiSanPham = txtTenLoaiSanPham.Text;
-                    context.LoaiSanPham.Update(lsp);
-                    context.SaveChanges();
+                    var kh = context.KhachHang.Find(id);
+                    if (kh != null)
+                    {
+                        kh.HoVaTen = txtHoVaTen.Text;
+                        kh.DienThoai = txtDienThoai.Text;
+                        kh.DiaChi = txtDiaChi.Text;
+                        context.KhachHang.Update(kh);
+                        context.SaveChanges();
+                    }
                 }
-                frmLoaiSanPham_Load(sender, e);
-                MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                context.SaveChanges();
+                frmKhachHang_Load(sender, e);
+                MessageBox.Show("Lưu thành công");
                 BatTatChucNang(false);
             }
-        }
 
-        private void btnHuyBo_Click(object sender, EventArgs e)
-        {
-            frmLoaiSanPham_Load(sender, e);
+
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -110,21 +137,23 @@ namespace QuanLyLapTop.Forms
             }
         }
 
+        private void btnHuyBo_Click(object sender, EventArgs e)
+        {
+            frmKhachHang_Load(sender, e);
+        }
+
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            var lsp = context.LoaiSanPham
-                .Where(x => x.TenLoaiSanPham!
-                .Contains(txtTuKhoa.Text))
+            var kh = context.KhachHang
+                .Where(x => x.HoVaTen.Contains(txtTuKhoa.Text) || x.DienThoai!.Contains(txtTuKhoa.Text) || x.DiaChi!.Contains(txtTuKhoa.Text))
                 .ToList();
-            dataGridView.DataSource = lsp;
+            dataGridView.DataSource = kh;
         }
 
         private void txtTuKhoa_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-            {
-                btnTimKiem_Click(sender, e);
-            }
+            {btnTimKiem_Click(sender, e); }
         }
 
         private void btnNhap_Click(object sender, EventArgs e)
@@ -169,13 +198,15 @@ namespace QuanLyLapTop.Forms
                         {
                             foreach (DataRow r in table.Rows)
                             {
-                                LoaiSanPham lsp = new LoaiSanPham();
-                                lsp.TenLoaiSanPham = r["TenLoaiSanPham"].ToString() ?? "N/A";
-                                context.LoaiSanPham.Add(lsp);
+                                KhachHang kh = new KhachHang();
+                                kh.HoVaTen = r["HoVaTen"].ToString() ?? "N/A";
+                                kh.DienThoai = r["DienThoai"].ToString() ?? "N/A";
+                                kh.DiaChi = r["DiaChi"].ToString() ?? "N/A";
+                                context.KhachHang.Add(kh);
                             }
                             context.SaveChanges();
                             MessageBox.Show("Đã nhập thành công " + table.Rows.Count + " dòng.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            frmLoaiSanPham_Load(sender, e);
+                            frmKhachHang_Load(sender, e);
                         }
                         if (firstRow)
                             MessageBox.Show("Tập tin Excel rỗng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -192,25 +223,27 @@ namespace QuanLyLapTop.Forms
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog(); saveFileDialog.Title = "Xuất dữ liệu ra tập tin Excel";
             saveFileDialog.Filter = "Tập tin Excel|*.xls;*.xlsx";
-            saveFileDialog.FileName = "LoaiSanPham_" + DateTime.Now.ToShortDateString().Replace("/", "_") + ".xlsx";
+            saveFileDialog.FileName = "KhachHang_" + DateTime.Now.ToShortDateString().Replace("/", "_") + ".xlsx";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
                     DataTable table = new DataTable();
-                    table.Columns.AddRange(new DataColumn[2] {
+                    table.Columns.AddRange(new DataColumn[4] {
                     new DataColumn("ID", typeof(int)),
-                    new DataColumn("TenLoaiSanPham", typeof(string))
+                    new DataColumn("HoVaTen", typeof(string)),
+                    new DataColumn("DienThoai", typeof(string)),
+                    new DataColumn("DiaChi", typeof(string))
                     });
-                    var lsp = context.LoaiSanPham.ToList();
-                    if (lsp != null)
+                    var kh = context.KhachHang.ToList();
+                    if (kh != null)
                     {
-                        foreach (var p in lsp)
-                            table.Rows.Add(p.ID, p.TenLoaiSanPham);
+                        foreach (var p in kh)
+                            table.Rows.Add(p.ID, p.HoVaTen, p.DienThoai, p.DiaChi);
                     }
                     using (XLWorkbook wb = new XLWorkbook())
                     {
-                        var sheet = wb.Worksheets.Add(table, "LoaiSanPham");
+                        var sheet = wb.Worksheets.Add(table, "KhachHang");
                         sheet.Columns().AdjustToContents();
                         wb.SaveAs(saveFileDialog.FileName);
                         MessageBox.Show("Đã xuất dữ liệu ra tập tin Excel thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);

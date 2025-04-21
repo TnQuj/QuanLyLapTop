@@ -255,7 +255,7 @@
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(690, 20);
+            toolStripStatusLabel1.Size = new Size(651, 20);
             toolStripStatusLabel1.Spring = true;
             // 
             // toolStripStatusLabel2
