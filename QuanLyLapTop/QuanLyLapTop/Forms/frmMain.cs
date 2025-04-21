@@ -16,10 +16,28 @@ namespace QuanLyLapTop.Forms
         {
             InitializeComponent();
         }
-
+        frmLoaiSanPham? loaiSanPham = null;
+        frmHangSanXuat? hangSanXuat = null;
+        //frmSanPham? sanPham = null;
+        //frmKhachHang? khachHang = null;
+        frmNhanVien? nhanVien = null;
+        frmHoaDon? hoaDon = null;
+        string hoVaTenNhanVien = "";
         private void frmMain_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void mnuHangSanXuat_Click(object sender, EventArgs e)
+        {
+            if (hangSanXuat == null || hangSanXuat.IsDisposed)
+            {
+                hangSanXuat = new frmHangSanXuat();
+                hangSanXuat.MdiParent = this;
+                hangSanXuat.Show();
+            }
+            else
+                hangSanXuat.Activate();
         }
     }
 }

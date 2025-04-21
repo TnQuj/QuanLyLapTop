@@ -45,9 +45,9 @@
             progressBar1.Cursor = Cursors.AppStarting;
             progressBar1.Dock = DockStyle.Bottom;
             progressBar1.ForeColor = Color.Lime;
-            progressBar1.Location = new Point(0, 724);
+            progressBar1.Location = new Point(0, 524);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(982, 29);
+            progressBar1.Size = new Size(882, 29);
             progressBar1.Style = ProgressBarStyle.Continuous;
             progressBar1.TabIndex = 0;
             // 
@@ -57,12 +57,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(982, 753);
+            ClientSize = new Size(882, 553);
             Controls.Add(progressBar1);
+            DoubleBuffered = true;
             ForeColor = SystemColors.ControlLight;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmLoading";
             StartPosition = FormStartPosition.CenterScreen;
+            Text = "LaptopVie";
             Load += frmLoading_Load;
             ResumeLayout(false);
         }

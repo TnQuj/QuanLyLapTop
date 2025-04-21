@@ -13,8 +13,11 @@ namespace QuanLyLapTop
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            Application.Run(new frmLoaiSanPham());
             //Application.Run(new frmLoading());
-                Application.Run(new frmHangSanXuat());
+            //{
+            //    Application.Run(new frmMain());
+            //}
         }
     }
 }

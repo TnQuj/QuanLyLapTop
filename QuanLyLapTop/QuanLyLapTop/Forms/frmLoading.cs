@@ -30,6 +30,8 @@ namespace QuanLyLapTop.Forms
         {
             this.TransparencyKey = Color.Wheat;
             this.BackColor = Color.Wheat;
+            timer1.Interval = 40;
         }
+
     }
 }

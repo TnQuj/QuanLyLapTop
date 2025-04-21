@@ -45,8 +45,8 @@
             btnXuat = new ToolStripButton();
             txtTenHangSanXuat = new TextBox();
             groupBox1 = new GroupBox();
+            txtQuocGia = new TextBox();
             picHinhAnh = new PictureBox();
-            cboQuocGia = new ComboBox();
             btnThoat = new Button();
             btnHuyBo = new Button();
             btnXoa = new Button();
@@ -76,11 +76,10 @@
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView.BackgroundColor = SystemColors.ControlLightLight;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Columns.AddRange(new DataGridViewColumn[] { ID, TenHangSanXuat, QuocGia, HinhAnh });
             dataGridView.Dock = DockStyle.Fill;
-            dataGridView.Location = new Point(2, 49);
+            dataGridView.Location = new Point(2, 53);
             dataGridView.Margin = new Padding(2);
             dataGridView.MultiSelect = false;
             dataGridView.Name = "dataGridView";
@@ -88,8 +87,9 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 62;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(404, 402);
+            dataGridView.Size = new Size(497, 398);
             dataGridView.TabIndex = 1;
+            dataGridView.CellFormatting += dataGridView_CellFormatting;
             // 
             // ID
             // 
@@ -137,11 +137,11 @@
             groupBox2.Controls.Add(dataGridView);
             groupBox2.Controls.Add(toolStrip);
             groupBox2.Dock = DockStyle.Right;
-            groupBox2.Location = new Point(374, 0);
+            groupBox2.Location = new Point(381, 0);
             groupBox2.Margin = new Padding(2);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(2);
-            groupBox2.Size = new Size(408, 453);
+            groupBox2.Size = new Size(501, 453);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách hãng sản xuất";
@@ -152,45 +152,49 @@
             toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTuKhoa, btnTimKiem, toolStripSeparator1, btnNhap, btnXuat });
             toolStrip.Location = new Point(2, 22);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(404, 27);
+            toolStrip.Size = new Size(497, 31);
             toolStrip.TabIndex = 0;
             // 
             // toolStripLabel1
             // 
             toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(73, 24);
+            toolStripLabel1.Size = new Size(73, 28);
             toolStripLabel1.Text = "Tìm kiếm:";
             // 
             // txtTuKhoa
             // 
             txtTuKhoa.BorderStyle = BorderStyle.FixedSingle;
             txtTuKhoa.Name = "txtTuKhoa";
-            txtTuKhoa.Size = new Size(160, 27);
+            txtTuKhoa.Size = new Size(160, 31);
             // 
             // btnTimKiem
             // 
+            btnTimKiem.Image = (Image)resources.GetObject("btnTimKiem.Image");
             btnTimKiem.ImageTransparentColor = Color.Magenta;
             btnTimKiem.Name = "btnTimKiem";
-            btnTimKiem.Size = new Size(38, 24);
+            btnTimKiem.Size = new Size(62, 28);
             btnTimKiem.Text = "Tìm";
+            btnTimKiem.Click += btnTimKiem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 27);
+            toolStripSeparator1.Size = new Size(6, 31);
             // 
             // btnNhap
             // 
+            btnNhap.Image = (Image)resources.GetObject("btnNhap.Image");
             btnNhap.ImageTransparentColor = Color.Magenta;
             btnNhap.Name = "btnNhap";
-            btnNhap.Size = new Size(58, 24);
+            btnNhap.Size = new Size(82, 28);
             btnNhap.Text = "Nhập...";
             // 
             // btnXuat
             // 
+            btnXuat.Image = (Image)resources.GetObject("btnXuat.Image");
             btnXuat.ImageTransparentColor = Color.Magenta;
             btnXuat.Name = "btnXuat";
-            btnXuat.Size = new Size(52, 24);
+            btnXuat.Size = new Size(76, 28);
             btnXuat.Text = "Xuất...";
             // 
             // txtTenHangSanXuat
@@ -203,8 +207,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(txtQuocGia);
             groupBox1.Controls.Add(picHinhAnh);
-            groupBox1.Controls.Add(cboQuocGia);
             groupBox1.Controls.Add(btnThoat);
             groupBox1.Controls.Add(btnHuyBo);
             groupBox1.Controls.Add(btnXoa);
@@ -224,23 +228,26 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin hãng sản xuất";
             // 
+            // txtQuocGia
+            // 
+            txtQuocGia.Location = new Point(158, 81);
+            txtQuocGia.Margin = new Padding(2);
+            txtQuocGia.Name = "txtQuocGia";
+            txtQuocGia.Size = new Size(189, 27);
+            txtQuocGia.TabIndex = 10;
+            // 
             // picHinhAnh
             // 
+            picHinhAnh.BorderStyle = BorderStyle.FixedSingle;
             picHinhAnh.Enabled = false;
-            picHinhAnh.Location = new Point(20, 128);
+            picHinhAnh.Image = Properties.Resources.no_image;
+            picHinhAnh.Location = new Point(113, 124);
             picHinhAnh.Name = "picHinhAnh";
-            picHinhAnh.Size = new Size(329, 146);
+            picHinhAnh.Size = new Size(150, 146);
+            picHinhAnh.SizeMode = PictureBoxSizeMode.StretchImage;
             picHinhAnh.TabIndex = 9;
             picHinhAnh.TabStop = false;
-            picHinhAnh.Visible = false;
-            // 
-            // cboQuocGia
-            // 
-            cboQuocGia.FormattingEnabled = true;
-            cboQuocGia.Location = new Point(159, 80);
-            cboQuocGia.Name = "cboQuocGia";
-            cboQuocGia.Size = new Size(190, 28);
-            cboQuocGia.TabIndex = 1;
+            picHinhAnh.Click += picHinhAnh_Click;
             // 
             // btnThoat
             // 
@@ -318,7 +325,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(782, 453);
+            ClientSize = new Size(882, 453);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -353,7 +360,6 @@
         private Button btnSua;
         private Button btnThem;
         private Button btnLuu;
-        private ComboBox cboQuocGia;
         private Button btnHuyBo;
         private Button btnXoa;
         private Button btnThoat;
@@ -365,5 +371,6 @@
         private ToolStripButton btnNhap;
         private ToolStripButton btnXuat;
         private PictureBox picHinhAnh;
+        private TextBox txtQuocGia;
     }
 }
