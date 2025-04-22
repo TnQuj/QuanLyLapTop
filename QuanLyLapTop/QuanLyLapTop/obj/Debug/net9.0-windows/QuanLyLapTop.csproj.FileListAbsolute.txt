@@ -409,3 +409,5 @@ D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLy
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\bin\Debug\net9.0-windows\QuanLyLapTop.dll.config
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmKhachHang.resources
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmSanPham.resources
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmSanPham_ChiTiet.resources
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmNhaCungCap.resources
