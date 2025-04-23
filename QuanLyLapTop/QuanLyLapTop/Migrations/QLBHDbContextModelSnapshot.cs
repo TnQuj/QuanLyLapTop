@@ -315,9 +315,6 @@ namespace QuanLyLapTop.Migrations
                     b.Property<int>("NhaCungCapID")
                         .HasColumnType("int");
 
-                    b.Property<int>("SanPham_ChiTietID")
-                        .HasColumnType("int");
-
                     b.Property<int>("SoLuongTon")
                         .HasColumnType("int");
 
@@ -333,8 +330,6 @@ namespace QuanLyLapTop.Migrations
                     b.HasIndex("LoaiSanPhamID");
 
                     b.HasIndex("NhaCungCapID");
-
-                    b.HasIndex("SanPham_ChiTietID");
 
                     b.ToTable("SanPham");
                 });
@@ -368,10 +363,15 @@ namespace QuanLyLapTop.Migrations
                     b.Property<string>("RAM")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SanPhamID")
+                        .HasColumnType("int");
+
                     b.Property<string>("TrongLuong")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("SanPhamID");
 
                     b.ToTable("SanPham_ChiTiet");
                 });
@@ -478,12 +478,6 @@ namespace QuanLyLapTop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("QuanLyLapTop.Data.SanPham_ChiTiet", "SanPham_ChiTiet")
-                        .WithMany("SanPham")
-                        .HasForeignKey("SanPham_ChiTietID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("HangSanXuat");
 
                     b.Navigation("KhuyenMai");
@@ -491,8 +485,17 @@ namespace QuanLyLapTop.Migrations
                     b.Navigation("LoaiSanPham");
 
                     b.Navigation("NhaCungCap");
+                });
 
-                    b.Navigation("SanPham_ChiTiet");
+            modelBuilder.Entity("QuanLyLapTop.Data.SanPham_ChiTiet", b =>
+                {
+                    b.HasOne("QuanLyLapTop.Data.SanPham", "SanPham")
+                        .WithMany()
+                        .HasForeignKey("SanPhamID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SanPham");
                 });
 
             modelBuilder.Entity("QuanLyLapTop.Data.HangSanXuat", b =>
@@ -542,11 +545,6 @@ namespace QuanLyLapTop.Migrations
                     b.Navigation("HoaDon_ChiTiet");
 
                     b.Navigation("PhieuNhap_ChiTiet");
-                });
-
-            modelBuilder.Entity("QuanLyLapTop.Data.SanPham_ChiTiet", b =>
-                {
-                    b.Navigation("SanPham");
                 });
 #pragma warning restore 612, 618
         }

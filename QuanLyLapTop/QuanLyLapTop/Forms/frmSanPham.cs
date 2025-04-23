@@ -27,7 +27,7 @@ namespace QuanLyLapTop.Forms
             btnXoa.Enabled = !giaTri;
             btnSua.Enabled = !giaTri;
             //
-            btnSanPhamChiTiet.Enabled = giaTri;
+            btnSanPhamChiTiet.Enabled = !giaTri;
             btnLuu.Enabled = giaTri;
             btnHuyBo.Enabled = giaTri;
             txtTenSanPham.Enabled = giaTri;
@@ -187,6 +187,11 @@ namespace QuanLyLapTop.Forms
                     picHinhAnh.Image = Image.FromStream(ms);
                 }
             }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            BatTatChucNang(true);
         }
     }
 }

@@ -411,3 +411,5 @@ D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLy
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmSanPham.resources
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmSanPham_ChiTiet.resources
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmNhaCungCap.resources
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmPhieuNhap.resources
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmPhieuNhap_ChiTiet.resources

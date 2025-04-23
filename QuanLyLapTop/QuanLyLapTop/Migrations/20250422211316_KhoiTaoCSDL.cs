@@ -77,8 +77,8 @@ namespace QuanLyLapTop.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TenNhaCungCap = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DiaChi = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DienThoai = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    DienThoai = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DiaChi = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -104,23 +104,49 @@ namespace QuanLyLapTop.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SanPham_ChiTiet",
+                name: "SanPham",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CPU = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RAM = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OCung = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ManHinh = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GPU = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Pin = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TrongLuong = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HeDieuHanh = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    TenSanPham = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GiaBan = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SoLuongTon = table.Column<int>(type: "int", nullable: false),
+                    NgayNhap = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HinhAnh = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MoTa = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HangSanXuatID = table.Column<int>(type: "int", nullable: false),
+                    LoaiSanPhamID = table.Column<int>(type: "int", nullable: false),
+                    NhaCungCapID = table.Column<int>(type: "int", nullable: false),
+                    KhuyenMaiID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SanPham_ChiTiet", x => x.ID);
+                    table.PrimaryKey("PK_SanPham", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_SanPham_HangSanXuat_HangSanXuatID",
+                        column: x => x.HangSanXuatID,
+                        principalTable: "HangSanXuat",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SanPham_KhuyenMai_KhuyenMaiID",
+                        column: x => x.KhuyenMaiID,
+                        principalTable: "KhuyenMai",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SanPham_LoaiSanPham_LoaiSanPhamID",
+                        column: x => x.LoaiSanPhamID,
+                        principalTable: "LoaiSanPham",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SanPham_NhaCungCap_NhaCungCapID",
+                        column: x => x.NhaCungCapID,
+                        principalTable: "NhaCungCap",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -180,54 +206,28 @@ namespace QuanLyLapTop.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SanPham",
+                name: "SanPham_ChiTiet",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenSanPham = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GiaBan = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SoLuongTon = table.Column<int>(type: "int", nullable: false),
-                    NgayNhap = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    HinhAnh = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MoTa = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HangSanXuatID = table.Column<int>(type: "int", nullable: false),
-                    LoaiSanPhamID = table.Column<int>(type: "int", nullable: false),
-                    NhaCungCapID = table.Column<int>(type: "int", nullable: false),
-                    KhuyenMaiID = table.Column<int>(type: "int", nullable: false),
-                    SanPham_ChiTietID = table.Column<int>(type: "int", nullable: false)
+                    SanPhamID = table.Column<int>(type: "int", nullable: false),
+                    CPU = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RAM = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OCung = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ManHinh = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GPU = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Pin = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TrongLuong = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HeDieuHanh = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SanPham", x => x.ID);
+                    table.PrimaryKey("PK_SanPham_ChiTiet", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_SanPham_HangSanXuat_HangSanXuatID",
-                        column: x => x.HangSanXuatID,
-                        principalTable: "HangSanXuat",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SanPham_KhuyenMai_KhuyenMaiID",
-                        column: x => x.KhuyenMaiID,
-                        principalTable: "KhuyenMai",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SanPham_LoaiSanPham_LoaiSanPhamID",
-                        column: x => x.LoaiSanPhamID,
-                        principalTable: "LoaiSanPham",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SanPham_NhaCungCap_NhaCungCapID",
-                        column: x => x.NhaCungCapID,
-                        principalTable: "NhaCungCap",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SanPham_SanPham_ChiTiet_SanPham_ChiTietID",
-                        column: x => x.SanPham_ChiTietID,
-                        principalTable: "SanPham_ChiTiet",
+                        name: "FK_SanPham_ChiTiet_SanPham_SanPhamID",
+                        column: x => x.SanPhamID,
+                        principalTable: "SanPham",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -349,9 +349,9 @@ namespace QuanLyLapTop.Migrations
                 column: "NhaCungCapID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SanPham_SanPham_ChiTietID",
-                table: "SanPham",
-                column: "SanPham_ChiTietID");
+                name: "IX_SanPham_ChiTiet_SanPhamID",
+                table: "SanPham_ChiTiet",
+                column: "SanPhamID");
         }
 
         /// <inheritdoc />
@@ -362,6 +362,9 @@ namespace QuanLyLapTop.Migrations
 
             migrationBuilder.DropTable(
                 name: "PhieuNhap_ChiTiet");
+
+            migrationBuilder.DropTable(
+                name: "SanPham_ChiTiet");
 
             migrationBuilder.DropTable(
                 name: "HoaDon");
@@ -389,9 +392,6 @@ namespace QuanLyLapTop.Migrations
 
             migrationBuilder.DropTable(
                 name: "NhaCungCap");
-
-            migrationBuilder.DropTable(
-                name: "SanPham_ChiTiet");
         }
     }
 }

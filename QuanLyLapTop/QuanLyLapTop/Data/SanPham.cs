@@ -20,7 +20,6 @@ namespace QuanLyLapTop.Data
         public int LoaiSanPhamID { get; set; }
         public int NhaCungCapID { get; set; }
         public int KhuyenMaiID { get; set; }
-        public int SanPham_ChiTietID{ get; set; }
         // Navigation properties
         public virtual ICollection<HoaDon_ChiTiet> HoaDon_ChiTiet { get; } = new List<HoaDon_ChiTiet>();
         public virtual ICollection<PhieuNhap_ChiTiet> PhieuNhap_ChiTiet { get; } = new List<PhieuNhap_ChiTiet>();
@@ -28,7 +27,6 @@ namespace QuanLyLapTop.Data
         public virtual LoaiSanPham? LoaiSanPham { get; set; }
         public virtual HangSanXuat? HangSanXuat { get; set; }
         public virtual NhaCungCap? NhaCungCap { get; set; }
-        public virtual SanPham_ChiTiet? SanPham_ChiTiet { get; set; }
         public virtual KhuyenMai? KhuyenMai { get; set; } 
     }
 }

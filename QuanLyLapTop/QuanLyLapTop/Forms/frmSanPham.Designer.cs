@@ -105,7 +105,8 @@
             // 
             // groupBox3
             // 
-            groupBox3.BackColor = Color.FromArgb(192, 255, 255);
+            groupBox3.BackColor = Color.MediumSeaGreen;
+            groupBox3.BackgroundImageLayout = ImageLayout.None;
             groupBox3.Controls.Add(btnSanPhamChiTiet);
             groupBox3.Controls.Add(btnThoat);
             groupBox3.Controls.Add(btnHuyBo);
@@ -118,7 +119,6 @@
             groupBox3.Size = new Size(1232, 89);
             groupBox3.TabIndex = 13;
             groupBox3.TabStop = false;
-            groupBox3.Text = "Công cụ";
             // 
             // btnSanPhamChiTiet
             // 
@@ -186,6 +186,7 @@
             btnThem.TabIndex = 0;
             btnThem.Text = "Thêm ";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // txtTuKhoa
             // 

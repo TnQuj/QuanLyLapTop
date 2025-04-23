@@ -66,7 +66,7 @@
             // btnThoat
             // 
             btnThoat.Anchor = AnchorStyles.Top;
-            btnThoat.Location = new Point(1408, 32);
+            btnThoat.Location = new Point(1373, 32);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(94, 29);
             btnThoat.TabIndex = 4;
@@ -77,7 +77,7 @@
             // 
             btnXoa.Anchor = AnchorStyles.Top;
             btnXoa.ForeColor = Color.Red;
-            btnXoa.Location = new Point(1241, 32);
+            btnXoa.Location = new Point(771, 22);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(94, 29);
             btnXoa.TabIndex = 3;
@@ -87,7 +87,7 @@
             // btnSua
             // 
             btnSua.Anchor = AnchorStyles.Top;
-            btnSua.Location = new Point(1062, 32);
+            btnSua.Location = new Point(643, 22);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(94, 29);
             btnSua.TabIndex = 2;
@@ -97,7 +97,7 @@
             // btnInHoaDon
             // 
             btnInHoaDon.Anchor = AnchorStyles.Top;
-            btnInHoaDon.Location = new Point(859, 32);
+            btnInHoaDon.Location = new Point(440, 22);
             btnInHoaDon.Name = "btnInHoaDon";
             btnInHoaDon.Size = new Size(122, 29);
             btnInHoaDon.TabIndex = 1;
@@ -112,15 +112,15 @@
             panel1.Controls.Add(btnInHoaDon);
             panel1.Controls.Add(btnThem);
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 377);
+            panel1.Location = new Point(0, 380);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1152, 73);
+            panel1.Size = new Size(1082, 73);
             panel1.TabIndex = 10;
             // 
             // btnThem
             // 
             btnThem.Anchor = AnchorStyles.Top;
-            btnThem.Location = new Point(637, 32);
+            btnThem.Location = new Point(218, 22);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(168, 29);
             btnThem.TabIndex = 0;
@@ -158,7 +158,7 @@
             toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTuKhoa, btnTimKiem, toolStripSeparator1, btnNhap, btnXuat });
             toolStrip.Location = new Point(3, 23);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(1146, 27);
+            toolStrip.Size = new Size(1076, 27);
             toolStrip.TabIndex = 2;
             // 
             // toolStripLabel1
@@ -174,7 +174,7 @@
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1152, 450);
+            groupBox1.Size = new Size(1082, 453);
             groupBox1.TabIndex = 9;
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh sách hóa đơn";
@@ -193,7 +193,7 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 51;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(1146, 397);
+            dataGridView.Size = new Size(1076, 400);
             dataGridView.TabIndex = 3;
             // 
             // ID
@@ -251,7 +251,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1152, 450);
+            ClientSize = new Size(1082, 453);
             Controls.Add(panel1);
             Controls.Add(groupBox1);
             Name = "frmHoaDon";

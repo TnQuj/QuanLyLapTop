@@ -10,6 +10,7 @@ namespace QuanLyLapTop.Data
     {
         // Properties (Xem chi tiết 1 sản phẩm)
         public int ID { get; set; }
+        public int SanPhamID { get; set; } //build ngược khóa 
         public string? CPU { get; set; }
         public string? RAM { get; set; }
         public string? OCung { get; set; }
@@ -19,6 +20,7 @@ namespace QuanLyLapTop.Data
         public string? TrongLuong { get; set; }
         public string? HeDieuHanh { get; set; }
         // Navigation property
-        public virtual ICollection<SanPham> SanPham { get; set; } = new List<SanPham>();
+        public virtual SanPham? SanPham { get; set; }
+
     }
 }
