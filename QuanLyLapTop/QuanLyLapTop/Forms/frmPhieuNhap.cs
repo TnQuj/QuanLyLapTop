@@ -43,13 +43,13 @@ namespace QuanLyLapTop.Forms
                 var phieuNhap = context.PhieuNhap.Select(p => new
                 {
                     p.ID,
-                    p.NhaCungCapID, 
+                    p.NhaCungCapID,
                     p.NhaCungCap.TenNhaCungCap,
                     p.NhanVienID,
-                    p.NhanVien.HoVaTen,
+                    HoVaTenNhanVien = p.NhanVien.HoVaTen,
                     p.NgayLap,
                     p.GhiChuPhieuNhap,
-                    TongTienPhieuNhap = p.PhieuNhapChiTiet.Sum(r => (r.SoLuongNhap) * r.DonGiaNhap),
+                    TongTienNhapHang = p.PhieuNhap_ChiTiet.Sum(r => (r.SoLuongNhap) * r.DonGiaNhap),
                 }).ToList();
                 dataGridView.DataSource = phieuNhap;
             }
@@ -60,6 +60,52 @@ namespace QuanLyLapTop.Forms
             finally
             {
                 BatTatChucNang();
+            }
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.CurrentRow != null)
+            {
+                id = Convert.ToInt32(dataGridView.CurrentRow?.Cells["ID"].Value?.ToString());
+                using (frmPhieuNhap_ChiTiet chitiet = new frmPhieuNhap_ChiTiet(id))
+                {
+                    chitiet.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn phiếu nhập để sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.CurrentRow != null)
+            {
+                if (MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu nhập này không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    id = Convert.ToInt32(dataGridView.CurrentRow?.Cells["ID"].Value?.ToString());
+                    PhieuNhap phieuNhap = context.PhieuNhap.Find(id)!;
+                    if (phieuNhap != null)
+                    {
+                        //xóa phiếu nhập chi tiết 
+                        PhieuNhap_ChiTiet chitiet = context.PhieuNhap_ChiTiet.Where(x => x.PhieuNhapID == id).SingleOrDefault()!;
+                        context.PhieuNhap_ChiTiet.Remove(chitiet);
+
+                        //xóa phiếu nhập
+                        context.PhieuNhap.Remove(phieuNhap);
+                        context.SaveChanges();
+
+                        MessageBox.Show("Xóa phiếu nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                    }
+                    frmPhieuNhap_Load(sender, e);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn phiếu nhập để xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

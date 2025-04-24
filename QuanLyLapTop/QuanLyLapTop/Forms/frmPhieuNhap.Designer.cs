@@ -133,7 +133,7 @@
             NgayLap.DataPropertyName = "NgayLap";
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.ForeColor = Color.Blue;
-            dataGridViewCellStyle1.Format = "g";
+            dataGridViewCellStyle1.Format = "G";
             dataGridViewCellStyle1.NullValue = null;
             NgayLap.DefaultCellStyle = dataGridViewCellStyle1;
             NgayLap.HeaderText = "Ngày lập";
@@ -407,6 +407,7 @@
             btnXoa.TabIndex = 3;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
             // 
             // btnSua
             // 
@@ -417,6 +418,7 @@
             btnSua.TabIndex = 2;
             btnSua.Text = "Sửa...";
             btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click;
             // 
             // btnInPhieuNhap
             // 

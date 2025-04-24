@@ -11,5 +11,6 @@
         public string QuyenHan { get; set; } = null!; // admin, user
         //
         public virtual ICollection<HoaDon> HoaDon { get; } = new List<HoaDon>();
+        public virtual ICollection<PhieuNhap> PhieuNhap { get; } = new List<PhieuNhap>();
     }
 }

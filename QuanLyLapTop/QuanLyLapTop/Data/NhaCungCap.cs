@@ -15,6 +15,5 @@ namespace QuanLyLapTop.Data
         // Navigation property
         public virtual ICollection<SanPham> SanPham { get; set; } = new List<SanPham>();
         public virtual ICollection<PhieuNhap> PhieuNhap { get; set; } = new List<PhieuNhap>();
-
     }
 }

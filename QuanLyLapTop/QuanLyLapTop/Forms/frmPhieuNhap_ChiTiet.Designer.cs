@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPhieuNhap_ChiTiet));
             button1 = new Button();
             btnXoa = new Button();
@@ -55,7 +55,7 @@
             btnThoat = new Button();
             panel1 = new Panel();
             groupBox3 = new GroupBox();
-            cboNhaCungCao = new ComboBox();
+            cboNhaCungCap = new ComboBox();
             label2 = new Label();
             cboNhanVien = new ComboBox();
             txtGhiChu = new TextBox();
@@ -130,11 +130,12 @@
             btnLapPhieuNhap.Name = "btnLapPhieuNhap";
             btnLapPhieuNhap.Size = new Size(204, 29);
             btnLapPhieuNhap.TabIndex = 0;
-            btnLapPhieuNhap.Text = "Lập phiếu nhập hàng...";
+            btnLapPhieuNhap.Text = "Lưu phiếu nhập hàng...";
             btnLapPhieuNhap.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
+            panel2.BackColor = SystemColors.ButtonHighlight;
             panel2.Controls.Add(button1);
             panel2.Controls.Add(btnHuy);
             panel2.Controls.Add(btnInPhieuNhap);
@@ -184,11 +185,11 @@
             // 
             GiaNhap.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             GiaNhap.DataPropertyName = "GiaNhap";
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.ForeColor = Color.Blue;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            GiaNhap.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.ForeColor = Color.Blue;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            GiaNhap.DefaultCellStyle = dataGridViewCellStyle4;
             GiaNhap.HeaderText = "Giá nhập";
             GiaNhap.MinimumWidth = 6;
             GiaNhap.Name = "GiaNhap";
@@ -198,11 +199,11 @@
             // SoLuong
             // 
             SoLuong.DataPropertyName = "SoLuong";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.ForeColor = Color.Blue;
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            SoLuong.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.ForeColor = Color.Blue;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            SoLuong.DefaultCellStyle = dataGridViewCellStyle5;
             SoLuong.HeaderText = "Số lượng ";
             SoLuong.MinimumWidth = 6;
             SoLuong.Name = "SoLuong";
@@ -211,11 +212,11 @@
             // ThanhTien
             // 
             ThanhTien.DataPropertyName = "ThanhTien";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.ForeColor = Color.Blue;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            ThanhTien.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.ForeColor = Color.Blue;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = null;
+            ThanhTien.DefaultCellStyle = dataGridViewCellStyle6;
             ThanhTien.HeaderText = "Thành tiền";
             ThanhTien.MinimumWidth = 6;
             ThanhTien.Name = "ThanhTien";
@@ -223,6 +224,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = SystemColors.ButtonHighlight;
             groupBox1.Controls.Add(dataGridView);
             groupBox1.Controls.Add(toolStrip);
             groupBox1.Dock = DockStyle.Bottom;
@@ -304,7 +306,8 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(cboNhaCungCao);
+            groupBox3.BackColor = SystemColors.ButtonHighlight;
+            groupBox3.Controls.Add(cboNhaCungCap);
             groupBox3.Controls.Add(label2);
             groupBox3.Controls.Add(cboNhanVien);
             groupBox3.Controls.Add(txtGhiChu);
@@ -319,14 +322,13 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Thông tin phiếu nhập";
             // 
-            // cboNhaCungCao
+            // cboNhaCungCap
             // 
-            cboNhaCungCao.FormattingEnabled = true;
-            cboNhaCungCao.Items.AddRange(new object[] { "admin", "user" });
-            cboNhaCungCao.Location = new Point(653, 27);
-            cboNhaCungCao.Name = "cboNhaCungCao";
-            cboNhaCungCao.Size = new Size(318, 28);
-            cboNhaCungCao.TabIndex = 20;
+            cboNhaCungCap.FormattingEnabled = true;
+            cboNhaCungCap.Location = new Point(653, 27);
+            cboNhaCungCap.Name = "cboNhaCungCap";
+            cboNhaCungCap.Size = new Size(318, 28);
+            cboNhaCungCap.TabIndex = 20;
             // 
             // label2
             // 
@@ -341,7 +343,6 @@
             // cboNhanVien
             // 
             cboNhanVien.FormattingEnabled = true;
-            cboNhanVien.Items.AddRange(new object[] { "admin", "user" });
             cboNhanVien.Location = new Point(176, 27);
             cboNhanVien.Name = "cboNhanVien";
             cboNhanVien.Size = new Size(318, 28);
@@ -376,6 +377,7 @@
             // 
             // groupBox4
             // 
+            groupBox4.BackColor = SystemColors.ButtonHighlight;
             groupBox4.Controls.Add(btnXacNhanNhap);
             groupBox4.Controls.Add(btnXoa);
             groupBox4.Controls.Add(numSoLuong);
@@ -441,7 +443,6 @@
             // cboSanPham
             // 
             cboSanPham.FormattingEnabled = true;
-            cboSanPham.Items.AddRange(new object[] { "admin", "user" });
             cboSanPham.Location = new Point(12, 59);
             cboSanPham.Name = "cboSanPham";
             cboSanPham.Size = new Size(272, 28);
@@ -512,7 +513,7 @@
         private Button btnThoat;
         private Panel panel1;
         private GroupBox groupBox3;
-        private ComboBox cboNhaCungCao;
+        private ComboBox cboNhaCungCap;
         private Label label2;
         private ComboBox cboNhanVien;
         private TextBox txtGhiChu;

@@ -13,7 +13,7 @@ namespace QuanLyLapTop.Data
         public int NhanVienID { get; set; } //user admin
         public DateTime NgayLap { get; set; }
         public string? GhiChuPhieuNhap { get; set; }
-        public virtual ICollection<PhieuNhap_ChiTiet> PhieuNhapChiTiet { get; } = new List<PhieuNhap_ChiTiet>();
+        public virtual ICollection<PhieuNhap_ChiTiet> PhieuNhap_ChiTiet { get; } = new List<PhieuNhap_ChiTiet>();
         public virtual NhaCungCap NhaCungCap { get; set; } = null!;
         public virtual NhanVien NhanVien { get; set; } = null!;
 
