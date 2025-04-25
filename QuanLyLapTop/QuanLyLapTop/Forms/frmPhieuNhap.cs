@@ -30,6 +30,7 @@ namespace QuanLyLapTop.Forms
         {
             using (frmPhieuNhap_ChiTiet chitiet = new frmPhieuNhap_ChiTiet())
             {
+                this.Hide();
                 chitiet.ShowDialog();
             }
         }
@@ -44,7 +45,7 @@ namespace QuanLyLapTop.Forms
                 {
                     p.ID,
                     p.NhaCungCapID,
-                    p.NhaCungCap.TenNhaCungCap,
+                    TenNhaCungCap = p.NhaCungCap.TenNhaCungCap,
                     p.NhanVienID,
                     HoVaTenNhanVien = p.NhanVien.HoVaTen,
                     p.NgayLap,
@@ -57,19 +58,17 @@ namespace QuanLyLapTop.Forms
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
-            finally
-            {
-                BatTatChucNang();
-            }
+            BatTatChucNang();
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (dataGridView.CurrentRow != null)
             {
-                id = Convert.ToInt32(dataGridView.CurrentRow?.Cells["ID"].Value?.ToString());
+                id = Convert.ToInt32(dataGridView.CurrentRow?.Cells[0].Value?.ToString());
                 using (frmPhieuNhap_ChiTiet chitiet = new frmPhieuNhap_ChiTiet(id))
                 {
+                    this.Hide();
                     chitiet.ShowDialog();
                 }
             }
@@ -85,7 +84,7 @@ namespace QuanLyLapTop.Forms
             {
                 if (MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu nhập này không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    id = Convert.ToInt32(dataGridView.CurrentRow?.Cells["ID"].Value?.ToString());
+                    id = Convert.ToInt32(dataGridView.CurrentRow?.Cells[0].Value?.ToString());
                     PhieuNhap phieuNhap = context.PhieuNhap.Find(id)!;
                     if (phieuNhap != null)
                     {
@@ -98,7 +97,7 @@ namespace QuanLyLapTop.Forms
                         context.SaveChanges();
 
                         MessageBox.Show("Xóa phiếu nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
+
                     }
                     frmPhieuNhap_Load(sender, e);
                 }
@@ -106,6 +105,15 @@ namespace QuanLyLapTop.Forms
             else
             {
                 MessageBox.Show("Vui lòng chọn phiếu nhập để xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
             }
         }
     }

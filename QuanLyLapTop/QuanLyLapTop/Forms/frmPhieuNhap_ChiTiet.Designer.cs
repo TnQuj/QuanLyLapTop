@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPhieuNhap_ChiTiet));
             button1 = new Button();
             btnXoa = new Button();
@@ -39,11 +40,6 @@
             btnLapPhieuNhap = new Button();
             panel2 = new Panel();
             dataGridView = new DataGridView();
-            ID = new DataGridViewTextBoxColumn();
-            HoVaTenNhanVien = new DataGridViewTextBoxColumn();
-            GiaNhap = new DataGridViewTextBoxColumn();
-            SoLuong = new DataGridViewTextBoxColumn();
-            ThanhTien = new DataGridViewTextBoxColumn();
             groupBox1 = new GroupBox();
             toolStrip = new ToolStrip();
             toolStripLabel1 = new ToolStripLabel();
@@ -69,6 +65,11 @@
             label5 = new Label();
             cboSanPham = new ComboBox();
             label4 = new Label();
+            SanPhamID = new DataGridViewTextBoxColumn();
+            TenSanPham = new DataGridViewTextBoxColumn();
+            DonGiaNhap = new DataGridViewTextBoxColumn();
+            SoLuongNhap = new DataGridViewTextBoxColumn();
+            ThanhTien = new DataGridViewTextBoxColumn();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             groupBox1.SuspendLayout();
@@ -100,6 +101,7 @@
             btnXoa.TabIndex = 3;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
             // 
             // btnHuy
             // 
@@ -111,6 +113,7 @@
             btnHuy.TabIndex = 2;
             btnHuy.Text = "Thoát";
             btnHuy.UseVisualStyleBackColor = true;
+            btnHuy.Click += btnHuy_Click;
             // 
             // btnInPhieuNhap
             // 
@@ -132,6 +135,7 @@
             btnLapPhieuNhap.TabIndex = 0;
             btnLapPhieuNhap.Text = "Lưu phiếu nhập hàng...";
             btnLapPhieuNhap.UseVisualStyleBackColor = true;
+            btnLapPhieuNhap.Click += btnLapPhieuNhap_Click;
             // 
             // panel2
             // 
@@ -152,7 +156,7 @@
             dataGridView.AllowUserToDeleteRows = false;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { ID, HoVaTenNhanVien, GiaNhap, SoLuong, ThanhTien });
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { SanPhamID, TenSanPham, DonGiaNhap, SoLuongNhap, ThanhTien });
             dataGridView.Location = new Point(3, 54);
             dataGridView.MultiSelect = false;
             dataGridView.Name = "dataGridView";
@@ -162,65 +166,6 @@
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView.Size = new Size(976, 269);
             dataGridView.TabIndex = 3;
-            // 
-            // ID
-            // 
-            ID.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            ID.DataPropertyName = "ID";
-            ID.HeaderText = "ID";
-            ID.MinimumWidth = 6;
-            ID.Name = "ID";
-            ID.ReadOnly = true;
-            ID.Width = 30;
-            // 
-            // HoVaTenNhanVien
-            // 
-            HoVaTenNhanVien.DataPropertyName = "HoVaTenNhanVien";
-            HoVaTenNhanVien.HeaderText = "Tên sản phẩm";
-            HoVaTenNhanVien.MinimumWidth = 6;
-            HoVaTenNhanVien.Name = "HoVaTenNhanVien";
-            HoVaTenNhanVien.ReadOnly = true;
-            // 
-            // GiaNhap
-            // 
-            GiaNhap.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            GiaNhap.DataPropertyName = "GiaNhap";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.ForeColor = Color.Blue;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            GiaNhap.DefaultCellStyle = dataGridViewCellStyle4;
-            GiaNhap.HeaderText = "Giá nhập";
-            GiaNhap.MinimumWidth = 6;
-            GiaNhap.Name = "GiaNhap";
-            GiaNhap.ReadOnly = true;
-            GiaNhap.Width = 250;
-            // 
-            // SoLuong
-            // 
-            SoLuong.DataPropertyName = "SoLuong";
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.ForeColor = Color.Blue;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            SoLuong.DefaultCellStyle = dataGridViewCellStyle5;
-            SoLuong.HeaderText = "Số lượng ";
-            SoLuong.MinimumWidth = 6;
-            SoLuong.Name = "SoLuong";
-            SoLuong.ReadOnly = true;
-            // 
-            // ThanhTien
-            // 
-            ThanhTien.DataPropertyName = "ThanhTien";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.ForeColor = Color.Blue;
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = null;
-            ThanhTien.DefaultCellStyle = dataGridViewCellStyle6;
-            ThanhTien.HeaderText = "Thành tiền";
-            ThanhTien.MinimumWidth = 6;
-            ThanhTien.Name = "ThanhTien";
-            ThanhTien.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -405,13 +350,16 @@
             btnXacNhanNhap.TabIndex = 5;
             btnXacNhanNhap.Text = "Xác nhận nhập...";
             btnXacNhanNhap.UseVisualStyleBackColor = true;
+            btnXacNhanNhap.Click += btnXacNhanNhap_Click;
             // 
             // numSoLuong
             // 
             numSoLuong.Location = new Point(470, 61);
+            numSoLuong.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numSoLuong.Name = "numSoLuong";
             numSoLuong.Size = new Size(141, 27);
             numSoLuong.TabIndex = 26;
+            numSoLuong.ThousandsSeparator = true;
             // 
             // label6
             // 
@@ -426,9 +374,11 @@
             // numGiaNhap
             // 
             numGiaNhap.Location = new Point(308, 61);
+            numGiaNhap.Maximum = new decimal(new int[] { 1000000000, 0, 0, 0 });
             numGiaNhap.Name = "numGiaNhap";
             numGiaNhap.Size = new Size(142, 27);
             numGiaNhap.TabIndex = 24;
+            numGiaNhap.ThousandsSeparator = true;
             // 
             // label5
             // 
@@ -447,6 +397,7 @@
             cboSanPham.Name = "cboSanPham";
             cboSanPham.Size = new Size(272, 28);
             cboSanPham.TabIndex = 22;
+            cboSanPham.SelectionChangeCommitted += cboSanPham_SelectionChangeCommitted;
             // 
             // label4
             // 
@@ -457,6 +408,69 @@
             label4.Size = new Size(98, 20);
             label4.TabIndex = 21;
             label4.Text = "Sản phẩm (*):";
+            // 
+            // SanPhamID
+            // 
+            SanPhamID.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            SanPhamID.DataPropertyName = "SanPhamID";
+            SanPhamID.HeaderText = "ID";
+            SanPhamID.MinimumWidth = 6;
+            SanPhamID.Name = "SanPhamID";
+            SanPhamID.ReadOnly = true;
+            SanPhamID.Width = 30;
+            // 
+            // TenSanPham
+            // 
+            TenSanPham.DataPropertyName = "TenSanPham";
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.NullValue = null;
+            TenSanPham.DefaultCellStyle = dataGridViewCellStyle1;
+            TenSanPham.HeaderText = "Tên sản phẩm";
+            TenSanPham.MinimumWidth = 6;
+            TenSanPham.Name = "TenSanPham";
+            TenSanPham.ReadOnly = true;
+            // 
+            // DonGiaNhap
+            // 
+            DonGiaNhap.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            DonGiaNhap.DataPropertyName = "DonGiaNhap";
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.ForeColor = Color.Blue;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            DonGiaNhap.DefaultCellStyle = dataGridViewCellStyle2;
+            DonGiaNhap.HeaderText = "Giá nhập";
+            DonGiaNhap.MinimumWidth = 6;
+            DonGiaNhap.Name = "DonGiaNhap";
+            DonGiaNhap.ReadOnly = true;
+            DonGiaNhap.Width = 250;
+            // 
+            // SoLuongNhap
+            // 
+            SoLuongNhap.DataPropertyName = "SoLuongNhap";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.ForeColor = Color.Blue;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            SoLuongNhap.DefaultCellStyle = dataGridViewCellStyle3;
+            SoLuongNhap.HeaderText = "Số lượng ";
+            SoLuongNhap.MinimumWidth = 6;
+            SoLuongNhap.Name = "SoLuongNhap";
+            SoLuongNhap.ReadOnly = true;
+            // 
+            // ThanhTien
+            // 
+            ThanhTien.DataPropertyName = "ThanhTien";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.ForeColor = Color.Blue;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            ThanhTien.DefaultCellStyle = dataGridViewCellStyle4;
+            ThanhTien.HeaderText = "Thành tiền";
+            ThanhTien.MinimumWidth = 6;
+            ThanhTien.Name = "ThanhTien";
+            ThanhTien.ReadOnly = true;
             // 
             // frmPhieuNhap_ChiTiet
             // 
@@ -470,7 +484,7 @@
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmPhieuNhap_ChiTiet";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Phiếu nhập chi tiết";
             Load += frmPhieuNhap_ChiTiet_Load;
             panel2.ResumeLayout(false);
@@ -497,11 +511,6 @@
         private Button btnLapPhieuNhap;
         private Panel panel2;
         private DataGridView dataGridView;
-        private DataGridViewTextBoxColumn ID;
-        private DataGridViewTextBoxColumn HoVaTenNhanVien;
-        private DataGridViewTextBoxColumn GiaNhap;
-        private DataGridViewTextBoxColumn SoLuong;
-        private DataGridViewTextBoxColumn ThanhTien;
         private GroupBox groupBox1;
         private ToolStrip toolStrip;
         private ToolStripLabel toolStripLabel1;
@@ -527,5 +536,10 @@
         private NumericUpDown numSoLuong;
         private Label label6;
         private NumericUpDown numGiaNhap;
+        private DataGridViewTextBoxColumn SanPhamID;
+        private DataGridViewTextBoxColumn TenSanPham;
+        private DataGridViewTextBoxColumn DonGiaNhap;
+        private DataGridViewTextBoxColumn SoLuongNhap;
+        private DataGridViewTextBoxColumn ThanhTien;
     }
 }

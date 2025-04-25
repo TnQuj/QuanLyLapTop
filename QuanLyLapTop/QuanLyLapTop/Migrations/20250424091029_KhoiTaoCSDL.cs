@@ -268,7 +268,7 @@ namespace QuanLyLapTop.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PhieuNhapID = table.Column<int>(type: "int", nullable: false),
                     SanPhamID = table.Column<int>(type: "int", nullable: false),
-                    SoLuongNhap = table.Column<short>(type: "smallint", nullable: false),
+                    SoLuongNhap = table.Column<int>(type: "int", nullable: false),
                     DonGiaNhap = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

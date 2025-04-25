@@ -37,7 +37,7 @@
             TenNhaCungCap = new DataGridViewTextBoxColumn();
             NgayLap = new DataGridViewTextBoxColumn();
             TongTienNhapHang = new DataGridViewTextBoxColumn();
-            GhiChu = new DataGridViewTextBoxColumn();
+            GhiChuPhieuNhap = new DataGridViewTextBoxColumn();
             groupBox1 = new GroupBox();
             toolStrip = new ToolStrip();
             toolStripLabel1 = new ToolStripLabel();
@@ -65,6 +65,7 @@
             toolStripButton2 = new ToolStripButton();
             toolStripButton3 = new ToolStripButton();
             panel2 = new Panel();
+            btnHuy = new Button();
             button1 = new Button();
             btnXoa = new Button();
             btnSua = new Button();
@@ -88,7 +89,7 @@
             dataGridView.AllowUserToDeleteRows = false;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { ID, HoVaTenNhanVien, TenNhaCungCap, NgayLap, TongTienNhapHang, GhiChu });
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { ID, HoVaTenNhanVien, TenNhaCungCap, NgayLap, TongTienNhapHang, GhiChuPhieuNhap });
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.Location = new Point(3, 54);
             dataGridView.MultiSelect = false;
@@ -154,13 +155,13 @@
             TongTienNhapHang.Name = "TongTienNhapHang";
             TongTienNhapHang.ReadOnly = true;
             // 
-            // GhiChu
+            // GhiChuPhieuNhap
             // 
-            GhiChu.DataPropertyName = "GhiChu";
-            GhiChu.HeaderText = "Ghi chú";
-            GhiChu.MinimumWidth = 6;
-            GhiChu.Name = "GhiChu";
-            GhiChu.ReadOnly = true;
+            GhiChuPhieuNhap.DataPropertyName = "GhiChuPhieuNhap";
+            GhiChuPhieuNhap.HeaderText = "Ghi chú";
+            GhiChuPhieuNhap.MinimumWidth = 6;
+            GhiChuPhieuNhap.Name = "GhiChuPhieuNhap";
+            GhiChuPhieuNhap.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -376,6 +377,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(btnHuy);
             panel2.Controls.Add(button1);
             panel2.Controls.Add(btnXoa);
             panel2.Controls.Add(btnSua);
@@ -386,6 +388,18 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1082, 73);
             panel2.TabIndex = 12;
+            // 
+            // btnHuy
+            // 
+            btnHuy.Anchor = AnchorStyles.Top;
+            btnHuy.ForeColor = Color.Red;
+            btnHuy.Location = new Point(830, 21);
+            btnHuy.Name = "btnHuy";
+            btnHuy.Size = new Size(94, 29);
+            btnHuy.TabIndex = 5;
+            btnHuy.Text = "Thoát";
+            btnHuy.UseVisualStyleBackColor = true;
+            btnHuy.Click += btnHuy_Click;
             // 
             // button1
             // 
@@ -401,7 +415,7 @@
             // 
             btnXoa.Anchor = AnchorStyles.Top;
             btnXoa.ForeColor = Color.Red;
-            btnXoa.Location = new Point(764, 22);
+            btnXoa.Location = new Point(697, 22);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(94, 29);
             btnXoa.TabIndex = 3;
@@ -412,7 +426,7 @@
             // btnSua
             // 
             btnSua.Anchor = AnchorStyles.Top;
-            btnSua.Location = new Point(636, 22);
+            btnSua.Location = new Point(569, 22);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(94, 29);
             btnSua.TabIndex = 2;
@@ -423,7 +437,7 @@
             // btnInPhieuNhap
             // 
             btnInPhieuNhap.Anchor = AnchorStyles.Top;
-            btnInPhieuNhap.Location = new Point(458, 22);
+            btnInPhieuNhap.Location = new Point(391, 22);
             btnInPhieuNhap.Name = "btnInPhieuNhap";
             btnInPhieuNhap.Size = new Size(122, 29);
             btnInPhieuNhap.TabIndex = 1;
@@ -434,7 +448,7 @@
             // 
             btnLapPhieuNhap.Anchor = AnchorStyles.Top;
             btnLapPhieuNhap.ForeColor = Color.Blue;
-            btnLapPhieuNhap.Location = new Point(225, 22);
+            btnLapPhieuNhap.Location = new Point(158, 22);
             btnLapPhieuNhap.Name = "btnLapPhieuNhap";
             btnLapPhieuNhap.Size = new Size(204, 29);
             btnLapPhieuNhap.TabIndex = 0;
@@ -472,7 +486,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmPhieuNhap";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Nhập hàng";
+            Text = "Nhập hàng ";
             Load += frmPhieuNhap_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             groupBox1.ResumeLayout(false);
@@ -525,11 +539,12 @@
         private Button btnSua;
         private Button btnInPhieuNhap;
         private Button btnLapPhieuNhap;
+        private Button btnHuy;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn HoVaTenNhanVien;
         private DataGridViewTextBoxColumn TenNhaCungCap;
         private DataGridViewTextBoxColumn NgayLap;
         private DataGridViewTextBoxColumn TongTienNhapHang;
-        private DataGridViewTextBoxColumn GhiChu;
+        private DataGridViewTextBoxColumn GhiChuPhieuNhap;
     }
 }

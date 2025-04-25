@@ -12,7 +12,7 @@ using QuanLyLapTop.Data;
 namespace QuanLyLapTop.Migrations
 {
     [DbContext(typeof(QLBHDbContext))]
-    [Migration("20250422211316_KhoiTaoCSDL")]
+    [Migration("20250424091029_KhoiTaoCSDL")]
     partial class KhoiTaoCSDL
     {
         /// <inheritdoc />
@@ -274,8 +274,8 @@ namespace QuanLyLapTop.Migrations
                     b.Property<int>("SanPhamID")
                         .HasColumnType("int");
 
-                    b.Property<short>("SoLuongNhap")
-                        .HasColumnType("smallint");
+                    b.Property<int>("SoLuongNhap")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -426,7 +426,7 @@ namespace QuanLyLapTop.Migrations
                         .IsRequired();
 
                     b.HasOne("QuanLyLapTop.Data.NhanVien", "NhanVien")
-                        .WithMany()
+                        .WithMany("PhieuNhap")
                         .HasForeignKey("NhanVienID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -439,7 +439,7 @@ namespace QuanLyLapTop.Migrations
             modelBuilder.Entity("QuanLyLapTop.Data.PhieuNhap_ChiTiet", b =>
                 {
                     b.HasOne("QuanLyLapTop.Data.PhieuNhap", "PhieuNhap")
-                        .WithMany("PhieuNhapChiTiet")
+                        .WithMany("PhieuNhap_ChiTiet")
                         .HasForeignKey("PhieuNhapID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -536,11 +536,13 @@ namespace QuanLyLapTop.Migrations
             modelBuilder.Entity("QuanLyLapTop.Data.NhanVien", b =>
                 {
                     b.Navigation("HoaDon");
+
+                    b.Navigation("PhieuNhap");
                 });
 
             modelBuilder.Entity("QuanLyLapTop.Data.PhieuNhap", b =>
                 {
-                    b.Navigation("PhieuNhapChiTiet");
+                    b.Navigation("PhieuNhap_ChiTiet");
                 });
 
             modelBuilder.Entity("QuanLyLapTop.Data.SanPham", b =>

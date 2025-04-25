@@ -14,7 +14,8 @@ namespace QuanLyLapTop.Forms
     {
         QLBHDbContext context = new QLBHDbContext();
         int id;
-        BindingList <DS_PhieuNhap_ChiTiet> dsPhieuNhapChiTiet = new BindingList<DS_PhieuNhap_ChiTiet>();
+        BindingList<DS_PhieuNhap_ChiTiet> dsPhieuNhapChiTiet = new BindingList<DS_PhieuNhap_ChiTiet>();
+
         public frmPhieuNhap_ChiTiet(int maPhieuNhap = 0)
         {
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace QuanLyLapTop.Forms
 
         public void BatTatChucNang()
         {
-            if(id == 0 && dataGridView.Rows.Count == 0)
+            if (id == 0 && dataGridView.Rows.Count == 0)
             {
                 cboNhaCungCap.Text = "";
                 cboNhanVien.Text = "";
@@ -61,20 +62,21 @@ namespace QuanLyLapTop.Forms
 
         private void frmPhieuNhap_ChiTiet_Load(object sender, EventArgs e)
         {
+            
             dataGridView.AutoGenerateColumns = false;
 
             getNhanVien();
             getNhaCungCap();
             getSanPham();
 
-            if(id != 0)
+            if (id != 0)
             {
                 var phieunhap = context.PhieuNhap.Find(id)!;
                 cboNhaCungCap.SelectedValue = phieunhap.NhaCungCapID;
                 cboNhanVien.SelectedValue = phieunhap.NhanVienID;
                 txtGhiChu.Text = phieunhap.GhiChuPhieuNhap;
 
-                var chitiet = context.PhieuNhap_ChiTiet.Where(p =>  p.PhieuNhapID == id).Select(p => new DS_PhieuNhap_ChiTiet()
+                var chitiet = context.PhieuNhap_ChiTiet.Where(p => p.PhieuNhapID == id).Select(p => new DS_PhieuNhap_ChiTiet()
                 {
                     ID = p.ID,
                     PhieuNhapID = p.PhieuNhapID,
@@ -84,9 +86,186 @@ namespace QuanLyLapTop.Forms
                     DonGiaNhap = p.DonGiaNhap,
                     ThanhTien = (double)p.SoLuongNhap * (double)p.DonGiaNhap
                 }).ToList();
-            } 
+
+
+                cboSanPham.DataBindings.Clear();
+                cboSanPham.DataBindings.Add("Text", chitiet, "TenSanPham", false, DataSourceUpdateMode.Never);
+
+                numSoLuong.DataBindings.Clear();
+                numSoLuong.DataBindings.Add("Value", chitiet, "SoLuongNhap", false, DataSourceUpdateMode.Never);
+
+                numGiaNhap.DataBindings.Clear();
+                numGiaNhap.DataBindings.Add("Value", chitiet, "DonGiaNhap", false, DataSourceUpdateMode.Never);
+
+                dsPhieuNhapChiTiet = new BindingList<DS_PhieuNhap_ChiTiet>(chitiet);
+            }
             dataGridView.DataSource = dsPhieuNhapChiTiet;
-            frmPhieuNhap_ChiTiet_Load(sender, e);
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn hủy không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void btnLapPhieuNhap_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(cboNhaCungCap.Text))
+                MessageBox.Show("Vui lòng chọn nhà cung cấp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else if (string.IsNullOrWhiteSpace(cboNhanVien.Text))
+                MessageBox.Show("Vui lòng chọn nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else if (dsPhieuNhapChiTiet.Count == 0)
+                MessageBox.Show("Vui lòng thêm sản phẩm vào phiếu nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
+                if (id != 0)
+                {
+                    var phieuNhap = context.PhieuNhap.Find(id)!;
+                    if (phieuNhap != null)
+                    {
+                        //cập nhật phiếu nhập chi tiết
+                        phieuNhap.NhaCungCapID = Convert.ToInt32(cboNhaCungCap.SelectedValue?.ToString());
+                        phieuNhap.NhanVienID = Convert.ToInt32(cboNhanVien.SelectedValue?.ToString());
+                        phieuNhap.GhiChuPhieuNhap = txtGhiChu.Text;
+                        context.PhieuNhap.Update(phieuNhap);
+
+                        //xóa phiếu nhập chi tiết cũ
+                        var old = context.PhieuNhap_ChiTiet.Where(p => p.PhieuNhapID == id).ToList();
+                        context.PhieuNhap_ChiTiet.RemoveRange(old);
+
+                        //thêm phiếu nhập chi tiết mới
+                        foreach (var item in dsPhieuNhapChiTiet.ToList())
+                        {
+                            PhieuNhap_ChiTiet ct = new PhieuNhap_ChiTiet();
+                            ct.PhieuNhapID = id;
+                            ct.SanPhamID = item.SanPhamID;
+                            ct.SoLuongNhap = item.SoLuongNhap;
+                            ct.DonGiaNhap = item.DonGiaNhap;
+                            context.PhieuNhap_ChiTiet.Add(ct);
+                        }
+                        context.SaveChanges();
+                    }
+                }
+                else
+                {
+                    //thêm phiếu nhập mới 
+                    PhieuNhap phieunhap = new PhieuNhap();
+                    phieunhap.NhaCungCapID = Convert.ToInt32(cboNhaCungCap.SelectedValue?.ToString());
+                    phieunhap.NhanVienID = Convert.ToInt32(cboNhanVien.SelectedValue?.ToString());
+                    phieunhap.GhiChuPhieuNhap = txtGhiChu.Text;
+                    phieunhap.NgayLap = DateTime.Now;
+                    context.PhieuNhap.Add(phieunhap);
+                    context.SaveChanges();
+                    //thêm phiếu nhập chi tiết 
+                    foreach (var item in dsPhieuNhapChiTiet.ToList())
+                    {
+                        PhieuNhap_ChiTiet ct = new PhieuNhap_ChiTiet();
+
+                        ct.PhieuNhapID = phieunhap.ID;
+                        ct.SanPhamID = item.SanPhamID;
+                        ct.SoLuongNhap = item.SoLuongNhap;
+                        ct.DonGiaNhap = item.DonGiaNhap;
+                        context.PhieuNhap_ChiTiet.Add(ct);
+                    }
+                    context.SaveChanges();
+                }
+                DialogResult result = MessageBox.Show("Lập phiếu nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (result == DialogResult.OK)
+                {
+                    this.Hide();
+                    frmPhieuNhap frm = new frmPhieuNhap();
+                    frm.Show(); // Hiển thị lại form mới
+                }
+  
+            }
+        }
+        
+
+        private void btnXacNhanNhap_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(cboNhaCungCap.Text) || string.IsNullOrEmpty(cboNhanVien.Text))
+            {
+                MessageBox.Show("Vui lòng chọn nhà cung cấp và nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (string.IsNullOrEmpty(cboSanPham.Text))
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (numSoLuong.Value <= 0)
+            {
+                MessageBox.Show("Vui lòng nhập số lượng lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (numGiaNhap.Value <= 0)
+            {
+                MessageBox.Show("Vui lòng nhập giá nhập lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            else
+            {
+                int maSanPham = Convert.ToInt32(cboSanPham.SelectedValue!.ToString());
+                var chitiet = dsPhieuNhapChiTiet.FirstOrDefault(p => p.SanPhamID == maSanPham);
+
+                if (chitiet != null) //cập nhật lại 
+                {
+                    chitiet.SoLuongNhap = Convert.ToInt32(numSoLuong.Value);
+                    chitiet.DonGiaNhap = Convert.ToInt32(numGiaNhap.Value);
+                    chitiet.ThanhTien = Convert.ToInt32(chitiet.SoLuongNhap * chitiet.DonGiaNhap);
+                    dataGridView.Refresh();
+                }
+                else //thêm mới
+                {
+                    DS_PhieuNhap_ChiTiet dsct = new DS_PhieuNhap_ChiTiet()
+                    {
+                        ID = 0,
+                        PhieuNhapID = id,
+                        SanPhamID = maSanPham,
+                        TenSanPham = cboSanPham.Text,
+                        SoLuongNhap = Convert.ToInt32(numSoLuong.Value),
+                        DonGiaNhap = Convert.ToInt32(numGiaNhap.Value),
+                        ThanhTien = Convert.ToDouble(numSoLuong.Value) * Convert.ToDouble(numGiaNhap.Value)
+                    };
+                    dsPhieuNhapChiTiet.Add(dsct);
+                }
+                MessageBox.Show("Thêm sản phẩm vào phiếu nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                BatTatChucNang();
+            }
+
+        }
+
+        private void cboSanPham_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (cboSanPham.SelectedValue != null)
+            {
+                int maSanPham = Convert.ToInt32(cboSanPham.SelectedValue?.ToString());
+                var sanPham = context.SanPham.Find(maSanPham)!;
+                numGiaNhap.Value = sanPham.GiaBan;
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.CurrentRow != null)
+            {
+                int maSanPham = Convert.ToInt32(dataGridView.CurrentRow?.Cells["SanPhamID"].Value?.ToString());
+                var chitiet = dsPhieuNhapChiTiet.FirstOrDefault(p => p.SanPhamID == maSanPham)!;
+                if (chitiet != null)
+                {
+                    dsPhieuNhapChiTiet.Remove(chitiet);
+                }
+                MessageBox.Show("Xóa thánh công","Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                BatTatChucNang();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn dòng để xóa?", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
