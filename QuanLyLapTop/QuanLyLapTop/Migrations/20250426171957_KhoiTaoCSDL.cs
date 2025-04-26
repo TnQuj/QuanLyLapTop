@@ -158,6 +158,7 @@ namespace QuanLyLapTop.Migrations
                     NhanVienID = table.Column<int>(type: "int", nullable: false),
                     KhachHangID = table.Column<int>(type: "int", nullable: false),
                     NgayLap = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HinhThucThanhToan = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GhiChuHoaDon = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -240,7 +241,7 @@ namespace QuanLyLapTop.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HoaDonID = table.Column<int>(type: "int", nullable: false),
                     SanPhamID = table.Column<int>(type: "int", nullable: false),
-                    SoLuongBan = table.Column<short>(type: "smallint", nullable: false),
+                    SoLuongBan = table.Column<int>(type: "int", nullable: false),
                     DonGiaBan = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

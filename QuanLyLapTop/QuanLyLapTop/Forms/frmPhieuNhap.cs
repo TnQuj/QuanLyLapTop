@@ -116,5 +116,10 @@ namespace QuanLyLapTop.Forms
                 this.Close();
             }
         }
+
+        private void btnInPhieuNhap_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ namespace QuanLyLapTop.Data
     {
         public int ID { get; set; }
         public string? TenSanPham { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]  // precision = 18, scale = 2
         public decimal GiaBan { get; set; }
         public int SoLuongTon { get; set; }
         public DateTime NgayNhap { get; set; }

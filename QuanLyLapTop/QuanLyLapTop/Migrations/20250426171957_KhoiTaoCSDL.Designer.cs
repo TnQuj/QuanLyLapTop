@@ -12,7 +12,7 @@ using QuanLyLapTop.Data;
 namespace QuanLyLapTop.Migrations
 {
     [DbContext(typeof(QLBHDbContext))]
-    [Migration("20250424091029_KhoiTaoCSDL")]
+    [Migration("20250426171957_KhoiTaoCSDL")]
     partial class KhoiTaoCSDL
     {
         /// <inheritdoc />
@@ -58,6 +58,9 @@ namespace QuanLyLapTop.Migrations
                     b.Property<string>("GhiChuHoaDon")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("HinhThucThanhToan")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("KhachHangID")
                         .HasColumnType("int");
 
@@ -93,8 +96,8 @@ namespace QuanLyLapTop.Migrations
                     b.Property<int>("SanPhamID")
                         .HasColumnType("int");
 
-                    b.Property<short>("SoLuongBan")
-                        .HasColumnType("smallint");
+                    b.Property<int>("SoLuongBan")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -401,7 +404,7 @@ namespace QuanLyLapTop.Migrations
             modelBuilder.Entity("QuanLyLapTop.Data.HoaDon_ChiTiet", b =>
                 {
                     b.HasOne("QuanLyLapTop.Data.HoaDon", "HoaDon")
-                        .WithMany("HoaDonChiTiet")
+                        .WithMany("HoaDon_ChiTiet")
                         .HasForeignKey("HoaDonID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -508,7 +511,7 @@ namespace QuanLyLapTop.Migrations
 
             modelBuilder.Entity("QuanLyLapTop.Data.HoaDon", b =>
                 {
-                    b.Navigation("HoaDonChiTiet");
+                    b.Navigation("HoaDon_ChiTiet");
                 });
 
             modelBuilder.Entity("QuanLyLapTop.Data.KhachHang", b =>
