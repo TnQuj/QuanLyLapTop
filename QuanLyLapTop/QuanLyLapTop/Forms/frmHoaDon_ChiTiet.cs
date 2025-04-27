@@ -78,7 +78,7 @@ namespace QuanLyLapTop.Forms
                 var hd = context.HoaDon.Find(id)!;
                 cboNhanVien.SelectedValue = hd.NhanVienID;
                 cboKhachHang.SelectedValue = hd.KhachHangID;
-                cboHinhThucThanhToan.SelectedValue = hd.HinhThucThanhToan!;
+                //cboHinhThucThanhToan.SelectedValue = hd.HinhThucThanhToan!;
                 txtGhiChuHoaDon.Text = hd.GhiChuHoaDon;
                 var ct = context.HoaDon_ChiTiet.Where(r => r.HoaDonID == id).Select(r => new DanhSachHoaDon_ChiTiet
                 {
@@ -183,7 +183,7 @@ namespace QuanLyLapTop.Forms
                     var sanPham = context.SanPham.Find(item.SanPhamID);
                     if (sanPham == null)
                     {
-                        MessageBox.Show($"Sản phẩm {item.TenSanPham} không tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Sản 1phẩm {item.TenSanPham} không tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     if (sanPham.SoLuongTon < item.SoLuongBan)
