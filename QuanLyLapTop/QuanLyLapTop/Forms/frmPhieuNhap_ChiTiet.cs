@@ -43,7 +43,19 @@ namespace QuanLyLapTop.Forms
             cboSanPham.DisplayMember = "TenSanPham";
             cboSanPham.ValueMember = "ID";
         }
+        public void getHangSanXuat()
+        {
+            cboHangSanXuat.DataSource = context.HangSanXuat.ToList();
+            cboHangSanXuat.DisplayMember = "TenHangSanXuat";
+            cboHangSanXuat.ValueMember = "ID";
+        }
 
+        public void getLoaiSanPham()
+        {
+            cboLoaiSanPham.DataSource = context.LoaiSanPham.ToList();
+            cboLoaiSanPham.DisplayMember = "TenLoaiSanPham";
+            cboLoaiSanPham.ValueMember = "ID";
+        }
         public void BatTatChucNang()
         {
             if (id == 0 && dataGridView.Rows.Count == 0)
@@ -62,13 +74,14 @@ namespace QuanLyLapTop.Forms
 
         private void frmPhieuNhap_ChiTiet_Load(object sender, EventArgs e)
         {
-            
+
             dataGridView.AutoGenerateColumns = false;
 
             getNhanVien();
             getNhaCungCap();
             getSanPham();
-
+            getHangSanXuat();
+            getLoaiSanPham();
             if (id != 0)
             {
                 var phieunhap = context.PhieuNhap.Find(id)!;
@@ -104,10 +117,22 @@ namespace QuanLyLapTop.Forms
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn hủy không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Bạn có muốn quay lại trang chính không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                this.Close();
+                this.Hide();
+                var mainForm = Application.OpenForms["frmMain"];
+                if (mainForm != null)
+                {
+                    mainForm.Show();
+                    mainForm.Activate();
+                }
+                else
+                {
+                    frmMain newMainForm = new frmMain();
+                    newMainForm.Show();
+                }
+                this.Close(); // Close luôn form con
             }
         }
 
@@ -145,6 +170,28 @@ namespace QuanLyLapTop.Forms
                             ct.SoLuongNhap = item.SoLuongNhap;
                             ct.DonGiaNhap = item.DonGiaNhap;
                             context.PhieuNhap_ChiTiet.Add(ct);
+
+                            var sanPham = context.SanPham.FirstOrDefault(sp => sp.ID == item.SanPhamID);
+
+                            int hangSanXuatID = 0, loaiSanPhamID = 0, nhaCungCapID = 0;
+
+                            int.TryParse(cboHangSanXuat.SelectedValue?.ToString(), out hangSanXuatID);
+                            int.TryParse(cboLoaiSanPham.SelectedValue?.ToString(), out loaiSanPhamID);
+                            int.TryParse(cboNhaCungCap.SelectedValue?.ToString(), out nhaCungCapID);
+                            decimal giaNhap = numGiaNhap.Value;
+                            if (sanPham != null)
+                            {
+
+                                sanPham.SoLuongTon += item.SoLuongNhap; // cộng thêm số lượng nhập mới
+                                sanPham.GiaBan = 1 * TinhGiaBan(giaNhap); // Tính giá bán mới
+
+                                // Nếu cần update thêm loại, hãng, nhà cung cấp:
+
+                                sanPham.HangSanXuatID = hangSanXuatID;
+                                sanPham.LoaiSanPhamID = loaiSanPhamID;
+                                sanPham.NhaCungCapID = nhaCungCapID;
+                                context.SanPham.Update(sanPham);
+                            }
                         }
                         context.SaveChanges();
                     }
@@ -169,6 +216,26 @@ namespace QuanLyLapTop.Forms
                         ct.SoLuongNhap = item.SoLuongNhap;
                         ct.DonGiaNhap = item.DonGiaNhap;
                         context.PhieuNhap_ChiTiet.Add(ct);
+                        var sanPham = context.SanPham.FirstOrDefault(sp => sp.ID == item.SanPhamID);
+                        int hangSanXuatID = 0, loaiSanPhamID = 0, nhaCungCapID = 0;
+
+                        int.TryParse(cboHangSanXuat.SelectedValue?.ToString(), out hangSanXuatID);
+                        int.TryParse(cboLoaiSanPham.SelectedValue?.ToString(), out loaiSanPhamID);
+                        int.TryParse(cboNhaCungCap.SelectedValue?.ToString(), out nhaCungCapID);
+                        decimal giaNhap = numGiaNhap.Value;
+
+                        if (sanPham != null)
+                        {
+                            sanPham.SoLuongTon += item.SoLuongNhap; // cộng thêm số lượng nhập mới
+                            sanPham.GiaBan = 1 * TinhGiaBan(giaNhap); // Tính giá bán mới
+
+                            // Nếu cần update thêm loại, hãng, nhà cung cấp:
+
+                            sanPham.HangSanXuatID = hangSanXuatID;
+                            sanPham.LoaiSanPhamID = loaiSanPhamID;
+                            sanPham.NhaCungCapID = nhaCungCapID;
+                            context.SanPham.Update(sanPham);
+                        }
                     }
                     context.SaveChanges();
                 }
@@ -179,10 +246,10 @@ namespace QuanLyLapTop.Forms
                     frmPhieuNhap frm = new frmPhieuNhap();
                     frm.Show(); // Hiển thị lại form mới
                 }
-  
+
             }
         }
-        
+
 
         private void btnXacNhanNhap_Click(object sender, EventArgs e)
         {
@@ -239,14 +306,79 @@ namespace QuanLyLapTop.Forms
 
         }
 
+        private void ThemSanPhamMoi(string tenSanPham)
+        {
+            int hangSanXuatID = 0, loaiSanPhamID = 0, nhaCungCapID = 0;
+
+            int.TryParse(cboHangSanXuat.SelectedValue?.ToString(), out hangSanXuatID);
+            int.TryParse(cboLoaiSanPham.SelectedValue?.ToString(), out loaiSanPhamID);
+            int.TryParse(cboNhaCungCap.SelectedValue?.ToString(), out nhaCungCapID);
+            decimal giaNhap = numGiaNhap.Value; // numGiaNhap là NumericUpDown => Value = decimal
+            int soLuongNhap = (int)numSoLuong.Value;
+
+            SanPham sp = new SanPham
+            {
+                TenSanPham = tenSanPham,
+                GiaBan = 1 * TinhGiaBan(giaNhap),
+                SoLuongTon = soLuongNhap,
+                NgayNhap = DateTime.Now,
+                HinhAnh = null,
+                MoTa = null,
+                HangSanXuatID = hangSanXuatID,
+                LoaiSanPhamID = loaiSanPhamID,
+                NhaCungCapID = nhaCungCapID,
+                KhuyenMaiID = 1
+            };
+
+
+            context.SanPham.Add(sp);
+            context.SaveChanges();
+        }
+
         private void cboSanPham_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (cboSanPham.SelectedValue != null)
             {
                 int maSanPham = Convert.ToInt32(cboSanPham.SelectedValue?.ToString());
                 var sanPham = context.SanPham.Find(maSanPham)!;
-                numGiaNhap.Value = sanPham.GiaBan;
+                decimal giaBan = sanPham.GiaBan;
+                decimal giaNhap = 1 * LayGiaNhapTuGiaBan(giaBan);
+                numGiaNhap.Value = giaNhap;
+                cboLoaiSanPham.Text = sanPham.LoaiSanPham!.TenLoaiSanPham;
+                cboHangSanXuat.Text = sanPham.HangSanXuat!.TenHangSanXuat;
+                cboNhaCungCap.Text = sanPham.NhaCungCap!.TenNhaCungCap;
             }
+        }
+        public decimal LayGiaNhapTuGiaBan(decimal giaBan)
+        {
+            decimal tyLeLoiNhuan = 0.10m;
+
+            if (giaBan >= 30000000) // >= 30 triệu
+                tyLeLoiNhuan = 0.05m; // 5%
+            else if (giaBan >= 15000000) // >= 15 triệu
+                tyLeLoiNhuan = 0.08m; // 8%
+            else
+                tyLeLoiNhuan = 0.10m; // 10%
+
+            // Tính lại giá nhập ban đầu
+            decimal giaNhap = giaBan / (1 + tyLeLoiNhuan);
+            return Math.Round(giaNhap, 0); // làm tròn về đơn vị
+        }
+
+        public decimal TinhGiaBan(decimal giaBan)
+        {
+            decimal tyLeLoiNhuan = 0.10m;
+
+            if (giaBan >= 30000000) // >= 30 triệu
+                tyLeLoiNhuan = 0.05m; // 5%
+            else if (giaBan >= 15000000) // >= 15 triệu
+                tyLeLoiNhuan = 0.08m; // 8%
+            else
+                tyLeLoiNhuan = 0.10m; // 10%
+
+            // Tính lại giá nhập ban đầu
+            decimal giaNhap = giaBan * (1 + tyLeLoiNhuan);
+            return Math.Round(giaNhap, 0); // làm tròn về đơn vị
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -259,7 +391,7 @@ namespace QuanLyLapTop.Forms
                 {
                     dsPhieuNhapChiTiet.Remove(chitiet);
                 }
-                MessageBox.Show("Xóa thánh công","Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Xóa thánh công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 BatTatChucNang();
             }
             else
@@ -267,5 +399,33 @@ namespace QuanLyLapTop.Forms
                 MessageBox.Show("Vui lòng chọn dòng để xóa?", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void cboSanPham_Leave(object sender, EventArgs e)
+        {
+            string tenSanPhamNhap = cboSanPham.Text.Trim();
+            if (!string.IsNullOrEmpty(tenSanPhamNhap))
+            {
+                // kiểm tra sản phẩm đã có chưa
+                var sanPham = context.SanPham.FirstOrDefault(sp => sp.TenSanPham == tenSanPhamNhap);
+                if (sanPham == null)
+                {
+                    var result = MessageBox.Show("Sản phẩm chưa tồn tại. Bạn có muốn thêm mới không?", "Thêm sản phẩm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        ThemSanPhamMoi(tenSanPhamNhap);
+                        getSanPham(); // Reload lại ComboBox sản phẩm
+                        sanPham = context.SanPham.FirstOrDefault(sp => sp.TenSanPham == tenSanPhamNhap);
+                        if (sanPham != null)
+                        {
+                            cboSanPham.SelectedValue = sanPham.ID;
+                        }
+
+                        cboSanPham.Focus();
+                    }
+                }
+            }
+        }
+
+        
     }
 }

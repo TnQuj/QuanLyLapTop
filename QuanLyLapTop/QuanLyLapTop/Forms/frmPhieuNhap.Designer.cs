@@ -397,7 +397,7 @@
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(94, 29);
             btnHuy.TabIndex = 5;
-            btnHuy.Text = "Thoát";
+            btnHuy.Text = "Quay về...";
             btnHuy.UseVisualStyleBackColor = true;
             btnHuy.Click += btnHuy_Click;
             // 

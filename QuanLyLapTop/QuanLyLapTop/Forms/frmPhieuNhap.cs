@@ -89,8 +89,8 @@ namespace QuanLyLapTop.Forms
                     if (phieuNhap != null)
                     {
                         //xóa phiếu nhập chi tiết 
-                        PhieuNhap_ChiTiet chitiet = context.PhieuNhap_ChiTiet.Where(x => x.PhieuNhapID == id).SingleOrDefault()!;
-                        context.PhieuNhap_ChiTiet.Remove(chitiet);
+                        //PhieuNhap_ChiTiet chitiet = context.PhieuNhap_ChiTiet.Where(x => x.PhieuNhapID == id).SingleOrDefault()!;
+                        //context.PhieuNhap_ChiTiet.Remove(chitiet);
 
                         //xóa phiếu nhập
                         context.PhieuNhap.Remove(phieuNhap);
@@ -110,10 +110,22 @@ namespace QuanLyLapTop.Forms
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Bạn có muốn quay lại trang chính không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                this.Close();
+                this.Hide();
+                var mainForm = Application.OpenForms["frmMain"];
+                if (mainForm != null)
+                {
+                    mainForm.Show();
+                    mainForm.Activate();
+                }
+                else
+                {
+                    frmMain newMainForm = new frmMain();
+                    newMainForm.Show();
+                }
+                this.Close(); // Close luôn form con
             }
         }
 

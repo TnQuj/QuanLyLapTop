@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -101,6 +102,32 @@ namespace QuanLyLapTop.Forms
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn quay lại trang chính không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                var mainForm = Application.OpenForms["frmMain"];
+                if (mainForm != null)
+                {
+                    mainForm.Show();
+                    mainForm.Activate();
+                }
+                else
+                {
+                    frmMain newMainForm = new frmMain();
+                    newMainForm.Show();
+                }
+                this.Close(); // Close luôn form con
+            }
+        }
+
+        private void btnHuyBo_Click(object sender, EventArgs e)
+        {
+            frmSanPham_ChiTiet_Load(sender, e);
         }
     }
 }

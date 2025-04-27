@@ -41,7 +41,6 @@
             btnLuu = new Button();
             btnXoa = new Button();
             btnSua = new Button();
-            btnThem = new Button();
             txtTuKhoa = new ToolStripTextBox();
             btnTimKiem = new ToolStripButton();
             toolStrip = new ToolStrip();
@@ -113,7 +112,6 @@
             groupBox3.Controls.Add(btnLuu);
             groupBox3.Controls.Add(btnXoa);
             groupBox3.Controls.Add(btnSua);
-            groupBox3.Controls.Add(btnThem);
             groupBox3.Location = new Point(0, 197);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(1232, 89);
@@ -123,70 +121,66 @@
             // btnSanPhamChiTiet
             // 
             btnSanPhamChiTiet.ForeColor = Color.Lime;
-            btnSanPhamChiTiet.Location = new Point(868, 30);
+            btnSanPhamChiTiet.Location = new Point(885, 24);
             btnSanPhamChiTiet.Name = "btnSanPhamChiTiet";
             btnSanPhamChiTiet.Size = new Size(219, 40);
-            btnSanPhamChiTiet.TabIndex = 6;
+            btnSanPhamChiTiet.TabIndex = 5;
             btnSanPhamChiTiet.Text = "Sản phẩm chi tiết...";
             btnSanPhamChiTiet.UseVisualStyleBackColor = true;
             btnSanPhamChiTiet.Click += btnSanPhamChiTiet_Click;
             // 
             // btnThoat
             // 
-            btnThoat.Location = new Point(748, 30);
+            btnThoat.ForeColor = Color.Red;
+            btnThoat.Location = new Point(82, 24);
             btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(100, 40);
-            btnThoat.TabIndex = 5;
-            btnThoat.Text = "Thoát";
+            btnThoat.Size = new Size(147, 40);
+            btnThoat.TabIndex = 4;
+            btnThoat.Text = "Quay về...";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // btnHuyBo
             // 
-            btnHuyBo.Location = new Point(629, 30);
+            btnHuyBo.Location = new Point(646, 24);
             btnHuyBo.Name = "btnHuyBo";
             btnHuyBo.Size = new Size(100, 40);
-            btnHuyBo.TabIndex = 4;
+            btnHuyBo.TabIndex = 3;
             btnHuyBo.Text = "Hủy bỏ";
             btnHuyBo.UseVisualStyleBackColor = true;
+            btnHuyBo.Click += btnHuyBo_Click;
             // 
             // btnLuu
             // 
             btnLuu.ForeColor = Color.Blue;
-            btnLuu.Location = new Point(507, 30);
+            btnLuu.Location = new Point(524, 24);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(100, 40);
-            btnLuu.TabIndex = 3;
+            btnLuu.TabIndex = 2;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
+            btnLuu.Click += btnLuu_Click;
             // 
             // btnXoa
             // 
             btnXoa.ForeColor = Color.Red;
-            btnXoa.Location = new Point(385, 30);
+            btnXoa.Location = new Point(402, 24);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(100, 40);
-            btnXoa.TabIndex = 2;
+            btnXoa.TabIndex = 1;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(264, 30);
+            btnSua.Location = new Point(281, 24);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(100, 40);
-            btnSua.TabIndex = 1;
+            btnSua.TabIndex = 0;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
-            // 
-            // btnThem
-            // 
-            btnThem.Location = new Point(145, 30);
-            btnThem.Name = "btnThem";
-            btnThem.Size = new Size(100, 40);
-            btnThem.TabIndex = 0;
-            btnThem.Text = "Thêm ";
-            btnThem.UseVisualStyleBackColor = true;
-            btnThem.Click += btnThem_Click;
+            btnSua.Click += btnSua_Click;
             // 
             // txtTuKhoa
             // 
@@ -235,11 +229,10 @@
             // cboHangSanXuat
             // 
             cboHangSanXuat.FormattingEnabled = true;
-            cboHangSanXuat.Items.AddRange(new object[] { "admin", "user" });
             cboHangSanXuat.Location = new Point(706, 37);
             cboHangSanXuat.Name = "cboHangSanXuat";
             cboHangSanXuat.Size = new Size(246, 28);
-            cboHangSanXuat.TabIndex = 5;
+            cboHangSanXuat.TabIndex = 4;
             // 
             // txtGiaBan
             // 
@@ -325,7 +318,7 @@
             ID.MinimumWidth = 6;
             ID.Name = "ID";
             ID.ReadOnly = true;
-            ID.Width = 40;
+            ID.Width = 30;
             // 
             // TenSanPham
             // 
@@ -341,8 +334,10 @@
             // 
             GiaBan.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             GiaBan.DataPropertyName = "GiaBan";
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle1.ForeColor = Color.Blue;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.ForeColor = Color.Red;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
             GiaBan.DefaultCellStyle = dataGridViewCellStyle1;
             GiaBan.HeaderText = "Giá bán";
             GiaBan.MinimumWidth = 6;
@@ -462,7 +457,7 @@
             txtGiamGia.Location = new Point(706, 150);
             txtGiamGia.Name = "txtGiamGia";
             txtGiamGia.Size = new Size(246, 27);
-            txtGiamGia.TabIndex = 15;
+            txtGiamGia.TabIndex = 7;
             // 
             // label10
             // 
@@ -476,11 +471,10 @@
             // cboNhaCungCap
             // 
             cboNhaCungCap.FormattingEnabled = true;
-            cboNhaCungCap.Items.AddRange(new object[] { "admin", "user" });
             cboNhaCungCap.Location = new Point(706, 112);
             cboNhaCungCap.Name = "cboNhaCungCap";
             cboNhaCungCap.Size = new Size(246, 28);
-            cboNhaCungCap.TabIndex = 13;
+            cboNhaCungCap.TabIndex = 6;
             // 
             // label9
             // 
@@ -494,11 +488,10 @@
             // cboLoaiSanPham
             // 
             cboLoaiSanPham.FormattingEnabled = true;
-            cboLoaiSanPham.Items.AddRange(new object[] { "admin", "user" });
             cboLoaiSanPham.Location = new Point(706, 73);
             cboLoaiSanPham.Name = "cboLoaiSanPham";
             cboLoaiSanPham.Size = new Size(246, 28);
-            cboLoaiSanPham.TabIndex = 11;
+            cboLoaiSanPham.TabIndex = 5;
             // 
             // label8
             // 
@@ -514,7 +507,7 @@
             txtMoTa.Location = new Point(159, 153);
             txtMoTa.Name = "txtMoTa";
             txtMoTa.Size = new Size(342, 27);
-            txtMoTa.TabIndex = 9;
+            txtMoTa.TabIndex = 3;
             // 
             // label7
             // 
@@ -541,7 +534,7 @@
             dateNgayNhap.Location = new Point(159, 111);
             dateNgayNhap.Name = "dateNgayNhap";
             dateNgayNhap.Size = new Size(342, 27);
-            dateNgayNhap.TabIndex = 7;
+            dateNgayNhap.TabIndex = 2;
             // 
             // label2
             // 
@@ -597,7 +590,6 @@
         private Button btnLuu;
         private Button btnXoa;
         private Button btnSua;
-        private Button btnThem;
         private ToolStripTextBox txtTuKhoa;
         private ToolStripButton btnTimKiem;
         private ToolStrip toolStrip;

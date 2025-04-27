@@ -327,7 +327,6 @@
             // cboTrongLuong
             // 
             cboTrongLuong.FormattingEnabled = true;
-            cboTrongLuong.Items.AddRange(new object[] { "admin", "user" });
             cboTrongLuong.Location = new Point(814, 73);
             cboTrongLuong.Name = "cboTrongLuong";
             cboTrongLuong.Size = new Size(98, 28);
@@ -356,6 +355,7 @@
             btnThoat.TabIndex = 5;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // btnHuyBo
             // 
@@ -365,6 +365,7 @@
             btnHuyBo.TabIndex = 4;
             btnHuyBo.Text = "Hủy bỏ";
             btnHuyBo.UseVisualStyleBackColor = true;
+            btnHuyBo.Click += btnHuyBo_Click;
             // 
             // btnXemChiTiet
             // 
@@ -519,7 +520,6 @@
             // cboSanPham
             // 
             cboSanPham.FormattingEnabled = true;
-            cboSanPham.Items.AddRange(new object[] { "admin", "user" });
             cboSanPham.Location = new Point(158, 34);
             cboSanPham.Name = "cboSanPham";
             cboSanPham.Size = new Size(212, 28);
@@ -537,7 +537,6 @@
             // cboHeDieuHanh
             // 
             cboHeDieuHanh.FormattingEnabled = true;
-            cboHeDieuHanh.Items.AddRange(new object[] { "admin", "user" });
             cboHeDieuHanh.Location = new Point(814, 117);
             cboHeDieuHanh.Name = "cboHeDieuHanh";
             cboHeDieuHanh.Size = new Size(98, 28);
@@ -546,7 +545,6 @@
             // cboRAM
             // 
             cboRAM.FormattingEnabled = true;
-            cboRAM.Items.AddRange(new object[] { "admin", "user" });
             cboRAM.Location = new Point(494, 31);
             cboRAM.Name = "cboRAM";
             cboRAM.Size = new Size(154, 28);

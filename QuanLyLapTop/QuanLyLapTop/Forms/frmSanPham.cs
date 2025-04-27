@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using QuanLyLapTop.Data;
 using SlugGenerator;
 namespace QuanLyLapTop.Forms
@@ -23,7 +24,6 @@ namespace QuanLyLapTop.Forms
         string imageFolder = Application.StartupPath.Replace("bin\\Debug\\net9.0-windows", "Images");
         public void BatTatChucNang(bool giaTri)
         {
-            btnThem.Enabled = !giaTri;
             btnXoa.Enabled = !giaTri;
             btnSua.Enabled = !giaTri;
             //
@@ -189,9 +189,131 @@ namespace QuanLyLapTop.Forms
             }
         }
 
-        private void btnThem_Click(object sender, EventArgs e)
+        private void btnSua_Click(object sender, EventArgs e)
         {
+            id = Convert.ToInt32(dataGridView.CurrentRow?.Cells["ID"].Value?.ToString());
             BatTatChucNang(true);
+            txtTenSanPham.Focus();
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                id = Convert.ToInt32(dataGridView.CurrentRow?.Cells["ID"].Value?.ToString());
+                var sp = context.SanPham.Find(id)!;
+                if (sp != null)
+                {
+                    if (!string.IsNullOrEmpty(sp.HinhAnh))
+                    {
+                        string imagePath = Path.Combine(imageFolder, sp.HinhAnh);
+                        if (File.Exists(imagePath))
+                        {
+                            System.GC.Collect();
+                            System.GC.WaitForPendingFinalizers();
+                            File.Delete(imagePath);
+                        }
+                    }
+                    var chiTietHoaDon = context.HoaDon_ChiTiet.Where(x => x.SanPhamID == id).ToList();
+                    context.HoaDon_ChiTiet.RemoveRange(chiTietHoaDon);
+
+                    var chiTietPhieuNhap = context.PhieuNhap_ChiTiet.Where(x => x.SanPhamID == id).ToList();
+                    context.PhieuNhap_ChiTiet.RemoveRange(chiTietPhieuNhap);
+                    context.SanPham.Remove(sp);
+                }
+                context.SaveChanges();
+                MessageBox.Show("Xóa thành công");
+                frmSanPham_Load(sender, e);
+            }
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtTenSanPham.Text))
+            {
+                MessageBox.Show("Tên sản phẩm không được để trống"); txtTenSanPham.Focus(); return;
+            }
+            else if (string.IsNullOrEmpty(txtGiaBan.Text))
+            {
+                MessageBox.Show("Giá bán không được để trống"); txtGiaBan.Focus(); return;
+            }
+            else if (string.IsNullOrEmpty(txtMoTa.Text))
+            {
+                MessageBox.Show("Mô tả không được để trống"); txtMoTa.Focus(); return;
+            }
+            else if (cboNhaCungCap.SelectedValue == null)
+            {
+                MessageBox.Show("Nhà cung cấp không được để trống"); cboNhaCungCap.Focus(); return;
+            }
+            else if (cboHangSanXuat.SelectedValue == null)
+            {
+                MessageBox.Show("Hãng sản xuất không được để trống"); cboHangSanXuat.Focus(); return;
+            }
+            else if (cboLoaiSanPham.SelectedValue == null)
+            {
+                MessageBox.Show("Loại sản phẩm không được để trống"); cboLoaiSanPham.Focus(); return;
+            }
+            else
+            {
+                if (id == 0)
+                {
+                    SanPham sp = new SanPham();
+                    sp.TenSanPham = txtTenSanPham.Text;
+                    sp.GiaBan = Convert.ToDecimal(txtGiaBan.Text);
+                    //sp.SoLuongTon = 0;
+                    sp.NgayNhap = dateNgayNhap.Value;
+                    sp.HinhAnh = imageName;
+                    sp.MoTa = txtMoTa.Text;
+                    sp.NhaCungCapID = Convert.ToInt32(cboNhaCungCap.SelectedValue);
+                    sp.HangSanXuatID = Convert.ToInt32(cboHangSanXuat.SelectedValue);
+                    sp.LoaiSanPhamID = Convert.ToInt32(cboLoaiSanPham.SelectedValue);
+                    context.SanPham.Add(sp);
+                }
+                else
+                {
+                    var sp = context.SanPham.Find(id)!;
+                    if (sp != null)
+                    {
+                        sp.TenSanPham = txtTenSanPham.Text;
+                        sp.GiaBan = Convert.ToDecimal(txtGiaBan.Text);
+                        sp.NgayNhap = dateNgayNhap.Value;
+                        sp.HinhAnh = imageName;
+                        sp.MoTa = txtMoTa.Text;
+                        sp.NhaCungCapID = Convert.ToInt32(cboNhaCungCap.SelectedValue);
+                        sp.HangSanXuatID = Convert.ToInt32(cboHangSanXuat.SelectedValue);
+                        sp.LoaiSanPhamID = Convert.ToInt32(cboLoaiSanPham.SelectedValue);
+                        context.SanPham.Update(sp);
+                        context.SaveChanges();
+                    }
+                }
+                frmSanPham_Load(sender, e);
+            }
+        }
+
+        private void btnHuyBo_Click(object sender, EventArgs e)
+        {
+            frmSanPham_Load(sender, e);
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn quay lại trang chính không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                var mainForm = Application.OpenForms["frmMain"];
+                if (mainForm != null)
+                {
+                    mainForm.Show();
+                    mainForm.Activate();
+                }
+                else
+                {
+                    frmMain newMainForm = new frmMain();
+                    newMainForm.Show();
+                }
+                this.Close(); // Close luôn form con
+            }
         }
     }
 }
