@@ -52,7 +52,6 @@
             btnNhap = new ToolStripButton();
             btnXuat = new ToolStripButton();
             btnThoat = new Button();
-            panel1 = new Panel();
             groupBox3 = new GroupBox();
             cboLoaiSanPham = new ComboBox();
             label7 = new Label();
@@ -72,14 +71,15 @@
             label5 = new Label();
             cboSanPham = new ComboBox();
             label4 = new Label();
+            groupBox2 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             groupBox1.SuspendLayout();
             toolStrip.SuspendLayout();
-            panel1.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numSoLuong).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numGiaNhap).BeginInit();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // btnXoa
@@ -98,7 +98,7 @@
             // 
             btnHuy.Anchor = AnchorStyles.Top;
             btnHuy.ForeColor = Color.Red;
-            btnHuy.Location = new Point(651, 7);
+            btnHuy.Location = new Point(651, 9);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(94, 38);
             btnHuy.TabIndex = 2;
@@ -109,7 +109,7 @@
             // btnInPhieuNhap
             // 
             btnInPhieuNhap.Anchor = AnchorStyles.Top;
-            btnInPhieuNhap.Location = new Point(473, 7);
+            btnInPhieuNhap.Location = new Point(473, 9);
             btnInPhieuNhap.Name = "btnInPhieuNhap";
             btnInPhieuNhap.Size = new Size(122, 38);
             btnInPhieuNhap.TabIndex = 1;
@@ -120,7 +120,7 @@
             // 
             btnLapPhieuNhap.Anchor = AnchorStyles.Top;
             btnLapPhieuNhap.ForeColor = Color.Blue;
-            btnLapPhieuNhap.Location = new Point(237, 7);
+            btnLapPhieuNhap.Location = new Point(237, 9);
             btnLapPhieuNhap.Name = "btnLapPhieuNhap";
             btnLapPhieuNhap.Size = new Size(204, 38);
             btnLapPhieuNhap.TabIndex = 0;
@@ -143,7 +143,7 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 51;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(976, 259);
+            dataGridView.Size = new Size(976, 253);
             dataGridView.TabIndex = 3;
             // 
             // SanPhamID
@@ -214,11 +214,11 @@
             groupBox1.BackColor = SystemColors.ButtonHighlight;
             groupBox1.Controls.Add(dataGridView);
             groupBox1.Controls.Add(toolStrip);
-            groupBox1.Dock = DockStyle.Top;
+            groupBox1.Dock = DockStyle.Fill;
             groupBox1.ForeColor = Color.Blue;
             groupBox1.Location = new Point(0, 286);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(982, 316);
+            groupBox1.Size = new Size(982, 310);
             groupBox1.TabIndex = 13;
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh sách phiếu nhập chi tiết";
@@ -286,18 +286,6 @@
             btnThoat.TabIndex = 4;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = SystemColors.ActiveCaption;
-            panel1.Controls.Add(btnHuy);
-            panel1.Controls.Add(btnInPhieuNhap);
-            panel1.Controls.Add(btnLapPhieuNhap);
-            panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 602);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(982, 51);
-            panel1.TabIndex = 14;
             // 
             // groupBox3
             // 
@@ -500,16 +488,28 @@
             label4.TabIndex = 21;
             label4.Text = "Sản phẩm (*):";
             // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(btnHuy);
+            groupBox2.Controls.Add(btnLapPhieuNhap);
+            groupBox2.Controls.Add(btnInPhieuNhap);
+            groupBox2.Dock = DockStyle.Bottom;
+            groupBox2.Location = new Point(0, 596);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(982, 57);
+            groupBox2.TabIndex = 17;
+            groupBox2.TabStop = false;
+            // 
             // frmPhieuNhap_ChiTiet
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(982, 653);
             Controls.Add(btnThoat);
-            Controls.Add(panel1);
             Controls.Add(groupBox1);
             Controls.Add(groupBox4);
             Controls.Add(groupBox3);
+            Controls.Add(groupBox2);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmPhieuNhap_ChiTiet";
             StartPosition = FormStartPosition.CenterScreen;
@@ -520,13 +520,13 @@
             groupBox1.PerformLayout();
             toolStrip.ResumeLayout(false);
             toolStrip.PerformLayout();
-            panel1.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numSoLuong).EndInit();
             ((System.ComponentModel.ISupportInitialize)numGiaNhap).EndInit();
+            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -545,7 +545,6 @@
         private ToolStripButton btnNhap;
         private ToolStripButton btnXuat;
         private Button btnThoat;
-        private Panel panel1;
         private GroupBox groupBox3;
         private ComboBox cboNhaCungCap;
         private Label label2;
@@ -570,5 +569,6 @@
         private Label label7;
         private ComboBox cboHangSanXuat;
         private Label label8;
+        private GroupBox groupBox2;
     }
 }

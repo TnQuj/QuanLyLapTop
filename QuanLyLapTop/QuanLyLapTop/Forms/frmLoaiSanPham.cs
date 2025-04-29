@@ -28,6 +28,7 @@ namespace QuanLyLapTop.Forms
             btnHuyBo.Enabled = giaTri;
             txtTenLoaiSanPham.Enabled = giaTri;
         }
+
         private void frmLoaiSanPham_Load(object sender, EventArgs e)
         {
             BatTatChucNang(false);

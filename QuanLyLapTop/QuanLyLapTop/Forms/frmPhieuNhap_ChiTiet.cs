@@ -15,11 +15,13 @@ namespace QuanLyLapTop.Forms
         QLBHDbContext context = new QLBHDbContext();
         int id;
         BindingList<DS_PhieuNhap_ChiTiet> dsPhieuNhapChiTiet = new BindingList<DS_PhieuNhap_ChiTiet>();
+        string imageName = "no-image.jpg"; // Hình ảnh mặc định
 
         public frmPhieuNhap_ChiTiet(int maPhieuNhap = 0)
         {
             InitializeComponent();
             id = maPhieuNhap;
+
         }
 
         public void getNhanVien()
@@ -37,12 +39,14 @@ namespace QuanLyLapTop.Forms
             cboNhaCungCap.DisplayMember = "TenNhaCungCap";
             cboNhaCungCap.ValueMember = "ID";
         }
+
         public void getSanPham()
         {
             cboSanPham.DataSource = context.SanPham.ToList();
             cboSanPham.DisplayMember = "TenSanPham";
             cboSanPham.ValueMember = "ID";
         }
+
         public void getHangSanXuat()
         {
             cboHangSanXuat.DataSource = context.HangSanXuat.ToList();
@@ -56,6 +60,7 @@ namespace QuanLyLapTop.Forms
             cboLoaiSanPham.DisplayMember = "TenLoaiSanPham";
             cboLoaiSanPham.ValueMember = "ID";
         }
+
         public void BatTatChucNang()
         {
             if (id == 0 && dataGridView.Rows.Count == 0)
@@ -115,26 +120,7 @@ namespace QuanLyLapTop.Forms
             dataGridView.DataSource = dsPhieuNhapChiTiet;
         }
 
-        private void btnHuy_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Bạn có muốn quay lại trang chính không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                this.Hide();
-                var mainForm = Application.OpenForms["frmMain"];
-                if (mainForm != null)
-                {
-                    mainForm.Show();
-                    mainForm.Activate();
-                }
-                else
-                {
-                    frmMain newMainForm = new frmMain();
-                    newMainForm.Show();
-                }
-                this.Close(); // Close luôn form con
-            }
-        }
+        
 
         private void btnLapPhieuNhap_Click(object sender, EventArgs e)
         {
@@ -171,6 +157,7 @@ namespace QuanLyLapTop.Forms
                             ct.DonGiaNhap = item.DonGiaNhap;
                             context.PhieuNhap_ChiTiet.Add(ct);
 
+                            //cập nhật sản phẩm mới từ phiếu nhập
                             var sanPham = context.SanPham.FirstOrDefault(sp => sp.ID == item.SanPhamID);
 
                             int hangSanXuatID = 0, loaiSanPhamID = 0, nhaCungCapID = 0;
@@ -181,12 +168,10 @@ namespace QuanLyLapTop.Forms
                             decimal giaNhap = numGiaNhap.Value;
                             if (sanPham != null)
                             {
-
                                 sanPham.SoLuongTon += item.SoLuongNhap; // cộng thêm số lượng nhập mới
                                 sanPham.GiaBan = 1 * TinhGiaBan(giaNhap); // Tính giá bán mới
-
-                                // Nếu cần update thêm loại, hãng, nhà cung cấp:
-
+                                sanPham.HinhAnh = imageName;
+                                sanPham.MoTa = txtGhiChu.Text;
                                 sanPham.HangSanXuatID = hangSanXuatID;
                                 sanPham.LoaiSanPhamID = loaiSanPhamID;
                                 sanPham.NhaCungCapID = nhaCungCapID;
@@ -228,9 +213,8 @@ namespace QuanLyLapTop.Forms
                         {
                             sanPham.SoLuongTon += item.SoLuongNhap; // cộng thêm số lượng nhập mới
                             sanPham.GiaBan = 1 * TinhGiaBan(giaNhap); // Tính giá bán mới
-
-                            // Nếu cần update thêm loại, hãng, nhà cung cấp:
-
+                            sanPham.HinhAnh = imageName;
+                            sanPham.MoTa = txtGhiChu.Text;
                             sanPham.HangSanXuatID = hangSanXuatID;
                             sanPham.LoaiSanPhamID = loaiSanPhamID;
                             sanPham.NhaCungCapID = nhaCungCapID;
@@ -240,13 +224,12 @@ namespace QuanLyLapTop.Forms
                     context.SaveChanges();
                 }
                 DialogResult result = MessageBox.Show("Lập phiếu nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (result == DialogResult.OK)
+                if (result == DialogResult.Yes)
                 {
                     this.Hide();
-                    frmPhieuNhap frm = new frmPhieuNhap();
-                    frm.Show(); // Hiển thị lại form mới
+                    frmPhieuNhap frmPhieuNhap = new frmPhieuNhap();
+                    frmPhieuNhap.Show();
                 }
-
             }
         }
 
@@ -322,7 +305,7 @@ namespace QuanLyLapTop.Forms
                 GiaBan = 1 * TinhGiaBan(giaNhap),
                 SoLuongTon = soLuongNhap,
                 NgayNhap = DateTime.Now,
-                HinhAnh = null,
+                HinhAnh = imageName,
                 MoTa = null,
                 HangSanXuatID = hangSanXuatID,
                 LoaiSanPhamID = loaiSanPhamID,
@@ -426,6 +409,25 @@ namespace QuanLyLapTop.Forms
             }
         }
 
-        
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn quay lại trang chính không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                var mainForm = Application.OpenForms["frmMain"];
+                if (mainForm != null)
+                {
+                    mainForm.Show();
+                    mainForm.Activate();
+                }
+                else
+                {
+                    frmMain newMainForm = new frmMain();
+                    newMainForm.Show();
+                }
+                this.Close(); // Close luôn form con
+            }
+        }
     }
 }

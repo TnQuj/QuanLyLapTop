@@ -30,130 +30,174 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDangNhap));
             pictureBox1 = new PictureBox();
-            label1 = new Label();
-            txtTenDangNhap = new TextBox();
-            txtMatKhau = new TextBox();
             sqlCommandBuilder1 = new Microsoft.Data.SqlClient.SqlCommandBuilder();
-            btnDangNhap = new Button();
-            btnHuyBo = new Button();
-            label2 = new Label();
-            label3 = new Label();
-            pictureBox2 = new PictureBox();
+            groupBox2 = new GroupBox();
             pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            label3 = new Label();
+            label2 = new Label();
+            btnHuyBo = new Button();
+            btnDangNhap = new Button();
+            txtMatKhau = new TextBox();
+            txtTenDangNhap = new TextBox();
+            label1 = new Label();
+            label4 = new Label();
+            pictureBox4 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox1.Dock = DockStyle.Left;
+            pictureBox1.BorderStyle = BorderStyle.Fixed3D;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(340, 350);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Size = new Size(355, 353);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // label1
+            // groupBox2
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Blue;
-            label1.Location = new Point(468, 31);
-            label1.Name = "label1";
-            label1.Size = new Size(182, 38);
-            label1.TabIndex = 1;
-            label1.Text = "ĐĂNG NHẬP";
-            // 
-            // txtTenDangNhap
-            // 
-            txtTenDangNhap.ForeColor = Color.DimGray;
-            txtTenDangNhap.Location = new Point(402, 146);
-            txtTenDangNhap.Name = "txtTenDangNhap";
-            txtTenDangNhap.Size = new Size(351, 27);
-            txtTenDangNhap.TabIndex = 2;
-            // 
-            // txtMatKhau
-            // 
-            txtMatKhau.ForeColor = Color.DimGray;
-            txtMatKhau.Location = new Point(402, 207);
-            txtMatKhau.Name = "txtMatKhau";
-            txtMatKhau.PasswordChar = '*';
-            txtMatKhau.Size = new Size(351, 27);
-            txtMatKhau.TabIndex = 3;
-            // 
-            // btnDangNhap
-            // 
-            btnDangNhap.BackColor = Color.FromArgb(0, 192, 0);
-            btnDangNhap.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDangNhap.ForeColor = Color.Black;
-            btnDangNhap.Location = new Point(373, 279);
-            btnDangNhap.Name = "btnDangNhap";
-            btnDangNhap.Size = new Size(168, 50);
-            btnDangNhap.TabIndex = 4;
-            btnDangNhap.Text = "Đăng nhập";
-            btnDangNhap.UseVisualStyleBackColor = false;
-            // 
-            // btnHuyBo
-            // 
-            btnHuyBo.BackColor = Color.Red;
-            btnHuyBo.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHuyBo.Location = new Point(585, 279);
-            btnHuyBo.Name = "btnHuyBo";
-            btnHuyBo.Size = new Size(168, 50);
-            btnHuyBo.TabIndex = 5;
-            btnHuyBo.Text = "Hủy bỏ";
-            btnHuyBo.UseVisualStyleBackColor = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(373, 115);
-            label2.Name = "label2";
-            label2.Size = new Size(171, 28);
-            label2.TabIndex = 6;
-            label2.Text = "Tên đăng nhập(*)";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(373, 176);
-            label3.Name = "label3";
-            label3.Size = new Size(121, 28);
-            label3.TabIndex = 7;
-            label3.Text = "Mật khẩu(*)";
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(373, 146);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(31, 27);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 8;
-            pictureBox2.TabStop = false;
+            groupBox2.Controls.Add(pictureBox1);
+            groupBox2.Dock = DockStyle.Left;
+            groupBox2.Location = new Point(0, 0);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(355, 353);
+            groupBox2.TabIndex = 2;
+            groupBox2.TabStop = false;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(373, 207);
+            pictureBox3.Location = new Point(370, 203);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(31, 27);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 9;
+            pictureBox3.Size = new Size(35, 27);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 27;
             pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(370, 128);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(35, 27);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 26;
+            pictureBox2.TabStop = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(411, 172);
+            label3.Name = "label3";
+            label3.Size = new Size(110, 22);
+            label3.TabIndex = 25;
+            label3.Text = "Mật khẩu (*)";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(411, 97);
+            label2.Name = "label2";
+            label2.Size = new Size(152, 22);
+            label2.TabIndex = 24;
+            label2.Text = "Tên đăng nhập (*)";
+            // 
+            // btnHuyBo
+            // 
+            btnHuyBo.BackColor = Color.FromArgb(255, 128, 128);
+            btnHuyBo.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnHuyBo.Location = new Point(588, 275);
+            btnHuyBo.Name = "btnHuyBo";
+            btnHuyBo.Size = new Size(174, 50);
+            btnHuyBo.TabIndex = 23;
+            btnHuyBo.Text = "Hủy bỏ";
+            btnHuyBo.UseVisualStyleBackColor = false;
+            btnHuyBo.Click += btnHuyBo_Click;
+            // 
+            // btnDangNhap
+            // 
+            btnDangNhap.BackColor = Color.FromArgb(128, 255, 128);
+            btnDangNhap.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDangNhap.ForeColor = Color.Black;
+            btnDangNhap.Location = new Point(382, 275);
+            btnDangNhap.Name = "btnDangNhap";
+            btnDangNhap.Size = new Size(181, 50);
+            btnDangNhap.TabIndex = 22;
+            btnDangNhap.Text = "Đăng nhập";
+            btnDangNhap.UseVisualStyleBackColor = false;
+            btnDangNhap.Click += btnDangNhap_Click;
+            // 
+            // txtMatKhau
+            // 
+            txtMatKhau.BorderStyle = BorderStyle.FixedSingle;
+            txtMatKhau.ForeColor = Color.DimGray;
+            txtMatKhau.Location = new Point(411, 203);
+            txtMatKhau.Name = "txtMatKhau";
+            txtMatKhau.PasswordChar = '⚫';
+            txtMatKhau.Size = new Size(351, 27);
+            txtMatKhau.TabIndex = 21;
+            txtMatKhau.KeyDown += txtMatKhau_KeyDown;
+            // 
+            // txtTenDangNhap
+            // 
+            txtTenDangNhap.BorderStyle = BorderStyle.FixedSingle;
+            txtTenDangNhap.ForeColor = Color.DimGray;
+            txtTenDangNhap.Location = new Point(411, 128);
+            txtTenDangNhap.Name = "txtTenDangNhap";
+            txtTenDangNhap.Size = new Size(351, 27);
+            txtTenDangNhap.TabIndex = 20;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Green;
+            label1.Location = new Point(370, 12);
+            label1.Name = "label1";
+            label1.Size = new Size(131, 33);
+            label1.TabIndex = 19;
+            label1.Text = "LaptopVie";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Yellow;
+            label4.Location = new Point(543, 36);
+            label4.Name = "label4";
+            label4.Size = new Size(219, 26);
+            label4.TabIndex = 28;
+            label4.Text = "Good to see you again";
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.BackgroundImage = Properties.Resources.sunlight;
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(502, 29);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(35, 33);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 29;
+            pictureBox4.TabStop = false;
             // 
             // frmDangNhap
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(787, 350);
+            BackColor = SystemColors.ActiveCaption;
+            ClientSize = new Size(782, 353);
+            Controls.Add(pictureBox4);
+            Controls.Add(label4);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(label3);
@@ -163,16 +207,20 @@
             Controls.Add(txtMatKhau);
             Controls.Add(txtTenDangNhap);
             Controls.Add(label1);
-            Controls.Add(pictureBox1);
+            Controls.Add(groupBox2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmDangNhap";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Đăng nhập";
+            Load += frmDangNhap_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -180,15 +228,18 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private Label label1;
         private Microsoft.Data.SqlClient.SqlCommandBuilder sqlCommandBuilder1;
-        private Button btnDangNhap;
-        private Button btnHuyBo;
-        private Label label2;
-        private Label label3;
-        private PictureBox pictureBox2;
+        private GroupBox groupBox2;
         private PictureBox pictureBox3;
-        public TextBox txtTenDangNhap;
+        private PictureBox pictureBox2;
+        private Label label3;
+        private Label label2;
+        private Button btnHuyBo;
+        private Button btnDangNhap;
         public TextBox txtMatKhau;
+        public TextBox txtTenDangNhap;
+        private Label label1;
+        private Label label4;
+        private PictureBox pictureBox4;
     }
 }

@@ -13,9 +13,10 @@ namespace QuanLyLapTop.Forms
 {
     public partial class frmSanPham_ChiTiet : Form
     {
-        public frmSanPham_ChiTiet()
+        public frmSanPham_ChiTiet(int maSanPham = 0)
         {
             InitializeComponent();
+            id = maSanPham;
         }
         QLBHDbContext context = new QLBHDbContext();
         int id;
@@ -45,6 +46,7 @@ namespace QuanLyLapTop.Forms
             cboSanPham.DisplayMember = "TenSanPham";
             cboSanPham.ValueMember = "ID";
         }
+
         private void frmSanPham_ChiTiet_Load(object sender, EventArgs e)
         {
             BatTatChucNang(false);
@@ -68,19 +70,19 @@ namespace QuanLyLapTop.Forms
             dataGridView.DataSource = spct;
 
             cboSanPham.DataBindings.Clear();
-            cboSanPham.DataBindings.Add("SelectedValue", spct, "SanPhamID", false, DataSourceUpdateMode.Never);
+            cboSanPham.DataBindings.Add("Text", spct, "TenSanPham", false, DataSourceUpdateMode.Never);
 
             txtCPU.DataBindings.Clear();
             txtCPU.DataBindings.Add("Text", spct, "CPU", false, DataSourceUpdateMode.Never);
 
             cboRAM.DataBindings.Clear();
-            cboRAM.DataBindings.Add("SelectedValue", spct, "RAM", false, DataSourceUpdateMode.Never);
+            cboRAM.DataBindings.Add("Text", spct, "RAM", false, DataSourceUpdateMode.Never);
 
             cboTrongLuong.DataBindings.Clear();
-            cboTrongLuong.DataBindings.Add("SelectedValue", spct, "TrongLuong", false, DataSourceUpdateMode.Never);
+            cboTrongLuong.DataBindings.Add("Text", spct, "TrongLuong", false, DataSourceUpdateMode.Never);
 
             cboHeDieuHanh.DataBindings.Clear();
-            cboHeDieuHanh.DataBindings.Add("SelectedValue", spct, "HeDieuHanh", false, DataSourceUpdateMode.Never);
+            cboHeDieuHanh.DataBindings.Add("Text", spct, "HeDieuHanh", false, DataSourceUpdateMode.Never);
 
             txtGPU.DataBindings.Clear();
             txtGPU.DataBindings.Add("Text", spct, "GPU", false, DataSourceUpdateMode.Never);
@@ -93,15 +95,6 @@ namespace QuanLyLapTop.Forms
 
             txtPin.DataBindings.Clear();
             txtPin.DataBindings.Add("Text", spct, "Pin", false, DataSourceUpdateMode.Never);
-
-
-
-
-        }
-
-        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -129,5 +122,7 @@ namespace QuanLyLapTop.Forms
         {
             frmSanPham_ChiTiet_Load(sender, e);
         }
+
+       
     }
 }

@@ -139,6 +139,7 @@ namespace QuanLyLapTop.Forms
                 }
             }
         }
+
         private void dataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.Cancel = true;
@@ -147,9 +148,19 @@ namespace QuanLyLapTop.Forms
 
         private void btnSanPhamChiTiet_Click(object sender, EventArgs e)
         {
-            using (frmSanPham_ChiTiet spct = new frmSanPham_ChiTiet())
+            if (dataGridView.CurrentRow != null)
             {
-                spct.ShowDialog();
+                id = Convert.ToInt32(dataGridView.CurrentRow?.Cells[0].Value?.ToString());
+                this.Hide();
+                using (frmSanPham_ChiTiet chitiet = new frmSanPham_ChiTiet(id))
+                {
+                    chitiet.ShowDialog();
+                }
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn phiếu nhập để sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -214,9 +225,11 @@ namespace QuanLyLapTop.Forms
                             File.Delete(imagePath);
                         }
                     }
-                    var chiTietHoaDon = context.HoaDon_ChiTiet.Where(x => x.SanPhamID == id).ToList();
-                    context.HoaDon_ChiTiet.RemoveRange(chiTietHoaDon);
+                    //xóa hóa đơn chi tiết
+                    //var chiTietHoaDon = context.HoaDon_ChiTiet.Where(x => x.SanPhamID == id).ToList();
+                    //context.HoaDon_ChiTiet.RemoveRange(chiTietHoaDon);
 
+                    //xóa phiếu nhập chi tiết
                     var chiTietPhieuNhap = context.PhieuNhap_ChiTiet.Where(x => x.SanPhamID == id).ToList();
                     context.PhieuNhap_ChiTiet.RemoveRange(chiTietPhieuNhap);
                     context.SanPham.Remove(sp);
@@ -255,7 +268,7 @@ namespace QuanLyLapTop.Forms
             }
             else
             {
-                if (id == 0)
+                if (id == 0)// Thêm mới
                 {
                     SanPham sp = new SanPham();
                     sp.TenSanPham = txtTenSanPham.Text;
@@ -269,7 +282,7 @@ namespace QuanLyLapTop.Forms
                     sp.LoaiSanPhamID = Convert.ToInt32(cboLoaiSanPham.SelectedValue);
                     context.SanPham.Add(sp);
                 }
-                else
+                else //Sửa
                 {
                     var sp = context.SanPham.Find(id)!;
                     if (sp != null)
@@ -315,5 +328,7 @@ namespace QuanLyLapTop.Forms
                 this.Close(); // Close luôn form con
             }
         }
+
+       
     }
 }

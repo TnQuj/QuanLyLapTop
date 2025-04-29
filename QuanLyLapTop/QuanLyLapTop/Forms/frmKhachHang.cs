@@ -31,6 +31,7 @@ namespace QuanLyLapTop.Forms
             txtDienThoai.Enabled = giaTri;
             txtDiaChi.Enabled = giaTri;
         }
+
         private void frmKhachHang_Load(object sender, EventArgs e)
         {
             BatTatChucNang(false);
@@ -130,10 +131,22 @@ namespace QuanLyLapTop.Forms
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Bạn có muốn quay lại trang chính không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                this.Close();
+                this.Hide();
+                var mainForm = Application.OpenForms["frmMain"];
+                if (mainForm != null)
+                {
+                    mainForm.Show();
+                    mainForm.Activate();
+                }
+                else
+                {
+                    frmMain newMainForm = new frmMain();
+                    newMainForm.Show();
+                }
+                this.Close(); // Close luôn form con
             }
         }
 

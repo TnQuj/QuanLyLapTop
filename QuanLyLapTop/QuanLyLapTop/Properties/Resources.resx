@@ -175,6 +175,9 @@
   <data name="box_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Icons\Objects And People\box_add.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="sunlight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\sunlight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -186,6 +189,9 @@
   </data>
   <data name="hoa-don" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\hoa-don.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="thoat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\thoat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="san-pham1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\san-pham.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,7 +208,7 @@
   <data name="nhan-vien" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\nhan-vien.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="thoat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\thoat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="product2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Icons\Objects And People\product2.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

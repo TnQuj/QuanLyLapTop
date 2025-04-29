@@ -28,11 +28,12 @@ namespace QuanLyLapTop.Forms
 
         private void btnLapPhieuNhap_Click(object sender, EventArgs e)
         {
+            this.Hide(); // Ẩn phiếu nhập trước
             using (frmPhieuNhap_ChiTiet chitiet = new frmPhieuNhap_ChiTiet())
             {
-                this.Hide();
                 chitiet.ShowDialog();
             }
+            this.Show(); // Sau khi frmChiTiet đóng thì hiện lại
         }
 
         private void frmPhieuNhap_Load(object sender, EventArgs e)
@@ -66,11 +67,12 @@ namespace QuanLyLapTop.Forms
             if (dataGridView.CurrentRow != null)
             {
                 id = Convert.ToInt32(dataGridView.CurrentRow?.Cells[0].Value?.ToString());
+                this.Hide();
                 using (frmPhieuNhap_ChiTiet chitiet = new frmPhieuNhap_ChiTiet(id))
                 {
-                    this.Hide();
                     chitiet.ShowDialog();
                 }
+                this.Show();
             }
             else
             {
@@ -133,5 +135,7 @@ namespace QuanLyLapTop.Forms
         {
 
         }
+
+       
     }
 }

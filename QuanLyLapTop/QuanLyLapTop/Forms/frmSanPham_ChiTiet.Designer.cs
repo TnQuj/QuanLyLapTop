@@ -40,10 +40,6 @@
             Pin = new DataGridViewTextBoxColumn();
             TrongLuong = new DataGridViewTextBoxColumn();
             HeDieuHanh = new DataGridViewTextBoxColumn();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
-            lblTrangThai = new ToolStripStatusLabel();
-            staStp_LienKet = new StatusStrip();
-            toolStripStatusLabel2 = new ToolStripStatusLabel();
             groupBox2 = new GroupBox();
             toolStrip = new ToolStrip();
             toolStripLabel1 = new ToolStripLabel();
@@ -79,7 +75,6 @@
             cboHeDieuHanh = new ComboBox();
             cboRAM = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
-            staStp_LienKet.SuspendLayout();
             groupBox2.SuspendLayout();
             toolStrip.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -90,19 +85,21 @@
             // 
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
+            dataGridView.AllowUserToResizeColumns = false;
+            dataGridView.AllowUserToResizeRows = false;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Columns.AddRange(new DataGridViewColumn[] { ID, TenSanPham, CPU, RAM, OCung, ManHinh, GPU, Pin, TrongLuong, HeDieuHanh });
-            dataGridView.Location = new Point(0, 53);
+            dataGridView.Dock = DockStyle.Fill;
+            dataGridView.Location = new Point(3, 54);
             dataGridView.MultiSelect = false;
             dataGridView.Name = "dataGridView";
             dataGridView.ReadOnly = true;
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 51;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(982, 224);
+            dataGridView.Size = new Size(976, 252);
             dataGridView.TabIndex = 1;
-            dataGridView.CellContentClick += dataGridView_CellContentClick;
             // 
             // ID
             // 
@@ -206,41 +203,10 @@
             HeDieuHanh.ReadOnly = true;
             HeDieuHanh.Width = 130;
             // 
-            // toolStripStatusLabel1
-            // 
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(684, 20);
-            toolStripStatusLabel1.Spring = true;
-            // 
-            // lblTrangThai
-            // 
-            lblTrangThai.Name = "lblTrangThai";
-            lblTrangThai.Size = new Size(121, 20);
-            lblTrangThai.Text = "Chưa đăng nhập.";
-            // 
-            // staStp_LienKet
-            // 
-            staStp_LienKet.BackColor = Color.MediumSpringGreen;
-            staStp_LienKet.ImageScalingSize = new Size(20, 20);
-            staStp_LienKet.Items.AddRange(new ToolStripItem[] { lblTrangThai, toolStripStatusLabel1, toolStripStatusLabel2 });
-            staStp_LienKet.Location = new Point(3, 280);
-            staStp_LienKet.Name = "staStp_LienKet";
-            staStp_LienKet.Size = new Size(976, 26);
-            staStp_LienKet.TabIndex = 5;
-            staStp_LienKet.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel2
-            // 
-            toolStripStatusLabel2.IsLink = true;
-            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(156, 20);
-            toolStripStatusLabel2.Text = "© Khoa CNTT - ĐHAG";
-            // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(toolStrip);
-            groupBox2.Controls.Add(staStp_LienKet);
             groupBox2.Controls.Add(dataGridView);
+            groupBox2.Controls.Add(toolStrip);
             groupBox2.Dock = DockStyle.Fill;
             groupBox2.Location = new Point(0, 244);
             groupBox2.Name = "groupBox2";
@@ -302,7 +268,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(29, 38);
+            label1.Location = new Point(48, 38);
             label1.Name = "label1";
             label1.Size = new Size(123, 20);
             label1.TabIndex = 0;
@@ -311,7 +277,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(113, 82);
+            label3.Location = new Point(132, 82);
             label3.Name = "label3";
             label3.Size = new Size(39, 20);
             label3.TabIndex = 2;
@@ -319,7 +285,7 @@
             // 
             // txtCPU
             // 
-            txtCPU.Location = new Point(158, 78);
+            txtCPU.Location = new Point(177, 78);
             txtCPU.Name = "txtCPU";
             txtCPU.Size = new Size(212, 27);
             txtCPU.TabIndex = 1;
@@ -327,9 +293,9 @@
             // cboTrongLuong
             // 
             cboTrongLuong.FormattingEnabled = true;
-            cboTrongLuong.Location = new Point(814, 73);
+            cboTrongLuong.Location = new Point(776, 79);
             cboTrongLuong.Name = "cboTrongLuong";
-            cboTrongLuong.Size = new Size(98, 28);
+            cboTrongLuong.Size = new Size(158, 28);
             cboTrongLuong.TabIndex = 7;
             // 
             // groupBox3
@@ -409,7 +375,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(444, 35);
+            label2.Location = new Point(429, 39);
             label2.Name = "label2";
             label2.Size = new Size(44, 20);
             label2.TabIndex = 15;
@@ -418,7 +384,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(428, 78);
+            label7.Location = new Point(413, 82);
             label7.Name = "label7";
             label7.Size = new Size(60, 20);
             label7.TabIndex = 17;
@@ -426,7 +392,7 @@
             // 
             // txtOCung
             // 
-            txtOCung.Location = new Point(494, 75);
+            txtOCung.Location = new Point(479, 79);
             txtOCung.Name = "txtOCung";
             txtOCung.Size = new Size(154, 27);
             txtOCung.TabIndex = 4;
@@ -434,7 +400,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(735, 33);
+            label4.Location = new Point(697, 39);
             label4.Name = "label4";
             label4.Size = new Size(73, 20);
             label4.TabIndex = 19;
@@ -442,15 +408,15 @@
             // 
             // txtManHinh
             // 
-            txtManHinh.Location = new Point(814, 29);
+            txtManHinh.Location = new Point(776, 35);
             txtManHinh.Name = "txtManHinh";
-            txtManHinh.Size = new Size(98, 27);
+            txtManHinh.Size = new Size(158, 27);
             txtManHinh.TabIndex = 6;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(112, 125);
+            label5.Location = new Point(131, 125);
             label5.Name = "label5";
             label5.Size = new Size(40, 20);
             label5.TabIndex = 21;
@@ -458,7 +424,7 @@
             // 
             // txtGPU
             // 
-            txtGPU.Location = new Point(158, 122);
+            txtGPU.Location = new Point(177, 122);
             txtGPU.Name = "txtGPU";
             txtGPU.Size = new Size(212, 27);
             txtGPU.TabIndex = 2;
@@ -466,7 +432,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(456, 121);
+            label6.Location = new Point(441, 125);
             label6.Name = "label6";
             label6.Size = new Size(32, 20);
             label6.TabIndex = 23;
@@ -474,7 +440,7 @@
             // 
             // txtPin
             // 
-            txtPin.Location = new Point(494, 119);
+            txtPin.Location = new Point(479, 123);
             txtPin.Name = "txtPin";
             txtPin.Size = new Size(154, 27);
             txtPin.TabIndex = 5;
@@ -482,7 +448,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(715, 76);
+            label8.Location = new Point(677, 82);
             label8.Name = "label8";
             label8.Size = new Size(93, 20);
             label8.TabIndex = 25;
@@ -520,7 +486,7 @@
             // cboSanPham
             // 
             cboSanPham.FormattingEnabled = true;
-            cboSanPham.Location = new Point(158, 34);
+            cboSanPham.Location = new Point(177, 34);
             cboSanPham.Name = "cboSanPham";
             cboSanPham.Size = new Size(212, 28);
             cboSanPham.TabIndex = 29;
@@ -528,7 +494,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(708, 120);
+            label9.Location = new Point(670, 126);
             label9.Name = "label9";
             label9.Size = new Size(100, 20);
             label9.TabIndex = 28;
@@ -537,15 +503,15 @@
             // cboHeDieuHanh
             // 
             cboHeDieuHanh.FormattingEnabled = true;
-            cboHeDieuHanh.Location = new Point(814, 117);
+            cboHeDieuHanh.Location = new Point(776, 123);
             cboHeDieuHanh.Name = "cboHeDieuHanh";
-            cboHeDieuHanh.Size = new Size(98, 28);
+            cboHeDieuHanh.Size = new Size(158, 28);
             cboHeDieuHanh.TabIndex = 8;
             // 
             // cboRAM
             // 
             cboRAM.FormattingEnabled = true;
-            cboRAM.Location = new Point(494, 31);
+            cboRAM.Location = new Point(479, 35);
             cboRAM.Name = "cboRAM";
             cboRAM.Size = new Size(154, 28);
             cboRAM.TabIndex = 3;
@@ -565,8 +531,6 @@
             Text = "Sản phẩm chi tiết";
             Load += frmSanPham_ChiTiet_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
-            staStp_LienKet.ResumeLayout(false);
-            staStp_LienKet.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             toolStrip.ResumeLayout(false);
@@ -579,10 +543,6 @@
 
         #endregion
         private DataGridView dataGridView;
-        private ToolStripStatusLabel toolStripStatusLabel1;
-        private ToolStripStatusLabel lblTrangThai;
-        private StatusStrip staStp_LienKet;
-        private ToolStripStatusLabel toolStripStatusLabel2;
         private GroupBox groupBox2;
         private Label label1;
         private Label label3;

@@ -32,7 +32,6 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSanPham));
-            toolStripStatusLabel2 = new ToolStripStatusLabel();
             toolStripLabel1 = new ToolStripLabel();
             groupBox3 = new GroupBox();
             btnSanPhamChiTiet = new Button();
@@ -51,9 +50,6 @@
             txtGiaBan = new TextBox();
             txtTenSanPham = new TextBox();
             label6 = new Label();
-            lblTrangThai = new ToolStripStatusLabel();
-            staStp_LienKet = new StatusStrip();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
             groupBox2 = new GroupBox();
             dataGridView = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
@@ -82,19 +78,11 @@
             label4 = new Label();
             groupBox3.SuspendLayout();
             toolStrip.SuspendLayout();
-            staStp_LienKet.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picHinhAnh).BeginInit();
             SuspendLayout();
-            // 
-            // toolStripStatusLabel2
-            // 
-            toolStripStatusLabel2.IsLink = true;
-            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(156, 20);
-            toolStripStatusLabel2.Text = "© Khoa CNTT - ĐHAG";
             // 
             // toolStripLabel1
             // 
@@ -257,32 +245,8 @@
             label6.TabIndex = 5;
             label6.Text = "Hãng sản xuất (*):";
             // 
-            // lblTrangThai
-            // 
-            lblTrangThai.Name = "lblTrangThai";
-            lblTrangThai.Size = new Size(121, 20);
-            lblTrangThai.Text = "Chưa đăng nhập.";
-            // 
-            // staStp_LienKet
-            // 
-            staStp_LienKet.BackColor = Color.MediumSpringGreen;
-            staStp_LienKet.ImageScalingSize = new Size(20, 20);
-            staStp_LienKet.Items.AddRange(new ToolStripItem[] { lblTrangThai, toolStripStatusLabel1, toolStripStatusLabel2 });
-            staStp_LienKet.Location = new Point(3, 426);
-            staStp_LienKet.Name = "staStp_LienKet";
-            staStp_LienKet.Size = new Size(1226, 26);
-            staStp_LienKet.TabIndex = 5;
-            staStp_LienKet.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(934, 20);
-            toolStripStatusLabel1.Spring = true;
-            // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(staStp_LienKet);
             groupBox2.Controls.Add(toolStrip);
             groupBox2.Controls.Add(dataGridView);
             groupBox2.Dock = DockStyle.Fill;
@@ -307,7 +271,7 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 51;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(1229, 370);
+            dataGridView.Size = new Size(1229, 402);
             dataGridView.TabIndex = 1;
             // 
             // ID
@@ -569,8 +533,6 @@
             groupBox3.ResumeLayout(false);
             toolStrip.ResumeLayout(false);
             toolStrip.PerformLayout();
-            staStp_LienKet.ResumeLayout(false);
-            staStp_LienKet.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
@@ -581,8 +543,6 @@
         }
 
         #endregion
-
-        private ToolStripStatusLabel toolStripStatusLabel2;
         private ToolStripLabel toolStripLabel1;
         private GroupBox groupBox3;
         private Button btnThoat;
@@ -600,9 +560,6 @@
         private TextBox txtGiaBan;
         private TextBox txtTenSanPham;
         private Label label6;
-        private ToolStripStatusLabel lblTrangThai;
-        private StatusStrip staStp_LienKet;
-        private ToolStripStatusLabel toolStripStatusLabel1;
         private GroupBox groupBox2;
         private DataGridView dataGridView;
         private Label label1;

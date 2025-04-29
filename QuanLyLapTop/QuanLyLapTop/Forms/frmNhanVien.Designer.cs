@@ -52,10 +52,6 @@
             label2 = new Label();
             label1 = new Label();
             groupBox2 = new GroupBox();
-            staStp_LienKet = new StatusStrip();
-            lblTrangThai = new ToolStripStatusLabel();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
-            toolStripStatusLabel2 = new ToolStripStatusLabel();
             toolStrip = new ToolStrip();
             toolStripLabel1 = new ToolStripLabel();
             txtTuKhoa = new ToolStripTextBox();
@@ -73,7 +69,6 @@
             groupBox1.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
-            staStp_LienKet.SuspendLayout();
             toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
@@ -96,28 +91,29 @@
             groupBox1.Dock = DockStyle.Top;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(782, 256);
+            groupBox1.Size = new Size(782, 238);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin nhân viên";
             // 
             // groupBox3
             // 
+            groupBox3.BackColor = Color.MediumSeaGreen;
             groupBox3.Controls.Add(btnThoat);
             groupBox3.Controls.Add(btnHuyBo);
             groupBox3.Controls.Add(btnLuu);
             groupBox3.Controls.Add(btnXoa);
             groupBox3.Controls.Add(btnSua);
             groupBox3.Controls.Add(btnThem);
-            groupBox3.Location = new Point(17, 175);
+            groupBox3.Location = new Point(3, 168);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(748, 74);
+            groupBox3.Size = new Size(779, 72);
             groupBox3.TabIndex = 13;
             groupBox3.TabStop = false;
             // 
             // btnThoat
             // 
-            btnThoat.Location = new Point(622, 20);
+            btnThoat.Location = new Point(637, 20);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(100, 40);
             btnThoat.TabIndex = 5;
@@ -127,7 +123,7 @@
             // 
             // btnHuyBo
             // 
-            btnHuyBo.Location = new Point(503, 20);
+            btnHuyBo.Location = new Point(518, 20);
             btnHuyBo.Name = "btnHuyBo";
             btnHuyBo.Size = new Size(100, 40);
             btnHuyBo.TabIndex = 4;
@@ -138,7 +134,7 @@
             // btnLuu
             // 
             btnLuu.ForeColor = Color.Blue;
-            btnLuu.Location = new Point(384, 20);
+            btnLuu.Location = new Point(399, 20);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(100, 40);
             btnLuu.TabIndex = 3;
@@ -149,7 +145,7 @@
             // btnXoa
             // 
             btnXoa.ForeColor = Color.Red;
-            btnXoa.Location = new Point(265, 20);
+            btnXoa.Location = new Point(280, 20);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(100, 40);
             btnXoa.TabIndex = 2;
@@ -159,7 +155,7 @@
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(146, 20);
+            btnSua.Location = new Point(161, 20);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(100, 40);
             btnSua.TabIndex = 1;
@@ -169,7 +165,7 @@
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(27, 20);
+            btnThem.Location = new Point(42, 20);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(100, 40);
             btnThem.TabIndex = 0;
@@ -181,14 +177,14 @@
             // 
             cboQuyenHan.FormattingEnabled = true;
             cboQuyenHan.Items.AddRange(new object[] { "admin", "user" });
-            cboQuyenHan.Location = new Point(657, 146);
+            cboQuyenHan.Location = new Point(539, 118);
             cboQuyenHan.Name = "cboQuyenHan";
-            cboQuyenHan.Size = new Size(108, 28);
+            cboQuyenHan.Size = new Size(212, 28);
             cboQuyenHan.TabIndex = 5;
             // 
             // txtMatKhau
             // 
-            txtMatKhau.Location = new Point(553, 88);
+            txtMatKhau.Location = new Point(539, 75);
             txtMatKhau.Name = "txtMatKhau";
             txtMatKhau.PasswordChar = '*';
             txtMatKhau.Size = new Size(212, 27);
@@ -196,28 +192,28 @@
             // 
             // txtTenDangNhap
             // 
-            txtTenDangNhap.Location = new Point(553, 31);
+            txtTenDangNhap.Location = new Point(539, 31);
             txtTenDangNhap.Name = "txtTenDangNhap";
             txtTenDangNhap.Size = new Size(212, 27);
             txtTenDangNhap.TabIndex = 3;
             // 
             // txtDiaChi
             // 
-            txtDiaChi.Location = new Point(182, 142);
+            txtDiaChi.Location = new Point(168, 118);
             txtDiaChi.Name = "txtDiaChi";
-            txtDiaChi.Size = new Size(365, 27);
+            txtDiaChi.Size = new Size(212, 27);
             txtDiaChi.TabIndex = 2;
             // 
             // txtSoDienThoai
             // 
-            txtSoDienThoai.Location = new Point(182, 88);
+            txtSoDienThoai.Location = new Point(168, 75);
             txtSoDienThoai.Name = "txtSoDienThoai";
             txtSoDienThoai.Size = new Size(212, 27);
             txtSoDienThoai.TabIndex = 1;
             // 
             // txtHoVaTen
             // 
-            txtHoVaTen.Location = new Point(182, 31);
+            txtHoVaTen.Location = new Point(168, 31);
             txtHoVaTen.Name = "txtHoVaTen";
             txtHoVaTen.Size = new Size(212, 27);
             txtHoVaTen.TabIndex = 0;
@@ -225,7 +221,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(553, 149);
+            label6.Location = new Point(435, 121);
             label6.Name = "label6";
             label6.Size = new Size(98, 20);
             label6.TabIndex = 5;
@@ -234,25 +230,25 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(421, 95);
+            label5.Location = new Point(440, 78);
             label5.Name = "label5";
-            label5.Size = new Size(89, 20);
+            label5.Size = new Size(93, 20);
             label5.TabIndex = 4;
-            label5.Text = "Mật khẩu(*):";
+            label5.Text = "Mật khẩu (*):";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(421, 38);
+            label4.Location = new Point(403, 34);
             label4.Name = "label4";
-            label4.Size = new Size(126, 20);
+            label4.Size = new Size(130, 20);
             label4.TabIndex = 3;
-            label4.Text = "Tên đăng nhập(*):";
+            label4.Text = "Tên đăng nhập (*):";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(17, 149);
+            label3.Location = new Point(78, 121);
             label3.Name = "label3";
             label3.Size = new Size(74, 20);
             label3.TabIndex = 2;
@@ -261,63 +257,32 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(17, 91);
+            label2.Location = new Point(32, 78);
             label2.Name = "label2";
-            label2.Size = new Size(116, 40);
+            label2.Size = new Size(120, 40);
             label2.TabIndex = 1;
-            label2.Text = "Số điện thoại(*):\r\n ";
+            label2.Text = "Số điện thoại (*):\r\n ";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(17, 38);
+            label1.Location = new Point(56, 38);
             label1.Name = "label1";
-            label1.Size = new Size(159, 20);
+            label1.Size = new Size(96, 20);
             label1.TabIndex = 0;
-            label1.Text = "Họ và tên nhân viên(*):";
+            label1.Text = "Họ và tên (*):";
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(staStp_LienKet);
             groupBox2.Controls.Add(toolStrip);
             groupBox2.Controls.Add(dataGridView);
             groupBox2.Dock = DockStyle.Fill;
-            groupBox2.Location = new Point(0, 256);
+            groupBox2.Location = new Point(0, 238);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(782, 297);
+            groupBox2.Size = new Size(782, 315);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách nhân viên";
-            // 
-            // staStp_LienKet
-            // 
-            staStp_LienKet.BackColor = Color.MediumSpringGreen;
-            staStp_LienKet.ImageScalingSize = new Size(20, 20);
-            staStp_LienKet.Items.AddRange(new ToolStripItem[] { lblTrangThai, toolStripStatusLabel1, toolStripStatusLabel2 });
-            staStp_LienKet.Location = new Point(3, 268);
-            staStp_LienKet.Name = "staStp_LienKet";
-            staStp_LienKet.Size = new Size(776, 26);
-            staStp_LienKet.TabIndex = 5;
-            staStp_LienKet.Text = "statusStrip1";
-            // 
-            // lblTrangThai
-            // 
-            lblTrangThai.Name = "lblTrangThai";
-            lblTrangThai.Size = new Size(121, 20);
-            lblTrangThai.Text = "Chưa đăng nhập.";
-            // 
-            // toolStripStatusLabel1
-            // 
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(484, 20);
-            toolStripStatusLabel1.Spring = true;
-            // 
-            // toolStripStatusLabel2
-            // 
-            toolStripStatusLabel2.IsLink = true;
-            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(156, 20);
-            toolStripStatusLabel2.Text = "© Khoa CNTT - ĐHAG";
             // 
             // toolStrip
             // 
@@ -395,7 +360,7 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 51;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(779, 212);
+            dataGridView.Size = new Size(779, 244);
             dataGridView.TabIndex = 1;
             // 
             // ID
@@ -476,8 +441,6 @@
             groupBox3.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            staStp_LienKet.ResumeLayout(false);
-            staStp_LienKet.PerformLayout();
             toolStrip.ResumeLayout(false);
             toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
@@ -514,10 +477,6 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton btnNhap;
         private ToolStripButton btnXuat;
-        private StatusStrip staStp_LienKet;
-        private ToolStripStatusLabel lblTrangThai;
-        private ToolStripStatusLabel toolStripStatusLabel1;
-        private ToolStripStatusLabel toolStripStatusLabel2;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn HoVaTen;
         private DataGridViewTextBoxColumn DienThoai;

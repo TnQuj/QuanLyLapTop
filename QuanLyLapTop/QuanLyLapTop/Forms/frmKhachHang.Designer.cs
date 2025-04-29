@@ -30,10 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKhachHang));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            toolStripStatusLabel2 = new ToolStripStatusLabel();
-            lblTrangThai = new ToolStripStatusLabel();
-            staStp_LienKet = new StatusStrip();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
             txtDienThoai = new TextBox();
             btnThoat = new Button();
             btnHuyBo = new Button();
@@ -60,54 +56,23 @@
             groupBox1 = new GroupBox();
             txtDiaChi = new TextBox();
             label3 = new Label();
-            staStp_LienKet.SuspendLayout();
             toolStrip.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
-            // toolStripStatusLabel2
-            // 
-            toolStripStatusLabel2.IsLink = true;
-            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(156, 20);
-            toolStripStatusLabel2.Text = "© Khoa CNTT - ĐHAG";
-            // 
-            // lblTrangThai
-            // 
-            lblTrangThai.Name = "lblTrangThai";
-            lblTrangThai.Size = new Size(121, 20);
-            lblTrangThai.Text = "Chưa đăng nhập.";
-            // 
-            // staStp_LienKet
-            // 
-            staStp_LienKet.BackColor = Color.MediumSpringGreen;
-            staStp_LienKet.ImageScalingSize = new Size(20, 20);
-            staStp_LienKet.Items.AddRange(new ToolStripItem[] { lblTrangThai, toolStripStatusLabel1, toolStripStatusLabel2 });
-            staStp_LienKet.Location = new Point(0, 427);
-            staStp_LienKet.Name = "staStp_LienKet";
-            staStp_LienKet.Size = new Size(882, 26);
-            staStp_LienKet.TabIndex = 7;
-            staStp_LienKet.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(590, 20);
-            toolStripStatusLabel1.Spring = true;
-            // 
             // txtDienThoai
             // 
             txtDienThoai.Location = new Point(23, 132);
             txtDienThoai.Margin = new Padding(2);
             txtDienThoai.Name = "txtDienThoai";
-            txtDienThoai.Size = new Size(331, 27);
+            txtDienThoai.Size = new Size(303, 27);
             txtDienThoai.TabIndex = 1;
             // 
             // btnThoat
             // 
-            btnThoat.Location = new Point(20, 356);
+            btnThoat.Location = new Point(12, 379);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(150, 40);
             btnThoat.TabIndex = 5;
@@ -117,7 +82,7 @@
             // 
             // btnHuyBo
             // 
-            btnHuyBo.Location = new Point(207, 356);
+            btnHuyBo.Location = new Point(168, 379);
             btnHuyBo.Name = "btnHuyBo";
             btnHuyBo.Size = new Size(150, 40);
             btnHuyBo.TabIndex = 8;
@@ -128,7 +93,7 @@
             // btnXoa
             // 
             btnXoa.ForeColor = Color.Red;
-            btnXoa.Location = new Point(207, 264);
+            btnXoa.Location = new Point(168, 287);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(150, 40);
             btnXoa.TabIndex = 6;
@@ -138,7 +103,7 @@
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(20, 263);
+            btnThem.Location = new Point(12, 286);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(150, 40);
             btnThem.TabIndex = 3;
@@ -149,7 +114,7 @@
             // btnLuu
             // 
             btnLuu.ForeColor = Color.Blue;
-            btnLuu.Location = new Point(207, 310);
+            btnLuu.Location = new Point(168, 333);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(150, 40);
             btnLuu.TabIndex = 7;
@@ -159,7 +124,7 @@
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(20, 310);
+            btnSua.Location = new Point(12, 333);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(150, 40);
             btnSua.TabIndex = 4;
@@ -182,7 +147,7 @@
             txtHoVaTen.Location = new Point(23, 65);
             txtHoVaTen.Margin = new Padding(2);
             txtHoVaTen.Name = "txtHoVaTen";
-            txtHoVaTen.Size = new Size(334, 27);
+            txtHoVaTen.Size = new Size(303, 27);
             txtHoVaTen.TabIndex = 0;
             // 
             // btnXuat
@@ -227,7 +192,7 @@
             toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTuKhoa, btnTimKiem, toolStripSeparator1, btnNhap, btnXuat });
             toolStrip.Location = new Point(2, 22);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(497, 31);
+            toolStrip.Size = new Size(521, 31);
             toolStrip.TabIndex = 0;
             // 
             // btnNhap
@@ -243,11 +208,12 @@
             // 
             groupBox2.Controls.Add(dataGridView);
             groupBox2.Controls.Add(toolStrip);
-            groupBox2.Location = new Point(381, 0);
+            groupBox2.Dock = DockStyle.Right;
+            groupBox2.Location = new Point(357, 0);
             groupBox2.Margin = new Padding(2);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(2);
-            groupBox2.Size = new Size(501, 425);
+            groupBox2.Size = new Size(525, 453);
             groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách khách hàng";
@@ -256,6 +222,8 @@
             // 
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
+            dataGridView.AllowUserToResizeColumns = false;
+            dataGridView.AllowUserToResizeRows = false;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Columns.AddRange(new DataGridViewColumn[] { ID, HoVaTen, DienThoai, DiaChi });
@@ -268,7 +236,7 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 62;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(497, 370);
+            dataGridView.Size = new Size(521, 398);
             dataGridView.TabIndex = 1;
             // 
             // ID
@@ -340,11 +308,12 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(txtHoVaTen);
             groupBox1.Controls.Add(label1);
+            groupBox1.Dock = DockStyle.Left;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(2);
-            groupBox1.Size = new Size(377, 425);
+            groupBox1.Size = new Size(353, 453);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin khách hàng";
@@ -354,7 +323,7 @@
             txtDiaChi.Location = new Point(23, 203);
             txtDiaChi.Margin = new Padding(2);
             txtDiaChi.Name = "txtDiaChi";
-            txtDiaChi.Size = new Size(331, 27);
+            txtDiaChi.Size = new Size(303, 27);
             txtDiaChi.TabIndex = 2;
             // 
             // label3
@@ -372,7 +341,6 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(882, 453);
-            Controls.Add(staStp_LienKet);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -382,8 +350,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Khách Hàng";
             Load += frmKhachHang_Load;
-            staStp_LienKet.ResumeLayout(false);
-            staStp_LienKet.PerformLayout();
             toolStrip.ResumeLayout(false);
             toolStrip.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -392,15 +358,9 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private ToolStripStatusLabel toolStripStatusLabel2;
-        private ToolStripStatusLabel lblTrangThai;
-        private StatusStrip staStp_LienKet;
-        private ToolStripStatusLabel toolStripStatusLabel1;
         private TextBox txtDienThoai;
         private Button btnThoat;
         private Button btnHuyBo;

@@ -325,5 +325,6 @@ namespace QuanLyLapTop.Forms
                 btnTimKiem_Click(sender, e);
             }
         }
+
     }
 }
