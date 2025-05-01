@@ -61,6 +61,7 @@
             Controls.Add(progressBar1);
             DoubleBuffered = true;
             ForeColor = SystemColors.ControlLight;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmLoading";
             StartPosition = FormStartPosition.CenterScreen;

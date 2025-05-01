@@ -123,9 +123,9 @@
             panel1.Controls.Add(btnInHoaDon);
             panel1.Controls.Add(btnThem);
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 396);
+            panel1.Location = new Point(0, 402);
             panel1.Name = "panel1";
-            panel1.Size = new Size(982, 57);
+            panel1.Size = new Size(982, 51);
             panel1.TabIndex = 10;
             // 
             // button1
@@ -201,7 +201,7 @@
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(982, 396);
+            groupBox1.Size = new Size(982, 402);
             groupBox1.TabIndex = 9;
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh sách hóa đơn";
@@ -307,6 +307,7 @@
             ClientSize = new Size(982, 453);
             Controls.Add(groupBox1);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmHoaDon";
             StartPosition = FormStartPosition.CenterScreen;

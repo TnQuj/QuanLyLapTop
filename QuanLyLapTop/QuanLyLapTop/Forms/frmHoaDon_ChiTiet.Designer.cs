@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHoaDon_ChiTiet));
             groupBox2 = new GroupBox();
             dataGridView = new DataGridView();
@@ -39,6 +39,13 @@
             DonGiaBan = new DataGridViewTextBoxColumn();
             SoLuongBan = new DataGridViewTextBoxColumn();
             ThanhTien = new DataGridViewTextBoxColumn();
+            toolStrip = new ToolStrip();
+            toolStripLabel1 = new ToolStripLabel();
+            txtTuKhoa = new ToolStripTextBox();
+            btnTimKiem = new ToolStripButton();
+            toolStripSeparator1 = new ToolStripSeparator();
+            btnNhap = new ToolStripButton();
+            btnXuat = new ToolStripButton();
             numSoLuongBan = new NumericUpDown();
             numDonGiaBan = new NumericUpDown();
             cboSanPham = new ComboBox();
@@ -59,21 +66,14 @@
             label10 = new Label();
             label11 = new Label();
             label12 = new Label();
-            toolStrip = new ToolStrip();
-            toolStripLabel1 = new ToolStripLabel();
-            txtTuKhoa = new ToolStripTextBox();
-            btnTimKiem = new ToolStripButton();
-            toolStripSeparator1 = new ToolStripSeparator();
-            btnNhap = new ToolStripButton();
-            btnXuat = new ToolStripButton();
             groupBox1 = new GroupBox();
             groupBox4 = new GroupBox();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+            toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numSoLuongBan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numDonGiaBan).BeginInit();
             groupBox3.SuspendLayout();
-            toolStrip.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox4.SuspendLayout();
             SuspendLayout();
@@ -128,10 +128,10 @@
             // DonGiaBan
             // 
             DonGiaBan.DataPropertyName = "DonGiaBan";
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle13.Format = "C2";
-            dataGridViewCellStyle13.NullValue = null;
-            DonGiaBan.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            DonGiaBan.DefaultCellStyle = dataGridViewCellStyle1;
             DonGiaBan.HeaderText = "Đơn giá bán";
             DonGiaBan.MinimumWidth = 6;
             DonGiaBan.Name = "DonGiaBan";
@@ -139,10 +139,10 @@
             // SoLuongBan
             // 
             SoLuongBan.DataPropertyName = "SoLuongBan";
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle14.Format = "N2";
-            dataGridViewCellStyle14.NullValue = null;
-            SoLuongBan.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            SoLuongBan.DefaultCellStyle = dataGridViewCellStyle2;
             SoLuongBan.HeaderText = "Số lượng bán";
             SoLuongBan.MinimumWidth = 6;
             SoLuongBan.Name = "SoLuongBan";
@@ -150,12 +150,62 @@
             // ThanhTien
             // 
             ThanhTien.DataPropertyName = "ThanhTien";
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle15.ForeColor = Color.Blue;
-            ThanhTien.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle3.ForeColor = Color.Blue;
+            ThanhTien.DefaultCellStyle = dataGridViewCellStyle3;
             ThanhTien.HeaderText = "Thành tiền";
             ThanhTien.MinimumWidth = 6;
             ThanhTien.Name = "ThanhTien";
+            // 
+            // toolStrip
+            // 
+            toolStrip.ImageScalingSize = new Size(24, 24);
+            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTuKhoa, btnTimKiem, toolStripSeparator1, btnNhap, btnXuat });
+            toolStrip.Location = new Point(3, 23);
+            toolStrip.Name = "toolStrip";
+            toolStrip.Size = new Size(976, 31);
+            toolStrip.TabIndex = 2;
+            // 
+            // toolStripLabel1
+            // 
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new Size(73, 28);
+            toolStripLabel1.Text = "Tìm kiếm:";
+            // 
+            // txtTuKhoa
+            // 
+            txtTuKhoa.BorderStyle = BorderStyle.FixedSingle;
+            txtTuKhoa.Name = "txtTuKhoa";
+            txtTuKhoa.Size = new Size(160, 31);
+            // 
+            // btnTimKiem
+            // 
+            btnTimKiem.Image = (Image)resources.GetObject("btnTimKiem.Image");
+            btnTimKiem.ImageTransparentColor = Color.Magenta;
+            btnTimKiem.Name = "btnTimKiem";
+            btnTimKiem.Size = new Size(62, 28);
+            btnTimKiem.Text = "Tìm";
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 31);
+            // 
+            // btnNhap
+            // 
+            btnNhap.Image = (Image)resources.GetObject("btnNhap.Image");
+            btnNhap.ImageTransparentColor = Color.Magenta;
+            btnNhap.Name = "btnNhap";
+            btnNhap.Size = new Size(82, 28);
+            btnNhap.Text = "Nhập...";
+            // 
+            // btnXuat
+            // 
+            btnXuat.Image = (Image)resources.GetObject("btnXuat.Image");
+            btnXuat.ImageTransparentColor = Color.Magenta;
+            btnXuat.Name = "btnXuat";
+            btnXuat.Size = new Size(76, 28);
+            btnXuat.Text = "Xuất...";
             // 
             // numSoLuongBan
             // 
@@ -352,56 +402,6 @@
             label12.TabIndex = 0;
             label12.Text = "Nhân viên lập(*):";
             // 
-            // toolStrip
-            // 
-            toolStrip.ImageScalingSize = new Size(24, 24);
-            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTuKhoa, btnTimKiem, toolStripSeparator1, btnNhap, btnXuat });
-            toolStrip.Location = new Point(3, 23);
-            toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(976, 31);
-            toolStrip.TabIndex = 2;
-            // 
-            // toolStripLabel1
-            // 
-            toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(73, 28);
-            toolStripLabel1.Text = "Tìm kiếm:";
-            // 
-            // txtTuKhoa
-            // 
-            txtTuKhoa.BorderStyle = BorderStyle.FixedSingle;
-            txtTuKhoa.Name = "txtTuKhoa";
-            txtTuKhoa.Size = new Size(160, 31);
-            // 
-            // btnTimKiem
-            // 
-            btnTimKiem.Image = (Image)resources.GetObject("btnTimKiem.Image");
-            btnTimKiem.ImageTransparentColor = Color.Magenta;
-            btnTimKiem.Name = "btnTimKiem";
-            btnTimKiem.Size = new Size(62, 28);
-            btnTimKiem.Text = "Tìm";
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 31);
-            // 
-            // btnNhap
-            // 
-            btnNhap.Image = (Image)resources.GetObject("btnNhap.Image");
-            btnNhap.ImageTransparentColor = Color.Magenta;
-            btnNhap.Name = "btnNhap";
-            btnNhap.Size = new Size(82, 28);
-            btnNhap.Text = "Nhập...";
-            // 
-            // btnXuat
-            // 
-            btnXuat.Image = (Image)resources.GetObject("btnXuat.Image");
-            btnXuat.ImageTransparentColor = Color.Magenta;
-            btnXuat.Name = "btnXuat";
-            btnXuat.Size = new Size(76, 28);
-            btnXuat.Text = "Xuất...";
-            // 
             // groupBox1
             // 
             groupBox1.Controls.Add(numSoLuongBan);
@@ -441,6 +441,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(groupBox3);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmHoaDon_ChiTiet";
             StartPosition = FormStartPosition.CenterScreen;
@@ -449,12 +450,12 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+            toolStrip.ResumeLayout(false);
+            toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numSoLuongBan).EndInit();
             ((System.ComponentModel.ISupportInitialize)numDonGiaBan).EndInit();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            toolStrip.ResumeLayout(false);
-            toolStrip.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox4.ResumeLayout(false);

@@ -281,6 +281,7 @@
             ClientSize = new Size(1082, 453);
             Controls.Add(groupBox1);
             Controls.Add(groupBox2);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmPhieuNhap";
             StartPosition = FormStartPosition.CenterScreen;

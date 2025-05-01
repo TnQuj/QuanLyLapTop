@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DocumentFormat.OpenXml.Drawing.ChartDrawing;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using QuanLyLapTop.Data;
 using BC = BCrypt.Net.BCrypt;
 namespace QuanLyLapTop.Forms
@@ -27,6 +28,7 @@ namespace QuanLyLapTop.Forms
         frmNhanVien? nhanVien = null;
         frmNhaCungCap? nhaCungCap = null;
         frmDangNhap? dangNhap = null;
+        frmDoiMatKhau? doiMatKhau = null;
         frmHoaDon? hoaDon = null;
         string hoVaTenNhanVien = "";
         private void frmMain_Load(object sender, EventArgs e)
@@ -118,58 +120,60 @@ namespace QuanLyLapTop.Forms
 
         public void DangNhap()
         {
-        LamLai:
-            if (dangNhap == null || dangNhap.IsDisposed)
+            bool dangNhapThanhCong = false;
+
+            while (!dangNhapThanhCong)
             {
                 dangNhap = new frmDangNhap();
                 if (dangNhap.ShowDialog() == DialogResult.OK)
                 {
-                    string tenDangNhap = dangNhap.txtTenDangNhap.Text;
-                    string matKhau = dangNhap.txtMatKhau.Text;
-                    if (tenDangNhap.Trim() == "")
+                    string tenDangNhap = dangNhap.txtTenDangNhap.Text.Trim();
+                    string matKhau = dangNhap.txtMatKhau.Text.Trim();
+
+                    if (string.IsNullOrEmpty(tenDangNhap))
                     {
-                        MessageBox.Show("Vui lòng nhập tên đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); dangNhap.txtTenDangNhap.Focus();
-                        goto LamLai;
+                        MessageBox.Show("Vui lòng nhập tên đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        continue;
                     }
-                    else if (matKhau.Trim() == "")
+                    if (string.IsNullOrEmpty(matKhau))
                     {
                         MessageBox.Show("Vui lòng nhập mật khẩu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        dangNhap.txtMatKhau.Focus();
-                        goto LamLai;
+                        continue;
                     }
-                    else
-                    {
-                        var nhanVien = context.NhanVien.Where(x => x.TenDangNhap == tenDangNhap).SingleOrDefault();
-                        if (nhanVien == null)
-                        {
-                            MessageBox.Show("Tên đăng nhập không đúng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            dangNhap.txtTenDangNhap.Focus();
-                            goto LamLai;
-                        }
-                        else
-                        {
-                            if (BC.Verify(matKhau, nhanVien.MatKhau))
-                            {
-                                hoVaTenNhanVien = nhanVien.HoVaTen;
-                                if (nhanVien.QuyenHan == "admin")
-                                    QuyenQuanLy();
 
-                                else if (nhanVien.QuyenHan == "user")
-                                    QuyenNhanVien();
-                                else
-                                    ChuaPhanQuyen();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Mật khẩu không đúng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                dangNhap.txtMatKhau.Focus();
-                                goto LamLai;
-                            }
-                        }
-                        MessageBox.Show("Đăng nhập thành công: " + hoVaTenNhanVien ,"Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var nhanVien = context.NhanVien.SingleOrDefault(x => x.TenDangNhap == tenDangNhap);
+                    if (nhanVien == null)
+                    {
+                        MessageBox.Show("Tên đăng nhập không đúng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        continue;
                     }
+
+                    if (!BC.Verify(matKhau, nhanVien.MatKhau))
+                    {
+                        MessageBox.Show("Mật khẩu không đúng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        continue;
+                    }
+
+                    // Nếu đến đây là đúng mật khẩu
+                    hoVaTenNhanVien = nhanVien.HoVaTen;
+                    if (nhanVien.QuyenHan == "admin")
+                        QuyenQuanLy();
+                    else if (nhanVien.QuyenHan == "user")
+                        QuyenNhanVien();
+                    else
+                        ChuaPhanQuyen();
+
+                    MessageBox.Show("Đăng nhập thành công: " + hoVaTenNhanVien, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dangNhapThanhCong = true;
+                }
+                else
+                {
+                    // Người dùng bấm Cancel
+                    Application.Exit();
+                    return;
                 }
             }
+
         }
 
         public void ChuaPhanQuyen()
@@ -189,6 +193,7 @@ namespace QuanLyLapTop.Forms
             mnuPhieuNhap.Enabled = false;
             mnuThongKe_SanPham.Enabled = false;
             mnuThongKe_DoanhThu.Enabled = false;
+            mnuThongKe_HoaDon.Enabled = false;
             // Hiển thị thông tin trên thanh trạng thái
             lblTrangThai.Text = "Chưa đăng nhập.";
         }
@@ -207,7 +212,7 @@ namespace QuanLyLapTop.Forms
             mnuNhaCungCap.Enabled = true;
             mnuKhachHang.Enabled = true;
             mnuNhanVien.Enabled = true;
-            mnuPhieuNhap.Enabled=true;
+            mnuPhieuNhap.Enabled = true;
             mnuHoaDon.Enabled = true;
             mnuThongKe_SanPham.Enabled = true;
             mnuThongKe_DoanhThu.Enabled = true;// Hiển thị thông tin trên thanh trạng thái
@@ -225,7 +230,7 @@ namespace QuanLyLapTop.Forms
             mnuSanPham.Enabled = false;
             mnuNhanVien.Enabled = false;
             mnuPhieuNhap.Enabled = false;
-            mnuNhaCungCap.Enabled= false;
+            mnuNhaCungCap.Enabled = false;
             // Sáng đăng xuất và các chức năng nhân viên được phép
             mnuDangXuat.Enabled = true;
             mnuDoiMatKhau.Enabled = true;
@@ -233,7 +238,7 @@ namespace QuanLyLapTop.Forms
             mnuHoaDon.Enabled = true;
             mnuThongKe_SanPham.Enabled = true;
             mnuThongKe_DoanhThu.Enabled = true;
-            mnuThongKe_HoaDon.Enabled= true;
+            mnuThongKe_HoaDon.Enabled = true;
             // Hiển thị thông tin trên thanh trạng thái
             lblTrangThai.Text = "Nhân viên: " + hoVaTenNhanVien;
         }
@@ -245,13 +250,80 @@ namespace QuanLyLapTop.Forms
 
         private void mnuDangXuat_Click(object sender, EventArgs e)
         {
-            foreach(Form child in MdiChildren)
+            foreach (Form child in MdiChildren)
             {
                 child.Close();
             }
             frmDangNhap dangNhap = new frmDangNhap();
             this.Show();
             ChuaPhanQuyen();
+        }
+
+        private void mnuLoaiSanPham_Click(object sender, EventArgs e)
+        {
+            if (loaiSanPham == null || loaiSanPham.IsDisposed)
+            {
+                loaiSanPham = new frmLoaiSanPham();
+                loaiSanPham.MdiParent = this;
+                this.Show();
+            }
+            else
+                this.Activate();
+        }
+
+        private void mnuHoaDon_Click(object sender, EventArgs e)
+        {
+            if (hoaDon == null || hoaDon.IsDisposed)
+            {
+                hoaDon = new frmHoaDon();
+                hoaDon.MdiParent = this;
+                this.Show();
+            }
+            else
+                this.Activate();
+        }
+        public void DoiMatKhau()
+        {
+            if (doiMatKhau == null || doiMatKhau.IsDisposed)
+            {
+                doiMatKhau = new frmDoiMatKhau();
+                if (doiMatKhau.ShowDialog() == DialogResult.OK)
+                {
+                    string tenDangNhap = dangNhap!.txtTenDangNhap.Text;
+                    string matKhauCu = doiMatKhau!.txtMatKhauCu.Text.Trim();
+                    string matKhauMoi = doiMatKhau.txtMatKhauMoi.Text.Trim();
+                    string xacNhanMatKhau = doiMatKhau.txtXacNhanLai.Text.Trim();
+
+                    if (string.IsNullOrEmpty(matKhauCu) || string.IsNullOrEmpty(matKhauMoi) || string.IsNullOrEmpty(xacNhanMatKhau))
+                    {
+                        MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); doiMatKhau.txtMatKhauCu.Focus(); return;
+                    }
+                    else if (matKhauMoi != xacNhanMatKhau)
+                    {
+                        MessageBox.Show("Mật khẩu mới và xác nhận không khớp.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); doiMatKhau.txtMatKhauMoi.Focus(); return;
+                    }
+                    else 
+                    {
+                        var nv = context.NhanVien.Where(x => x.TenDangNhap == tenDangNhap).SingleOrDefault();
+                        if (!BC.Verify(matKhauCu, nv!.MatKhau))
+                        {
+                            MessageBox.Show("Mật khẩu cũ không đúng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); doiMatKhau.txtMatKhauCu.Focus();
+                            return; 
+                        }
+                        if(matKhauMoi.Length < 6)
+                        {
+                            MessageBox.Show("Mật khẩu mới phải lớn hơn 6 ký tự.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); doiMatKhau.txtMatKhauMoi.Focus(); return;
+                        }    
+                        nv.MatKhau = BC.HashPassword(matKhauMoi);
+                        context.SaveChanges();
+                        MessageBox.Show("Đổi mật khẩu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); return;
+                    }
+                }
+            }
+        }
+        private void mnuDoiMatKhau_Click(object sender, EventArgs e)
+        {
+            DoiMatKhau();
         }
     }
 }

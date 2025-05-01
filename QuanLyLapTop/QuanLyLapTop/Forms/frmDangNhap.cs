@@ -17,11 +17,6 @@ namespace QuanLyLapTop.Forms
             InitializeComponent();
         }
 
-        private void frmDangNhap_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;

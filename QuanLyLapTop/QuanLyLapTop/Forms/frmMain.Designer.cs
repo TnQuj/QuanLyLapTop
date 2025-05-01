@@ -110,6 +110,7 @@
             mnuDoiMatKhau.Name = "mnuDoiMatKhau";
             mnuDoiMatKhau.Size = new Size(224, 26);
             mnuDoiMatKhau.Text = "Đổi &mật khẩu";
+            mnuDoiMatKhau.Click += mnuDoiMatKhau_Click;
             // 
             // toolStripSeparator1
             // 
@@ -179,6 +180,7 @@
             mnuHoaDon.Name = "mnuHoaDon";
             mnuHoaDon.Size = new Size(227, 26);
             mnuHoaDon.Text = "&Hóa đơn bán hàng...";
+            mnuHoaDon.Click += mnuHoaDon_Click;
             // 
             // toolStripMenuItem2
             // 
@@ -223,6 +225,7 @@
             mnuLoaiSanPham.Name = "mnuLoaiSanPham";
             mnuLoaiSanPham.Size = new Size(197, 26);
             mnuLoaiSanPham.Text = "&Loại sản phẩm...";
+            mnuLoaiSanPham.Click += mnuLoaiSanPham_Click;
             // 
             // mnuBaoCao_ThongKe
             // 
@@ -327,9 +330,11 @@
             Controls.Add(staStp_LienKet);
             Controls.Add(mnuLaptop);
             DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             IsMdiContainer = true;
             MainMenuStrip = mnuLaptop;
+            MaximizeBox = false;
             Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LaptopVie";

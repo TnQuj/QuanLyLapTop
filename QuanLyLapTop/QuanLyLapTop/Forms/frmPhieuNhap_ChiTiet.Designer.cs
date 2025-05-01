@@ -132,6 +132,8 @@
             // 
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
+            dataGridView.AllowUserToResizeColumns = false;
+            dataGridView.AllowUserToResizeRows = false;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Columns.AddRange(new DataGridViewColumn[] { SanPhamID, TenSanPham, DonGiaNhap, SoLuongNhap, ThanhTien });
@@ -510,6 +512,7 @@
             Controls.Add(groupBox4);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmPhieuNhap_ChiTiet";
             StartPosition = FormStartPosition.CenterScreen;

@@ -78,9 +78,6 @@ namespace QuanLyLapTop.Forms
         {
             BatTatChucNang(true);
             id = Convert.ToInt32(dataGridView.CurrentRow?.Cells["ID"].Value?.ToString());
-            txtHoVaTen.Clear();
-            txtDienThoai.Clear();
-            txtDiaChi.Clear();
             txtHoVaTen.Focus();
 
         }

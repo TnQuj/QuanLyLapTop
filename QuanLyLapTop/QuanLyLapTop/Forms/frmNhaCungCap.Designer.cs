@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNhaCungCap));
             label3 = new Label();
             groupBox1 = new GroupBox();
@@ -223,6 +223,8 @@
             // 
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
+            dataGridView.AllowUserToResizeColumns = false;
+            dataGridView.AllowUserToResizeRows = false;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Columns.AddRange(new DataGridViewColumn[] { ID, TenNhaCungCap, DienThoai, DiaChi });
@@ -263,9 +265,9 @@
             // 
             DienThoai.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             DienThoai.DataPropertyName = "DienThoai";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.ForeColor = Color.Blue;
-            DienThoai.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.ForeColor = Color.Blue;
+            DienThoai.DefaultCellStyle = dataGridViewCellStyle1;
             DienThoai.FillWeight = 13.1387014F;
             DienThoai.HeaderText = "Điện thoại";
             DienThoai.MinimumWidth = 6;
@@ -375,6 +377,7 @@
             Controls.Add(groupBox1);
             Controls.Add(groupBox2);
             Controls.Add(staStp_LienKet);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;

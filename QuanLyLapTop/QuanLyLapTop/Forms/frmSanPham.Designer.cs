@@ -261,6 +261,8 @@
             // 
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
+            dataGridView.AllowUserToResizeColumns = false;
+            dataGridView.AllowUserToResizeRows = false;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Columns.AddRange(new DataGridViewColumn[] { ID, TenSanPham, GiaBan, SoLuongTon, TenHangSanXuat, TenLoaiSanPham, TenNhaCungCap, NgayNhap, MoTa, HinhAnh });
@@ -525,6 +527,7 @@
             ClientSize = new Size(1232, 753);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmSanPham";
             StartPosition = FormStartPosition.CenterScreen;
