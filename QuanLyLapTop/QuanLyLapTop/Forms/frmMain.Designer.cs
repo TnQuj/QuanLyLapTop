@@ -92,7 +92,7 @@
             mnuDangNhap.Image = Properties.Resources.dang_nhap;
             mnuDangNhap.Name = "mnuDangNhap";
             mnuDangNhap.ShortcutKeys = Keys.Control | Keys.A;
-            mnuDangNhap.Size = new Size(224, 26);
+            mnuDangNhap.Size = new Size(217, 26);
             mnuDangNhap.Text = "Đăng &nhập";
             mnuDangNhap.Click += mnuDangNhap_Click;
             // 
@@ -100,7 +100,7 @@
             // 
             mnuDangXuat.Image = Properties.Resources.dang_xuat;
             mnuDangXuat.Name = "mnuDangXuat";
-            mnuDangXuat.Size = new Size(224, 26);
+            mnuDangXuat.Size = new Size(217, 26);
             mnuDangXuat.Text = "Đăng &xuất";
             mnuDangXuat.Click += mnuDangXuat_Click;
             // 
@@ -108,21 +108,21 @@
             // 
             mnuDoiMatKhau.Image = Properties.Resources.doi_mat_khau;
             mnuDoiMatKhau.Name = "mnuDoiMatKhau";
-            mnuDoiMatKhau.Size = new Size(224, 26);
+            mnuDoiMatKhau.Size = new Size(217, 26);
             mnuDoiMatKhau.Text = "Đổi &mật khẩu";
             mnuDoiMatKhau.Click += mnuDoiMatKhau_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(221, 6);
+            toolStripSeparator1.Size = new Size(214, 6);
             // 
             // mnuThoat
             // 
             mnuThoat.Image = Properties.Resources.thoat;
             mnuThoat.Name = "mnuThoat";
             mnuThoat.ShortcutKeys = Keys.Alt | Keys.F4;
-            mnuThoat.Size = new Size(224, 26);
+            mnuThoat.Size = new Size(217, 26);
             mnuThoat.Text = "Thoát ";
             mnuThoat.Click += mnuThoat_Click;
             // 
@@ -281,7 +281,7 @@
             // 
             // staStp_LienKet
             // 
-            staStp_LienKet.BackColor = Color.MediumSpringGreen;
+            staStp_LienKet.BackColor = Color.MediumSeaGreen;
             staStp_LienKet.ImageScalingSize = new Size(20, 20);
             staStp_LienKet.Items.AddRange(new ToolStripItem[] { lblTrangThai, toolStripStatusLabel1, toolStripStatusLabel2 });
             staStp_LienKet.Location = new Point(0, 927);
@@ -315,7 +315,7 @@
             pictureBox1.Image = Properties.Resources.header;
             pictureBox1.Location = new Point(0, 44);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1482, 100);
+            pictureBox1.Size = new Size(1482, 149);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
