@@ -16,7 +16,7 @@ namespace QuanLyLapTop
             //Application.Run(new frmDangNhap());
             Application.Run(new frmLoading());
             {
-                Application.Run(new frmMain());
+                Application.Run(new frmSanPham());
             }
         }
     }

@@ -29,7 +29,11 @@ namespace QuanLyLapTop.Data
         public virtual LoaiSanPham? LoaiSanPham { get; set; }
         public virtual HangSanXuat? HangSanXuat { get; set; }
         public virtual NhaCungCap? NhaCungCap { get; set; }
-        public virtual KhuyenMai? KhuyenMai { get; set; } 
+        public virtual KhuyenMai? KhuyenMai { get; set; }
+
+        // Thuộc tính tính toán giá sau khi giảm
+        [NotMapped]  // Không lưu vào cơ sở dữ liệu
+        public decimal? GiaSauKhiGiam { get; set; } // Giá sau khi giảm
     }
-    
-}
+
+ }

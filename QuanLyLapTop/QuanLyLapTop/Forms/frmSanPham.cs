@@ -22,6 +22,7 @@ namespace QuanLyLapTop.Forms
         int id;
         string imageName = "no-image.jpg"; // Hình ảnh mặc định
         string imageFolder = Application.StartupPath.Replace("bin\\Debug\\net9.0-windows", "Images");
+        BindingList<SanPham> SanPham = new BindingList<SanPham>();
         public void BatTatChucNang(bool giaTri)
         {
             btnXoa.Enabled = !giaTri;
@@ -63,6 +64,13 @@ namespace QuanLyLapTop.Forms
             cboLoaiSanPham.DisplayMember = "TenLoaiSanPham";
             cboLoaiSanPham.ValueMember = "ID";
         }
+        public void LayKhuyenMaiVaoComBoBox()
+        {
+            cboKhuyenMai.DataSource = context.KhuyenMai.ToList();
+            cboKhuyenMai.ValueMember = "ID";
+            cboKhuyenMai.DisplayMember = "TenKhuyenMai";
+        }
+
 
         private void frmSanPham_Load(object sender, EventArgs e)
         {
@@ -72,6 +80,7 @@ namespace QuanLyLapTop.Forms
             getNhaCungCap();
             getHangSanXuat();
             getLoaiSanPham();
+            LayKhuyenMaiVaoComBoBox();
 
             var sp = context.SanPham
                 .Select(x => new
@@ -88,9 +97,18 @@ namespace QuanLyLapTop.Forms
                     x.HangSanXuatID,
                     x.HangSanXuat!.TenHangSanXuat,
                     x.LoaiSanPhamID,
-                    x.LoaiSanPham!.TenLoaiSanPham
+                    x.LoaiSanPham!.TenLoaiSanPham,
+                    x.KhuyenMaiID,
+                    // Tính toán giá sau khi giảm
+                    GiaSauKhiGiam = x.KhuyenMaiID > 0
+                                    ? x.GiaBan * (decimal)(1 - (double)x.KhuyenMai!.GiamGia / 100)
+                                    : x.GiaBan
                 }).ToList();
+            dataGridView.AutoGenerateColumns = false;
             dataGridView.DataSource = sp;
+            //
+            txtGiamGia.DataBindings.Clear();
+            txtGiamGia.DataBindings.Add("Text", sp, "GiaSauKhiGiam", false, DataSourceUpdateMode.Never);
 
             txtTenSanPham.DataBindings.Clear();
             txtTenSanPham.DataBindings.Add("Text", sp, "TenSanPham", false, DataSourceUpdateMode.Never);
@@ -98,16 +116,12 @@ namespace QuanLyLapTop.Forms
             txtGiaBan.DataBindings.Clear();
             txtGiaBan.DataBindings.Add("Text", sp, "GiaBan", false, DataSourceUpdateMode.Never);
 
-            //txtSoLuongTon.DataBindings.Clear();
-            //txtSoLuongTon.DataBindings.Add("Text", sp, "SoLuongTon", false, DataSourceUpdateMode.Never);
-
             dateNgayNhap.DataBindings.Clear();
             dateNgayNhap.DataBindings.Add("Text", sp, "NgayNhap", false, DataSourceUpdateMode.Never);
 
             txtMoTa.DataBindings.Clear();
             txtMoTa.DataBindings.Add("Text", sp, "MoTa", false, DataSourceUpdateMode.Never);
 
-            //
             cboNhaCungCap.DataBindings.Clear();
             cboNhaCungCap.DataBindings.Add("SelectedValue", sp, "NhaCungCapID", false, DataSourceUpdateMode.Never);
 
@@ -125,7 +139,6 @@ namespace QuanLyLapTop.Forms
             };
             picHinhAnh.DataBindings.Add(hinhAnh);
         }
-
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridView.Columns[e.ColumnIndex].Name == "HinhAnh")
@@ -139,7 +152,6 @@ namespace QuanLyLapTop.Forms
                 }
             }
         }
-
         private void dataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.Cancel = true;
@@ -280,6 +292,7 @@ namespace QuanLyLapTop.Forms
                     sp.NhaCungCapID = Convert.ToInt32(cboNhaCungCap.SelectedValue);
                     sp.HangSanXuatID = Convert.ToInt32(cboHangSanXuat.SelectedValue);
                     sp.LoaiSanPhamID = Convert.ToInt32(cboLoaiSanPham.SelectedValue);
+
                     context.SanPham.Add(sp);
                 }
                 else //Sửa
@@ -329,6 +342,32 @@ namespace QuanLyLapTop.Forms
             }
         }
 
-       
+        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var row = dataGridView.Rows[e.RowIndex];
+                var value = row.Cells["GiaSauKhiGiam"].Value;
+
+                if (value != null && decimal.TryParse(value.ToString(), out decimal giaSauGiam))
+                {
+                    txtGiamGia.Text = giaSauGiam.ToString("#,##0 '₫'");
+                }
+                else
+                {
+                    txtGiamGia.Text = ""; // Không có giá
+                }
+            }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
