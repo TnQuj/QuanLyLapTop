@@ -35,6 +35,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSanPham));
             toolStripLabel1 = new ToolStripLabel();
             groupBox3 = new GroupBox();
+            btnThem = new Button();
             btnSanPhamChiTiet = new Button();
             btnThoat = new Button();
             btnHuyBo = new Button();
@@ -53,6 +54,7 @@
             label6 = new Label();
             groupBox2 = new GroupBox();
             dataGridView = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
             TenSanPham = new DataGridViewTextBoxColumn();
             GiaBan = new DataGridViewTextBoxColumn();
             GiaSauKhiGiam = new DataGridViewTextBoxColumn();
@@ -80,7 +82,6 @@
             label2 = new Label();
             label4 = new Label();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            btnThem = new Button();
             groupBox3.SuspendLayout();
             toolStrip.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -108,14 +109,25 @@
             groupBox3.Controls.Add(btnSua);
             groupBox3.Location = new Point(0, 197);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(1232, 89);
+            groupBox3.Size = new Size(1320, 89);
             groupBox3.TabIndex = 13;
             groupBox3.TabStop = false;
+            // 
+            // btnThem
+            // 
+            btnThem.ForeColor = Color.Blue;
+            btnThem.Location = new Point(27, 24);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(100, 40);
+            btnThem.TabIndex = 6;
+            btnThem.Text = "Thêm";
+            btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // btnSanPhamChiTiet
             // 
             btnSanPhamChiTiet.ForeColor = Color.Lime;
-            btnSanPhamChiTiet.Location = new Point(814, 26);
+            btnSanPhamChiTiet.Location = new Point(942, 26);
             btnSanPhamChiTiet.Name = "btnSanPhamChiTiet";
             btnSanPhamChiTiet.Size = new Size(219, 40);
             btnSanPhamChiTiet.TabIndex = 5;
@@ -126,7 +138,7 @@
             // btnThoat
             // 
             btnThoat.ForeColor = Color.Red;
-            btnThoat.Location = new Point(1056, 24);
+            btnThoat.Location = new Point(1167, 26);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(147, 40);
             btnThoat.TabIndex = 4;
@@ -181,6 +193,7 @@
             txtTuKhoa.BorderStyle = BorderStyle.FixedSingle;
             txtTuKhoa.Name = "txtTuKhoa";
             txtTuKhoa.Size = new Size(160, 31);
+            txtTuKhoa.KeyDown += txtTuKhoa_KeyDown;
             // 
             // btnTimKiem
             // 
@@ -212,6 +225,7 @@
             btnNhap.Name = "btnNhap";
             btnNhap.Size = new Size(82, 28);
             btnNhap.Text = "Nhập...";
+            btnNhap.Click += btnNhap_Click;
             // 
             // btnXuat
             // 
@@ -220,6 +234,7 @@
             btnXuat.Name = "btnXuat";
             btnXuat.Size = new Size(76, 28);
             btnXuat.Text = "Xuất...";
+            btnXuat.Click += btnXuat_Click;
             // 
             // cboHangSanXuat
             // 
@@ -272,7 +287,7 @@
             dataGridView.AllowUserToResizeRows = false;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.ColumnHeadersHeight = 29;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { TenSanPham, GiaBan, GiaSauKhiGiam, SoLuongTon, TenHangSanXuat, TenLoaiSanPham, TenNhaCungCap, NgayNhap, MoTa, HinhAnh });
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { ID, TenSanPham, GiaBan, GiaSauKhiGiam, SoLuongTon, TenHangSanXuat, TenLoaiSanPham, TenNhaCungCap, NgayNhap, MoTa, HinhAnh });
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.Location = new Point(3, 54);
             dataGridView.MultiSelect = false;
@@ -284,6 +299,16 @@
             dataGridView.Size = new Size(1326, 498);
             dataGridView.TabIndex = 1;
             dataGridView.CellClick += dataGridView_CellClick;
+            // 
+            // ID
+            // 
+            ID.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            ID.DataPropertyName = "ID";
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 6;
+            ID.Name = "ID";
+            ID.ReadOnly = true;
+            ID.Width = 40;
             // 
             // TenSanPham
             // 
@@ -315,8 +340,8 @@
             GiaSauKhiGiam.DataPropertyName = "GiaSauKhiGiam";
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle2.ForeColor = Color.FromArgb(0, 192, 0);
-            dataGridViewCellStyle2.Format = "#,##0 '₫'";
-            dataGridViewCellStyle2.NullValue = "#,##0 '₫'";
+            dataGridViewCellStyle2.Format = "#,##0 'VND'";
+            dataGridViewCellStyle2.NullValue = "#,##0 'VND'";
             GiaSauKhiGiam.DefaultCellStyle = dataGridViewCellStyle2;
             GiaSauKhiGiam.HeaderText = "Giá khuyến mãi";
             GiaSauKhiGiam.MinimumWidth = 6;
@@ -435,10 +460,11 @@
             // cboKhuyenMai
             // 
             cboKhuyenMai.FormattingEnabled = true;
-            cboKhuyenMai.Location = new Point(788, 60);
+            cboKhuyenMai.Location = new Point(883, 21);
             cboKhuyenMai.Name = "cboKhuyenMai";
-            cboKhuyenMai.Size = new Size(226, 28);
+            cboKhuyenMai.Size = new Size(204, 28);
             cboKhuyenMai.TabIndex = 18;
+            cboKhuyenMai.SelectionChangeCommitted += cboKhuyenMai_SelectionChangeCommitted;
             // 
             // label3
             // 
@@ -451,15 +477,15 @@
             // 
             // txtGiamGia
             // 
-            txtGiamGia.Location = new Point(536, 136);
+            txtGiamGia.Location = new Point(883, 55);
             txtGiamGia.Name = "txtGiamGia";
-            txtGiamGia.Size = new Size(246, 27);
+            txtGiamGia.Size = new Size(204, 27);
             txtGiamGia.TabIndex = 7;
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(438, 141);
+            label10.Location = new Point(785, 62);
             label10.Name = "label10";
             label10.Size = new Size(92, 20);
             label10.TabIndex = 16;
@@ -503,7 +529,7 @@
             // 
             txtMoTa.Location = new Point(137, 145);
             txtMoTa.Name = "txtMoTa";
-            txtMoTa.Size = new Size(261, 27);
+            txtMoTa.Size = new Size(645, 27);
             txtMoTa.TabIndex = 3;
             // 
             // label7
@@ -518,7 +544,7 @@
             // picHinhAnh
             // 
             picHinhAnh.Image = Properties.Resources.no_image;
-            picHinhAnh.Location = new Point(1020, 29);
+            picHinhAnh.Location = new Point(1167, 29);
             picHinhAnh.Name = "picHinhAnh";
             picHinhAnh.Size = new Size(140, 143);
             picHinhAnh.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -528,6 +554,7 @@
             // 
             // dateNgayNhap
             // 
+            dateNgayNhap.Format = DateTimePickerFormat.Short;
             dateNgayNhap.Location = new Point(137, 103);
             dateNgayNhap.Name = "dateNgayNhap";
             dateNgayNhap.Size = new Size(261, 27);
@@ -555,17 +582,6 @@
             // 
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
-            // btnThem
-            // 
-            btnThem.ForeColor = Color.Blue;
-            btnThem.Location = new Point(27, 24);
-            btnThem.Name = "btnThem";
-            btnThem.Size = new Size(100, 40);
-            btnThem.TabIndex = 6;
-            btnThem.Text = "Thêm";
-            btnThem.UseVisualStyleBackColor = true;
-            btnThem.Click += btnThem_Click;
             // 
             // frmSanPham
             // 
@@ -630,6 +646,8 @@
         private Label label3;
         private ComboBox cboKhuyenMai;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
+        private Button btnThem;
+        private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn TenSanPham;
         private DataGridViewTextBoxColumn GiaBan;
         private DataGridViewTextBoxColumn GiaSauKhiGiam;
@@ -640,6 +658,5 @@
         private DataGridViewTextBoxColumn NgayNhap;
         private DataGridViewTextBoxColumn MoTa;
         private DataGridViewTextBoxColumn HinhAnh;
-        private Button btnThem;
     }
 }
