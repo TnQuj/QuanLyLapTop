@@ -838,3 +838,5 @@ D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-w
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.genruntimeconfig.cache
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\ref\QuanLyLapTop.dll
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmDoiMatKhau.resources
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Reports.frmThongKeSanPham.resources
+D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Reports.frmInPhieuNhap.resources

@@ -132,7 +132,6 @@ namespace QuanLyLapTop.Forms
                 XemChiTiet = "Xem chi tiết"
             }).Where(r => r.HoVaTenNhanVien.Contains(txtTuKhoa.Text) || r.HoVaTenKhachHang!.Contains(txtTuKhoa.Text) || r.HinhThucThanhToan!.Contains(txtTuKhoa.Text) || r.NgayLap.ToString().Contains(txtTuKhoa.Text)).ToList();
             dataGridView.DataSource = hd;
-
         }
 
         private void btnNhap_Click(object sender, EventArgs e)

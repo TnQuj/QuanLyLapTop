@@ -151,7 +151,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Green;
-            label1.Location = new Point(410, 19);
+            label1.Location = new Point(402, 10);
             label1.Name = "label1";
             label1.Size = new Size(131, 33);
             label1.TabIndex = 19;
@@ -162,7 +162,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.DarkCyan;
-            label4.Location = new Point(558, 72);
+            label4.Location = new Point(550, 63);
             label4.Name = "label4";
             label4.Size = new Size(227, 26);
             label4.TabIndex = 28;
@@ -172,7 +172,7 @@
             // 
             pictureBox4.BackgroundImage = Properties.Resources.sunlight;
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(542, 36);
+            pictureBox4.Location = new Point(534, 27);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(35, 33);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;

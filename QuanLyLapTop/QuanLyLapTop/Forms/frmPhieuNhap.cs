@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyLapTop.Data;
+using QuanLyLapTop.Reports;
 namespace QuanLyLapTop.Forms
 {
     public partial class frmPhieuNhap : Form
@@ -28,12 +29,11 @@ namespace QuanLyLapTop.Forms
 
         private void btnLapPhieuNhap_Click(object sender, EventArgs e)
         {
-            this.Hide(); // Ẩn phiếu nhập trước
             using (frmPhieuNhap_ChiTiet chitiet = new frmPhieuNhap_ChiTiet())
             {
+                this.Close();
                 chitiet.ShowDialog();
             }
-            this.Show(); // Sau khi frmChiTiet đóng thì hiện lại
         }
 
         private void frmPhieuNhap_Load(object sender, EventArgs e)
@@ -67,12 +67,11 @@ namespace QuanLyLapTop.Forms
             if (dataGridView.CurrentRow != null)
             {
                 id = Convert.ToInt32(dataGridView.CurrentRow?.Cells[0].Value?.ToString());
-                this.Hide();
                 using (frmPhieuNhap_ChiTiet chitiet = new frmPhieuNhap_ChiTiet(id))
                 {
+                    this.Close();
                     chitiet.ShowDialog();
                 }
-                this.Show();
             }
             else
             {
@@ -133,9 +132,42 @@ namespace QuanLyLapTop.Forms
 
         private void btnInPhieuNhap_Click(object sender, EventArgs e)
         {
-
+            if(dataGridView.CurrentRow != null)
+            {
+                id = Convert.ToInt32(dataGridView.CurrentRow?.Cells[0].Value?.ToString());
+                using (frmInPhieuNhap inPhieuNhap = new frmInPhieuNhap(id))
+                {
+                    inPhieuNhap.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn phiếu nhập để in", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
-       
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            var phieuNhap = context.PhieuNhap.Select(p => new
+            {
+                p.ID,
+                p.NhaCungCapID,
+                TenNhaCungCap = p.NhaCungCap.TenNhaCungCap,
+                p.NhanVienID,
+                HoVaTenNhanVien = p.NhanVien.HoVaTen,
+                p.NgayLap,
+                p.GhiChuPhieuNhap,
+                TongTienNhapHang = p.PhieuNhap_ChiTiet.Sum(r => (r.SoLuongNhap) * r.DonGiaNhap),
+            }).Where(p => p.HoVaTenNhanVien.Contains(txtTuKhoa.Text) || p.TenNhaCungCap.Contains(txtTuKhoa.Text) || p.NgayLap.ToString().Contains(txtTuKhoa.Text) || p.GhiChuPhieuNhap!.Contains(txtTuKhoa.Text)).ToList();
+            dataGridView.DataSource = phieuNhap;
+        }
+
+        private void txtTuKhoa_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnTimKiem_Click(sender, e);
+            }    
+        }
     }
 }

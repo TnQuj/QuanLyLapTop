@@ -76,6 +76,7 @@
             dateNgayNhap = new DateTimePicker();
             label2 = new Label();
             label4 = new Label();
+            btnThongKeSanPham = new Button();
             groupBox3.SuspendLayout();
             toolStrip.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -94,6 +95,7 @@
             // 
             groupBox3.BackColor = Color.MediumSeaGreen;
             groupBox3.BackgroundImageLayout = ImageLayout.None;
+            groupBox3.Controls.Add(btnThongKeSanPham);
             groupBox3.Controls.Add(btnSanPhamChiTiet);
             groupBox3.Controls.Add(btnThoat);
             groupBox3.Controls.Add(btnHuyBo);
@@ -108,8 +110,8 @@
             // 
             // btnSanPhamChiTiet
             // 
-            btnSanPhamChiTiet.ForeColor = Color.Lime;
-            btnSanPhamChiTiet.Location = new Point(885, 24);
+            btnSanPhamChiTiet.ForeColor = Color.FromArgb(255, 128, 0);
+            btnSanPhamChiTiet.Location = new Point(731, 24);
             btnSanPhamChiTiet.Name = "btnSanPhamChiTiet";
             btnSanPhamChiTiet.Size = new Size(219, 40);
             btnSanPhamChiTiet.TabIndex = 5;
@@ -120,7 +122,7 @@
             // btnThoat
             // 
             btnThoat.ForeColor = Color.Red;
-            btnThoat.Location = new Point(82, 24);
+            btnThoat.Location = new Point(33, 24);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(147, 40);
             btnThoat.TabIndex = 4;
@@ -130,7 +132,7 @@
             // 
             // btnHuyBo
             // 
-            btnHuyBo.Location = new Point(646, 24);
+            btnHuyBo.Location = new Point(597, 24);
             btnHuyBo.Name = "btnHuyBo";
             btnHuyBo.Size = new Size(100, 40);
             btnHuyBo.TabIndex = 3;
@@ -141,7 +143,7 @@
             // btnLuu
             // 
             btnLuu.ForeColor = Color.Blue;
-            btnLuu.Location = new Point(524, 24);
+            btnLuu.Location = new Point(475, 24);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(100, 40);
             btnLuu.TabIndex = 2;
@@ -152,7 +154,7 @@
             // btnXoa
             // 
             btnXoa.ForeColor = Color.Red;
-            btnXoa.Location = new Point(402, 24);
+            btnXoa.Location = new Point(353, 24);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(100, 40);
             btnXoa.TabIndex = 1;
@@ -162,7 +164,7 @@
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(281, 24);
+            btnSua.Location = new Point(232, 24);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(100, 40);
             btnSua.TabIndex = 0;
@@ -520,6 +522,17 @@
             label4.TabIndex = 3;
             label4.Text = "Ngày nhập (*):";
             // 
+            // btnThongKeSanPham
+            // 
+            btnThongKeSanPham.ForeColor = Color.DarkGreen;
+            btnThongKeSanPham.Location = new Point(980, 26);
+            btnThongKeSanPham.Name = "btnThongKeSanPham";
+            btnThongKeSanPham.Size = new Size(219, 38);
+            btnThongKeSanPham.TabIndex = 6;
+            btnThongKeSanPham.Text = "Thống kê sản phẩm...";
+            btnThongKeSanPham.UseVisualStyleBackColor = true;
+            btnThongKeSanPham.Click += btnThongKeSanPham_Click;
+            // 
             // frmSanPham
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -590,5 +603,6 @@
         private DataGridViewTextBoxColumn NgayNhap;
         private DataGridViewTextBoxColumn MoTa;
         private DataGridViewTextBoxColumn HinhAnh;
+        private Button btnThongKeSanPham;
     }
 }

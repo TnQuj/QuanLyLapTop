@@ -7,16 +7,36 @@
       "RelativeMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|solutionrelative:quanlylaptop\\reports\\rptthongkesanpham.rdlc||{46F6D2A1-5E86-4080-A799-01F3D0E23796}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|d:\\laptrinhquanly\\doan\\quanlylaptop\\quanlylaptop\\quanlylaptop\\data\\sanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|solutionrelative:quanlylaptop\\data\\sanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|d:\\laptrinhquanly\\doan\\quanlylaptop\\quanlylaptop\\quanlylaptop\\reports\\qlbhdataset.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}",
-      "RelativeMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|solutionrelative:quanlylaptop\\reports\\qlbhdataset.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|d:\\laptrinhquanly\\doan\\quanlylaptop\\quanlylaptop\\quanlylaptop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|solutionrelative:quanlylaptop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|d:\\laptrinhquanly\\doan\\quanlylaptop\\quanlylaptop\\quanlylaptop\\reports\\frmthongkesanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|solutionrelative:quanlylaptop\\reports\\frmthongkesanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|d:\\laptrinhquanly\\doan\\quanlylaptop\\quanlylaptop\\quanlylaptop\\reports\\rptinphieunhap.rdlc||{46F6D2A1-5E86-4080-A799-01F3D0E23796}",
+      "RelativeMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|solutionrelative:quanlylaptop\\reports\\rptinphieunhap.rdlc||{46F6D2A1-5E86-4080-A799-01F3D0E23796}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\quanlylaptop\\forms\\frmphieunhap_chitiet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|solutionrelative:quanlylaptop\\forms\\frmphieunhap_chitiet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|d:\\laptrinhquanly\\doan\\quanlylaptop\\quanlylaptop\\quanlylaptop\\reports\\frminphieunhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|solutionrelative:quanlylaptop\\reports\\frminphieunhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|d:\\laptrinhquanly\\doan\\quanlylaptop\\quanlylaptop\\quanlylaptop\\reports\\frmthongkesanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|solutionrelative:quanlylaptop\\reports\\frmthongkesanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|d:\\laptrinhquanly\\doan\\quanlylaptop\\quanlylaptop\\quanlylaptop\\reports\\frminphieunhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|solutionrelative:quanlylaptop\\reports\\frminphieunhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|d:\\laptrinhquanly\\doan\\quanlylaptop\\quanlylaptop\\quanlylaptop\\forms\\frmphieunhap_chitiet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49AE0B50-376A-459B-92A1-402B976346D1}|QuanLyLapTop\\QuanLyLapTop.csproj|solutionrelative:quanlylaptop\\forms\\frmphieunhap_chitiet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,15 +50,16 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SanPham.cs",
-              "DocumentMoniker": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Data\\SanPham.cs",
-              "RelativeDocumentMoniker": "QuanLyLapTop\\Data\\SanPham.cs",
-              "ToolTip": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Data\\SanPham.cs",
-              "RelativeToolTip": "QuanLyLapTop\\Data\\SanPham.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAgAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "frmThongKeSanPham.cs",
+              "DocumentMoniker": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Reports\\frmThongKeSanPham.cs",
+              "RelativeDocumentMoniker": "QuanLyLapTop\\Reports\\frmThongKeSanPham.cs",
+              "ToolTip": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Reports\\frmThongKeSanPham.cs",
+              "RelativeToolTip": "QuanLyLapTop\\Reports\\frmThongKeSanPham.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAtwHgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T09:10:37.499Z",
+              "WhenOpened": "2025-05-05T12:05:42.535Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
@@ -50,30 +71,93 @@
               "ToolTip": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Reports\\rptThongKeSanPham.rdlc [Design]",
               "RelativeToolTip": "QuanLyLapTop\\Reports\\rptThongKeSanPham.rdlc [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001755|",
-              "WhenOpened": "2025-05-01T09:01:11.423Z",
+              "WhenOpened": "2025-05-05T09:04:38.116Z",
+              "IsPinned": true,
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "QLBHDataSet.xsd",
-              "DocumentMoniker": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Reports\\QLBHDataSet.xsd",
-              "RelativeDocumentMoniker": "QuanLyLapTop\\Reports\\QLBHDataSet.xsd",
-              "ToolTip": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Reports\\QLBHDataSet.xsd",
-              "RelativeToolTip": "QuanLyLapTop\\Reports\\QLBHDataSet.xsd",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
-              "WhenOpened": "2025-05-01T09:07:35.895Z",
+              "DocumentIndex": 3,
+              "Title": "rptInPhieuNhap.rdlc [Design]",
+              "DocumentMoniker": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Reports\\rptInPhieuNhap.rdlc",
+              "RelativeDocumentMoniker": "QuanLyLapTop\\Reports\\rptInPhieuNhap.rdlc",
+              "ToolTip": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Reports\\rptInPhieuNhap.rdlc [Design]",
+              "RelativeToolTip": "QuanLyLapTop\\Reports\\rptInPhieuNhap.rdlc [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001755|",
+              "WhenOpened": "2025-05-05T12:28:25.319Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "frmThongKeSanPham.cs [Design]",
+              "DocumentMoniker": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Reports\\frmThongKeSanPham.cs",
+              "RelativeDocumentMoniker": "QuanLyLapTop\\Reports\\frmThongKeSanPham.cs",
+              "ToolTip": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Reports\\frmThongKeSanPham.cs [Design]",
+              "RelativeToolTip": "QuanLyLapTop\\Reports\\frmThongKeSanPham.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T12:28:21.548Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "frmPhieuNhap_ChiTiet.cs",
+              "DocumentMoniker": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Forms\\frmPhieuNhap_ChiTiet.cs",
+              "RelativeDocumentMoniker": "QuanLyLapTop\\Forms\\frmPhieuNhap_ChiTiet.cs",
+              "ToolTip": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Forms\\frmPhieuNhap_ChiTiet.cs",
+              "RelativeToolTip": "QuanLyLapTop\\Forms\\frmPhieuNhap_ChiTiet.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAcwNgAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T08:49:44.551Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
+              "Title": "frmInPhieuNhap.cs",
+              "DocumentMoniker": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Reports\\frmInPhieuNhap.cs",
+              "RelativeDocumentMoniker": "QuanLyLapTop\\Reports\\frmInPhieuNhap.cs",
+              "ToolTip": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Reports\\frmInPhieuNhap.cs",
+              "RelativeToolTip": "QuanLyLapTop\\Reports\\frmInPhieuNhap.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAABgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T12:06:37.181Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "frmInPhieuNhap.cs [Design]",
+              "DocumentMoniker": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Reports\\frmInPhieuNhap.cs",
+              "RelativeDocumentMoniker": "QuanLyLapTop\\Reports\\frmInPhieuNhap.cs",
+              "ToolTip": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Reports\\frmInPhieuNhap.cs [Design]",
+              "RelativeToolTip": "QuanLyLapTop\\Reports\\frmInPhieuNhap.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T12:06:35.16Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frmPhieuNhap_ChiTiet.cs [Design]",
+              "DocumentMoniker": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Forms\\frmPhieuNhap_ChiTiet.cs",
+              "RelativeDocumentMoniker": "QuanLyLapTop\\Forms\\frmPhieuNhap_ChiTiet.cs",
+              "ToolTip": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Forms\\frmPhieuNhap_ChiTiet.cs [Design]",
+              "RelativeToolTip": "QuanLyLapTop\\Forms\\frmPhieuNhap_ChiTiet.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T08:49:40.876Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Program.cs",
               "RelativeDocumentMoniker": "QuanLyLapTop\\Program.cs",
               "ToolTip": "D:\\LapTrinhQuanLy\\DoAn\\QuanLyLapTop\\QuanLyLapTop\\QuanLyLapTop\\Program.cs",
               "RelativeToolTip": "QuanLyLapTop\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-27T18:08:38.935Z",
               "EditorCaption": ""

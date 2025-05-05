@@ -75,7 +75,7 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 51;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(1076, 332);
+            dataGridView.Size = new Size(1076, 335);
             dataGridView.TabIndex = 3;
             // 
             // ID
@@ -147,7 +147,7 @@
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1082, 389);
+            groupBox1.Size = new Size(1082, 392);
             groupBox1.TabIndex = 11;
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh sách phiếu nhập";
@@ -172,6 +172,7 @@
             txtTuKhoa.BorderStyle = BorderStyle.FixedSingle;
             txtTuKhoa.Name = "txtTuKhoa";
             txtTuKhoa.Size = new Size(160, 31);
+            txtTuKhoa.KeyDown += txtTuKhoa_KeyDown;
             // 
             // btnTimKiem
             // 
@@ -180,6 +181,7 @@
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(62, 28);
             btnTimKiem.Text = "Tìm";
+            btnTimKiem.Click += btnTimKiem_Click;
             // 
             // toolStripSeparator1
             // 
@@ -268,9 +270,9 @@
             groupBox2.Controls.Add(btnXoa);
             groupBox2.Controls.Add(btnSua);
             groupBox2.Dock = DockStyle.Bottom;
-            groupBox2.Location = new Point(0, 389);
+            groupBox2.Location = new Point(0, 392);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1082, 64);
+            groupBox2.Size = new Size(1082, 61);
             groupBox2.TabIndex = 12;
             groupBox2.TabStop = false;
             // 

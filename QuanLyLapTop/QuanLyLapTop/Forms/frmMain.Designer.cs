@@ -74,7 +74,7 @@
             mnuLaptop.Items.AddRange(new ToolStripItem[] { mnuHeThong, mnuQuanLy, toolStripMenuItem2, mnuBaoCao_ThongKe, mnuTroGiup });
             mnuLaptop.Location = new Point(0, 0);
             mnuLaptop.Name = "mnuLaptop";
-            mnuLaptop.Padding = new Padding(6, 10, 0, 10);
+            mnuLaptop.Padding = new Padding(0, 10, 0, 10);
             mnuLaptop.Size = new Size(1482, 44);
             mnuLaptop.TabIndex = 1;
             mnuLaptop.Text = "menuStrip1";
@@ -92,7 +92,7 @@
             mnuDangNhap.Image = Properties.Resources.dang_nhap;
             mnuDangNhap.Name = "mnuDangNhap";
             mnuDangNhap.ShortcutKeys = Keys.Control | Keys.A;
-            mnuDangNhap.Size = new Size(224, 26);
+            mnuDangNhap.Size = new Size(217, 26);
             mnuDangNhap.Text = "Đăng &nhập";
             mnuDangNhap.Click += mnuDangNhap_Click;
             // 
@@ -100,7 +100,7 @@
             // 
             mnuDangXuat.Image = Properties.Resources.dang_xuat;
             mnuDangXuat.Name = "mnuDangXuat";
-            mnuDangXuat.Size = new Size(224, 26);
+            mnuDangXuat.Size = new Size(217, 26);
             mnuDangXuat.Text = "Đăng &xuất";
             mnuDangXuat.Click += mnuDangXuat_Click;
             // 
@@ -108,21 +108,21 @@
             // 
             mnuDoiMatKhau.Image = Properties.Resources.doi_mat_khau;
             mnuDoiMatKhau.Name = "mnuDoiMatKhau";
-            mnuDoiMatKhau.Size = new Size(224, 26);
+            mnuDoiMatKhau.Size = new Size(217, 26);
             mnuDoiMatKhau.Text = "Đổi &mật khẩu";
             mnuDoiMatKhau.Click += mnuDoiMatKhau_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(221, 6);
+            toolStripSeparator1.Size = new Size(214, 6);
             // 
             // mnuThoat
             // 
             mnuThoat.Image = Properties.Resources.thoat;
             mnuThoat.Name = "mnuThoat";
             mnuThoat.ShortcutKeys = Keys.Alt | Keys.F4;
-            mnuThoat.Size = new Size(224, 26);
+            mnuThoat.Size = new Size(217, 26);
             mnuThoat.Text = "Thoát ";
             mnuThoat.Click += mnuThoat_Click;
             // 
@@ -241,6 +241,7 @@
             mnuThongKe_SanPham.Name = "mnuThongKe_SanPham";
             mnuThongKe_SanPham.Size = new Size(224, 26);
             mnuThongKe_SanPham.Text = "Thông kê &sản phẩm";
+            mnuThongKe_SanPham.Click += mnuThongKe_SanPham_Click;
             // 
             // mnuThongKe_DoanhThu
             // 
@@ -282,31 +283,31 @@
             // staStp_LienKet
             // 
             staStp_LienKet.BackColor = Color.MediumSpringGreen;
+            staStp_LienKet.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             staStp_LienKet.ImageScalingSize = new Size(20, 20);
             staStp_LienKet.Items.AddRange(new ToolStripItem[] { lblTrangThai, toolStripStatusLabel1, toolStripStatusLabel2 });
-            staStp_LienKet.Location = new Point(0, 927);
+            staStp_LienKet.Location = new Point(0, 928);
             staStp_LienKet.Name = "staStp_LienKet";
-            staStp_LienKet.Size = new Size(1482, 26);
+            staStp_LienKet.Size = new Size(1482, 25);
             staStp_LienKet.TabIndex = 1;
-            staStp_LienKet.Text = "statusStrip1";
             // 
             // lblTrangThai
             // 
             lblTrangThai.Name = "lblTrangThai";
-            lblTrangThai.Size = new Size(121, 20);
+            lblTrangThai.Size = new Size(119, 19);
             lblTrangThai.Text = "Chưa đăng nhập.";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(1190, 20);
+            toolStripStatusLabel1.Size = new Size(1180, 19);
             toolStripStatusLabel1.Spring = true;
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.IsLink = true;
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(156, 20);
+            toolStripStatusLabel2.Size = new Size(168, 19);
             toolStripStatusLabel2.Text = "© Khoa CNTT - ĐHAG";
             // 
             // pictureBox1

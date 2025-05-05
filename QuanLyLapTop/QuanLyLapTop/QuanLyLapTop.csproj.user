@@ -46,6 +46,12 @@
     <Compile Update="Forms\frmSanPham_ChiTiet.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Reports\frmInPhieuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Reports\frmThongKeSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Update="Reports\QLBHDataSet.xsd">

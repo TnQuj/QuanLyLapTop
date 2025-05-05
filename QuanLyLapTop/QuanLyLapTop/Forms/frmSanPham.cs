@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using QuanLyLapTop.Data;
+using QuanLyLapTop.Reports;
 using SlugGenerator;
 namespace QuanLyLapTop.Forms
 {
@@ -329,6 +330,20 @@ namespace QuanLyLapTop.Forms
             }
         }
 
-       
+        private void btnThongKeSanPham_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.CurrentRow != null)
+            {
+                id = Convert.ToInt32(dataGridView.CurrentRow?.Cells[0].Value?.ToString());
+                using (frmThongKeSanPham thongKeSanPham = new frmThongKeSanPham(id))
+                {
+                    thongKeSanPham.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }

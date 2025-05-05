@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DocumentFormat.OpenXml.Drawing.ChartDrawing;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using QuanLyLapTop.Data;
+using QuanLyLapTop.Reports;
 using BC = BCrypt.Net.BCrypt;
 namespace QuanLyLapTop.Forms
 {
@@ -30,6 +31,7 @@ namespace QuanLyLapTop.Forms
         frmDangNhap? dangNhap = null;
         frmDoiMatKhau? doiMatKhau = null;
         frmHoaDon? hoaDon = null;
+        frmThongKeSanPham? thongKeSanPham = null;
         string hoVaTenNhanVien = "";
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -302,18 +304,18 @@ namespace QuanLyLapTop.Forms
                     {
                         MessageBox.Show("Mật khẩu mới và xác nhận không khớp.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); doiMatKhau.txtMatKhauMoi.Focus(); return;
                     }
-                    else 
+                    else
                     {
                         var nv = context.NhanVien.Where(x => x.TenDangNhap == tenDangNhap).SingleOrDefault();
                         if (!BC.Verify(matKhauCu, nv!.MatKhau))
                         {
                             MessageBox.Show("Mật khẩu cũ không đúng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); doiMatKhau.txtMatKhauCu.Focus();
-                            return; 
+                            return;
                         }
-                        if(matKhauMoi.Length < 6)
+                        if (matKhauMoi.Length < 6)
                         {
                             MessageBox.Show("Mật khẩu mới phải lớn hơn 6 ký tự.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); doiMatKhau.txtMatKhauMoi.Focus(); return;
-                        }    
+                        }
                         nv.MatKhau = BC.HashPassword(matKhauMoi);
                         context.SaveChanges();
                         MessageBox.Show("Đổi mật khẩu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); return;
@@ -324,6 +326,18 @@ namespace QuanLyLapTop.Forms
         private void mnuDoiMatKhau_Click(object sender, EventArgs e)
         {
             DoiMatKhau();
+        }
+
+        private void mnuThongKe_SanPham_Click(object sender, EventArgs e)
+        {
+            if (thongKeSanPham == null || thongKeSanPham.IsDisposed)
+            {
+                thongKeSanPham = new frmThongKeSanPham();
+                thongKeSanPham.MdiParent = this;
+                this.Show();
+            }
+            else
+                this.Activate();
         }
     }
 }

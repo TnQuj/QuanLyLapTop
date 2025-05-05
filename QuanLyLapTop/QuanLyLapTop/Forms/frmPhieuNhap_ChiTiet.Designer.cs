@@ -113,7 +113,7 @@
             btnInPhieuNhap.Name = "btnInPhieuNhap";
             btnInPhieuNhap.Size = new Size(122, 38);
             btnInPhieuNhap.TabIndex = 1;
-            btnInPhieuNhap.Text = "In hóa đơn...";
+            btnInPhieuNhap.Text = "In phiếu nhập...";
             btnInPhieuNhap.UseVisualStyleBackColor = true;
             // 
             // btnLapPhieuNhap
@@ -515,7 +515,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmPhieuNhap_ChiTiet";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Phiếu nhập chi tiết";
             Load += frmPhieuNhap_ChiTiet_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
