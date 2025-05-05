@@ -246,6 +246,7 @@
             txtTuKhoa.BorderStyle = BorderStyle.FixedSingle;
             txtTuKhoa.Name = "txtTuKhoa";
             txtTuKhoa.Size = new Size(160, 31);
+            txtTuKhoa.KeyDown += txtTuKhoa_KeyDown;
             // 
             // btnTimKiem
             // 
@@ -255,6 +256,7 @@
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(62, 28);
             btnTimKiem.Text = "Tìm";
+            btnTimKiem.Click += btnTimKiem_Click;
             // 
             // toolStripSeparator1
             // 
@@ -269,6 +271,7 @@
             btnNhap.Name = "btnNhap";
             btnNhap.Size = new Size(82, 28);
             btnNhap.Text = "Nhập...";
+            btnNhap.Click += btnNhap_Click;
             // 
             // btnXuat
             // 
@@ -278,6 +281,7 @@
             btnXuat.Name = "btnXuat";
             btnXuat.Size = new Size(76, 28);
             btnXuat.Text = "Xuất...";
+            btnXuat.Click += btnXuat_Click;
             // 
             // btnThoat
             // 

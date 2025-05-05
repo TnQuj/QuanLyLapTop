@@ -195,6 +195,7 @@
             btnNhap.Name = "btnNhap";
             btnNhap.Size = new Size(82, 28);
             btnNhap.Text = "Nhập...";
+            btnNhap.Click += btnNhap_Click;
             // 
             // btnXuat
             // 
@@ -203,6 +204,7 @@
             btnXuat.Name = "btnXuat";
             btnXuat.Size = new Size(76, 28);
             btnXuat.Text = "Xuất...";
+            btnXuat.Click += btnXuat_Click;
             // 
             // btnHuy
             // 
@@ -313,12 +315,12 @@
         private Button btnInPhieuNhap;
         private Button btnLapPhieuNhap;
         private Button btnHuy;
+        private GroupBox groupBox2;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn HoVaTenNhanVien;
         private DataGridViewTextBoxColumn TenNhaCungCap;
         private DataGridViewTextBoxColumn NgayLap;
         private DataGridViewTextBoxColumn TongTienNhapHang;
         private DataGridViewTextBoxColumn GhiChuPhieuNhap;
-        private GroupBox groupBox2;
     }
 }

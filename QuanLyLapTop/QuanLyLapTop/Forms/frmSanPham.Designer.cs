@@ -34,6 +34,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSanPham));
             toolStripLabel1 = new ToolStripLabel();
             groupBox3 = new GroupBox();
+            btnThongKeSanPham = new Button();
             btnSanPhamChiTiet = new Button();
             btnThoat = new Button();
             btnHuyBo = new Button();
@@ -76,7 +77,6 @@
             dateNgayNhap = new DateTimePicker();
             label2 = new Label();
             label4 = new Label();
-            btnThongKeSanPham = new Button();
             groupBox3.SuspendLayout();
             toolStrip.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -107,6 +107,17 @@
             groupBox3.Size = new Size(1232, 89);
             groupBox3.TabIndex = 13;
             groupBox3.TabStop = false;
+            // 
+            // btnThongKeSanPham
+            // 
+            btnThongKeSanPham.ForeColor = Color.DarkGreen;
+            btnThongKeSanPham.Location = new Point(980, 26);
+            btnThongKeSanPham.Name = "btnThongKeSanPham";
+            btnThongKeSanPham.Size = new Size(219, 38);
+            btnThongKeSanPham.TabIndex = 6;
+            btnThongKeSanPham.Text = "Thống kê sản phẩm...";
+            btnThongKeSanPham.UseVisualStyleBackColor = true;
+            btnThongKeSanPham.Click += btnThongKeSanPham_Click;
             // 
             // btnSanPhamChiTiet
             // 
@@ -207,6 +218,7 @@
             btnNhap.Name = "btnNhap";
             btnNhap.Size = new Size(82, 28);
             btnNhap.Text = "Nhập...";
+            btnNhap.Click += btnNhap_Click;
             // 
             // btnXuat
             // 
@@ -215,6 +227,7 @@
             btnXuat.Name = "btnXuat";
             btnXuat.Size = new Size(76, 28);
             btnXuat.Text = "Xuất...";
+            btnXuat.Click += btnXuat_Click;
             // 
             // cboHangSanXuat
             // 
@@ -521,17 +534,6 @@
             label4.Size = new Size(104, 20);
             label4.TabIndex = 3;
             label4.Text = "Ngày nhập (*):";
-            // 
-            // btnThongKeSanPham
-            // 
-            btnThongKeSanPham.ForeColor = Color.DarkGreen;
-            btnThongKeSanPham.Location = new Point(980, 26);
-            btnThongKeSanPham.Name = "btnThongKeSanPham";
-            btnThongKeSanPham.Size = new Size(219, 38);
-            btnThongKeSanPham.TabIndex = 6;
-            btnThongKeSanPham.Text = "Thống kê sản phẩm...";
-            btnThongKeSanPham.UseVisualStyleBackColor = true;
-            btnThongKeSanPham.Click += btnThongKeSanPham_Click;
             // 
             // frmSanPham
             // 
