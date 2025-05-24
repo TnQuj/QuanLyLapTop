@@ -32,7 +32,6 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHoaDon));
             btnNhap = new ToolStripButton();
-            btnThoat = new Button();
             btnXoa = new Button();
             btnSua = new Button();
             btnInHoaDon = new Button();
@@ -46,6 +45,7 @@
             toolStrip = new ToolStrip();
             toolStripLabel1 = new ToolStripLabel();
             groupBox1 = new GroupBox();
+            panel2 = new Panel();
             dataGridView = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
             HoVaTenNhanVien = new DataGridViewTextBoxColumn();
@@ -57,6 +57,7 @@
             panel1.SuspendLayout();
             toolStrip.SuspendLayout();
             groupBox1.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -68,16 +69,6 @@
             btnNhap.Size = new Size(82, 28);
             btnNhap.Text = "Nhập...";
             btnNhap.Click += btnNhap_Click;
-            // 
-            // btnThoat
-            // 
-            btnThoat.Anchor = AnchorStyles.Top;
-            btnThoat.Location = new Point(1323, 32);
-            btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(94, 29);
-            btnThoat.TabIndex = 4;
-            btnThoat.Text = "Thoát";
-            btnThoat.UseVisualStyleBackColor = true;
             // 
             // btnXoa
             // 
@@ -117,7 +108,6 @@
             // 
             panel1.BackColor = SystemColors.ControlLight;
             panel1.Controls.Add(button1);
-            panel1.Controls.Add(btnThoat);
             panel1.Controls.Add(btnXoa);
             panel1.Controls.Add(btnSua);
             panel1.Controls.Add(btnInHoaDon);
@@ -137,6 +127,7 @@
             button1.TabIndex = 13;
             button1.Text = "Thoát";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // btnThem
             // 
@@ -196,7 +187,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(dataGridView);
+            groupBox1.Controls.Add(panel2);
             groupBox1.Controls.Add(toolStrip);
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Location = new Point(0, 0);
@@ -206,6 +197,16 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh sách hóa đơn";
             // 
+            // panel2
+            // 
+            panel2.Controls.Add(dataGridView);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(3, 54);
+            panel2.Name = "panel2";
+            panel2.Padding = new Padding(20, 0, 20, 0);
+            panel2.Size = new Size(976, 345);
+            panel2.TabIndex = 3;
+            // 
             // dataGridView
             // 
             dataGridView.AllowUserToAddRows = false;
@@ -213,18 +214,19 @@
             dataGridView.AllowUserToResizeColumns = false;
             dataGridView.AllowUserToResizeRows = false;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView.BackgroundColor = Color.White;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Columns.AddRange(new DataGridViewColumn[] { ID, HoVaTenNhanVien, HoVaTenKhachHang, NgayLap, TongTienHoaDon, HinhThucThanhToan, XemChiTiet });
-            dataGridView.Dock = DockStyle.Top;
-            dataGridView.Location = new Point(3, 54);
+            dataGridView.Dock = DockStyle.Fill;
+            dataGridView.Location = new Point(20, 0);
             dataGridView.MultiSelect = false;
             dataGridView.Name = "dataGridView";
             dataGridView.ReadOnly = true;
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 51;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(976, 342);
-            dataGridView.TabIndex = 3;
+            dataGridView.Size = new Size(936, 345);
+            dataGridView.TabIndex = 4;
             // 
             // ID
             // 
@@ -318,6 +320,7 @@
             toolStrip.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);
         }
@@ -325,7 +328,6 @@
         #endregion
 
         private ToolStripButton btnNhap;
-        private Button btnThoat;
         private Button btnXoa;
         private Button btnSua;
         private Button btnInHoaDon;
@@ -338,8 +340,9 @@
         private ToolStrip toolStrip;
         private ToolStripLabel toolStripLabel1;
         private GroupBox groupBox1;
-        private DataGridView dataGridView;
         private Button button1;
+        private Panel panel2;
+        private DataGridView dataGridView;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn HoVaTenNhanVien;
         private DataGridViewTextBoxColumn HoVaTenKhachHang;

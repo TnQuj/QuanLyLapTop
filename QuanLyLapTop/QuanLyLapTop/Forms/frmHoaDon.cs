@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using Microsoft.EntityFrameworkCore;
 using QuanLyLapTop.Data;
+using QuanLyLapTop.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,14 +41,15 @@ namespace QuanLyLapTop.Forms
                     r.ID,
                     r.NhanVienID,
                     r.KhachHangID,
-                    r.NgayLap,
+                    r.NgayLap
+                    ,r.HinhThucThanhToan,
                     r.GhiChuHoaDon,
-                    r.HinhThucThanhToan,
                     HoVaTenNhanVien = r.NhanVien.HoVaTen,
                     HoVaTenKhachHang = r.KhachHang.HoVaTen,
-                    TongTienHoaDon = r.HoaDon_ChiTiet.Sum(r => (r.SoLuongBan) * r.DonGiaBan),
+                    TongTienHoaDon = r.HoaDon_ChiTiet.Sum(r => r.GiaSauKhiGiam*r.SoLuongBan),// vì bên kia gán Giá sau khi giảm = giá bán 
                     XemChiTiet = "Xem chi tiết"
                 }).ToList();
+                
                 dataGridView.DataSource = hd;
             }
             catch (Exception ex)
@@ -95,15 +97,26 @@ namespace QuanLyLapTop.Forms
         }
         private void btnInHoaDon_Click(object sender, EventArgs e)
         {
-
+            if (dataGridView.CurrentRow != null)
+            {
+                id = Convert.ToInt32(dataGridView.CurrentRow?.Cells[0].Value?.ToString());
+                using (frmInHoaDon inHD = new frmInHoaDon(id))
+                {
+                    inHD.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn hóa đơn In ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (dataGridView.CurrentRow != null)
             {
-                id = Convert.ToInt32(dataGridView.CurrentRow?.Cells[0].Value?.ToString());
-                using (frmHoaDon_ChiTiet chiTiet = new frmHoaDon_ChiTiet(id))
+                int maHoaDon = Convert.ToInt32(dataGridView.CurrentRow?.Cells[0].Value?.ToString());
+                using (frmHoaDon_ChiTiet chiTiet = new frmHoaDon_ChiTiet(maHoaDon))
                 {
                     this.Hide();
                     chiTiet.ShowDialog();
@@ -187,7 +200,19 @@ namespace QuanLyLapTop.Forms
                                     hd.NgayLap = Convert.ToDateTime(r["NgayLap"].ToString());
                                     hd.GhiChuHoaDon = r["GhiChuHoaDon"].ToString();
                                     hd.HinhThucThanhToan = r["HinhThucThanhToan"].ToString();
-                                    context.HoaDon.Add(hd);
+                                    var existing = context.HoaDon.Local.FirstOrDefault(x => x.ID == hd.ID)
+                                    ?? context.HoaDon.AsNoTracking().FirstOrDefault(x => x.ID == hd.ID);
+
+                                    if (existing != null)
+                                    {
+                                        // Nếu đã có rồi thì cập nhật dữ liệu
+                                        context.HoaDon.Update(hd);
+                                    }
+                                    else
+                                    {
+                                        // Nếu chưa có thì thêm mới
+                                        context.HoaDon.Add(hd);
+                                    }
                                 }
                                 context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT HoaDon ON");
                                 context.SaveChanges();
@@ -234,9 +259,23 @@ namespace QuanLyLapTop.Forms
                                     ct.ID = Convert.ToInt32(r["ID"].ToString());
                                     ct.HoaDonID = Convert.ToInt32(r["HoaDonID"].ToString());
                                     ct.SanPhamID = Convert.ToInt32(r["SanPhamID"].ToString());
+                                    ct.TenSanPham = r["TenSanPham"].ToString()!;
                                     ct.SoLuongBan = Convert.ToInt32(r["SoLuongBan"].ToString());
                                     ct.DonGiaBan = Convert.ToInt32(r["DonGiaBan"].ToString());
-                                    context.HoaDon_ChiTiet.Add(ct);
+                                    ct.GiamGia = Convert.ToDouble(r["GiamGia"].ToString());
+                                    ct.GiaSauKhiGiam = Convert.ToDouble(r["GiaSauKhiGiam"].ToString());
+                                    ct.ThanhTien = Convert.ToDouble(r["ThanhTien".ToString()]);
+                                    var existingCT = context.HoaDon_ChiTiet.Local.FirstOrDefault(x => x.ID == ct.ID)
+                                        ?? context.HoaDon_ChiTiet.AsNoTracking().FirstOrDefault(x => x.ID == ct.ID);
+
+                                    if (existingCT != null)
+                                    {
+                                        context.HoaDon_ChiTiet.Update(ct);
+                                    }
+                                    else
+                                    {
+                                        context.HoaDon_ChiTiet.Add(ct);
+                                    }
                                 }
                                 context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT HoaDon_ChiTiet ON");
                                 context.SaveChanges();
@@ -271,34 +310,78 @@ namespace QuanLyLapTop.Forms
                 {
                     // Xuat du lieu hoa don ra sheet 1( HoaDon)
                     DataTable tableHoaDon = new DataTable();
-                    tableHoaDon.Columns.AddRange(new DataColumn[5]
+                    tableHoaDon.Columns.AddRange(new DataColumn[9]
                     {
                         new DataColumn("ID", typeof(int)),
                         new DataColumn("NhanVienID", typeof(int)),
+                        new DataColumn("TenNhanVien", typeof(string)),
                         new DataColumn("KhachHangID", typeof(int)),
+                        new DataColumn("TenKhachHang", typeof(string)),
                         new DataColumn("NgayLap", typeof(DateTime)),
+                        new DataColumn("TongTienHoaDon", typeof(int)),
+                        new DataColumn("HinhThucThanhToan", typeof(string)),
                         new DataColumn("GhiChuHoaDon", typeof(string))
                     });
-                    var hd = context.HoaDon.ToList();
+                    var hd = context.HoaDon.Select(r => new
+                    {
+                        r.ID,
+                        r.NhanVienID,
+                        HoVaTenNhanVien = r.NhanVien.HoVaTen,
+                        r.KhachHangID,
+                        HoVaTenKhachHang = r.KhachHang.HoVaTen,
+                        r.NgayLap,
+                        TongTienHoaDon = r.HoaDon_ChiTiet.Sum(r => (r.SoLuongBan) * r.GiaSauKhiGiam),
+                        r.GhiChuHoaDon
+                    }).ToList();
                     if (hd != null)
                     {
                         foreach (var p in hd)
-                            tableHoaDon.Rows.Add(p.ID, p.NhanVienID, p.KhachHangID, p.NgayLap, p.GhiChuHoaDon);
+                            tableHoaDon.Rows.Add(p.ID,
+                            p.NhanVienID,
+                            p.HoVaTenNhanVien,
+                            p.KhachHangID,
+                            p.HoVaTenKhachHang,
+                            p.NgayLap,
+                            p.TongTienHoaDon,
+                            p.GhiChuHoaDon);
                     }
-                    // Xuat du lieu HoaDonChiTiet Ra sheet 2
                     DataTable tableHoaDonChiTiet = new DataTable();
-                    tableHoaDonChiTiet.Columns.AddRange(new DataColumn[5] {
+                    tableHoaDonChiTiet.Columns.AddRange(new DataColumn[] {
                         new DataColumn("ID", typeof(int)),
                         new DataColumn("HoaDonID", typeof(int)),
                         new DataColumn("SanPhamID", typeof(int)),
+                        new DataColumn("TenSanPham",typeof(string)),
                         new DataColumn("SoLuongBan", typeof(int)),
-                        new DataColumn("DonGiaBan", typeof(int))
+                        new DataColumn("DonGiaBan", typeof(int)),
+                        new DataColumn("GiamGia", typeof(double)),
+                        new DataColumn("GiaSauKhiGiam", typeof(double)),
+                        new DataColumn("ThanhTien", typeof(double))
                         });
-                    var ct = context.HoaDon_ChiTiet.ToList();
+                    var ct = context.HoaDon_ChiTiet.Select(r => new { 
+                        r.ID,
+                        r.HoaDonID,
+                        r.SanPhamID,
+                        r.TenSanPham,
+                        r.SoLuongBan,
+                        r.DonGiaBan,
+                        r.GiamGia,
+                        r.GiaSauKhiGiam,
+                        r.ThanhTien
+                    }).ToList();
+
                     if (ct != null)
                     {
                         foreach (var p in ct)
-                            tableHoaDonChiTiet.Rows.Add(p.ID, p.HoaDonID, p.SanPhamID, p.SoLuongBan, p.DonGiaBan);
+                            tableHoaDonChiTiet.Rows.Add(
+                                p.ID,
+                                p.HoaDonID,
+                                p.SanPhamID,
+                                p.TenSanPham,
+                                p.SoLuongBan,
+                                p.DonGiaBan,
+                                p.GiamGia,
+                                p.GiaSauKhiGiam,
+                                p.ThanhTien);    
                     }
                     using (XLWorkbook wb = new XLWorkbook())
                     {
@@ -325,5 +408,25 @@ namespace QuanLyLapTop.Forms
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn quay lại trang chính không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                var mainForm = Application.OpenForms["frmMain"];
+                if (mainForm != null)
+                {
+                    mainForm.Show();
+                    mainForm.Activate();
+                }
+                else
+                {
+                    frmMain newMainForm = new frmMain();
+                    newMainForm.Show();
+                }
+                this.Close(); // Close luôn form con
+            }
+        }
     }
 }

@@ -249,6 +249,7 @@
             mnuThongKe_DoanhThu.Name = "mnuThongKe_DoanhThu";
             mnuThongKe_DoanhThu.Size = new Size(224, 26);
             mnuThongKe_DoanhThu.Text = "Thông kê &doanh thu";
+            mnuThongKe_DoanhThu.Click += mnuThongKe_DoanhThu_Click;
             // 
             // mnuThongKe_HoaDon
             // 
@@ -256,6 +257,7 @@
             mnuThongKe_HoaDon.Name = "mnuThongKe_HoaDon";
             mnuThongKe_HoaDon.Size = new Size(224, 26);
             mnuThongKe_HoaDon.Text = "Thông kê &hóa đơn";
+            mnuThongKe_HoaDon.Click += mnuThongKe_HoaDon_Click;
             // 
             // mnuTroGiup
             // 

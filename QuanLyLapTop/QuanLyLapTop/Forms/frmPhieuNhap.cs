@@ -19,14 +19,12 @@ namespace QuanLyLapTop.Forms
         }
         QLBHDbContext context = new QLBHDbContext();
         int id;
-
         public void BatTatChucNang()
         {
             btnInPhieuNhap.Enabled = dataGridView.Rows.Count > 0;
             btnSua.Enabled = dataGridView.Rows.Count > 0;
             btnXoa.Enabled = dataGridView.Rows.Count > 0;
         }
-
         private void btnLapPhieuNhap_Click(object sender, EventArgs e)
         {
             using (frmPhieuNhap_ChiTiet chitiet = new frmPhieuNhap_ChiTiet())
@@ -35,11 +33,9 @@ namespace QuanLyLapTop.Forms
                 chitiet.ShowDialog();
             }
         }
-
         private void frmPhieuNhap_Load(object sender, EventArgs e)
         {
             dataGridView.AutoGenerateColumns = false;
-
             try
             {
                 var phieuNhap = context.PhieuNhap.Select(p => new
@@ -61,7 +57,6 @@ namespace QuanLyLapTop.Forms
             }
             BatTatChucNang();
         }
-
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (dataGridView.CurrentRow != null)
@@ -78,7 +73,6 @@ namespace QuanLyLapTop.Forms
                 MessageBox.Show("Vui lòng chọn phiếu nhập để sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void btnXoa_Click(object sender, EventArgs e)
         {
             if (dataGridView.CurrentRow != null)
@@ -108,7 +102,6 @@ namespace QuanLyLapTop.Forms
                 MessageBox.Show("Vui lòng chọn phiếu nhập để xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void btnHuy_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có muốn quay lại trang chính không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -129,10 +122,9 @@ namespace QuanLyLapTop.Forms
                 this.Close(); // Close luôn form con
             }
         }
-
         private void btnInPhieuNhap_Click(object sender, EventArgs e)
         {
-            if(dataGridView.CurrentRow != null)
+            if (dataGridView.CurrentRow != null)
             {
                 id = Convert.ToInt32(dataGridView.CurrentRow?.Cells[0].Value?.ToString());
                 using (frmInPhieuNhap inPhieuNhap = new frmInPhieuNhap(id))
@@ -145,7 +137,6 @@ namespace QuanLyLapTop.Forms
                 MessageBox.Show("Vui lòng chọn phiếu nhập để in", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             var phieuNhap = context.PhieuNhap.Select(p => new
@@ -161,13 +152,12 @@ namespace QuanLyLapTop.Forms
             }).Where(p => p.HoVaTenNhanVien.Contains(txtTuKhoa.Text) || p.TenNhaCungCap.Contains(txtTuKhoa.Text) || p.NgayLap.ToString().Contains(txtTuKhoa.Text) || p.GhiChuPhieuNhap!.Contains(txtTuKhoa.Text)).ToList();
             dataGridView.DataSource = phieuNhap;
         }
-
         private void txtTuKhoa_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 btnTimKiem_Click(sender, e);
-            }    
+            }
         }
     }
 }

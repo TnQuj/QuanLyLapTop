@@ -16,6 +16,9 @@ namespace QuanLyLapTop.Forms
 {
     public partial class frmMain : Form
     {
+        public static int IDNhanVien;
+        public static string HoVaTenNhanVien = "";
+        public static string QuyenHan = "";
         public frmMain()
         {
             InitializeComponent();
@@ -32,6 +35,8 @@ namespace QuanLyLapTop.Forms
         frmDoiMatKhau? doiMatKhau = null;
         frmHoaDon? hoaDon = null;
         frmThongKeSanPham? thongKeSanPham = null;
+        frmThongKeDoanhThu? thongKeDoanhThu = null;
+        frmInHoaDon? thongKeHoaDon = null;
         string hoVaTenNhanVien = "";
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -167,6 +172,9 @@ namespace QuanLyLapTop.Forms
 
                     MessageBox.Show("Đăng nhập thành công: " + hoVaTenNhanVien, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dangNhapThanhCong = true;
+                    IDNhanVien = nhanVien.ID;
+                    HoVaTenNhanVien = nhanVien.HoVaTen;
+                    QuyenHan = nhanVien.QuyenHan;
                 }
                 else
                 {
@@ -175,6 +183,7 @@ namespace QuanLyLapTop.Forms
                     return;
                 }
             }
+
 
         }
 
@@ -267,10 +276,10 @@ namespace QuanLyLapTop.Forms
             {
                 loaiSanPham = new frmLoaiSanPham();
                 loaiSanPham.MdiParent = this;
-                this.Show();
+                loaiSanPham.Show();
             }
             else
-                this.Activate();
+                loaiSanPham.Activate();
         }
 
         private void mnuHoaDon_Click(object sender, EventArgs e)
@@ -279,10 +288,10 @@ namespace QuanLyLapTop.Forms
             {
                 hoaDon = new frmHoaDon();
                 hoaDon.MdiParent = this;
-                this.Show();
+                hoaDon.Show();
             }
             else
-                this.Activate();
+                hoaDon.Activate();
         }
         public void DoiMatKhau()
         {
@@ -334,10 +343,38 @@ namespace QuanLyLapTop.Forms
             {
                 thongKeSanPham = new frmThongKeSanPham();
                 thongKeSanPham.MdiParent = this;
-                this.Show();
+                thongKeSanPham.Show();
             }
             else
-                this.Activate();
+                thongKeSanPham.Activate();
+        }
+
+        private void mnuThongKe_DoanhThu_Click(object sender, EventArgs e)
+        {
+            if (thongKeDoanhThu == null || thongKeDoanhThu.IsDisposed)
+            {
+                thongKeDoanhThu = new frmThongKeDoanhThu();
+                thongKeDoanhThu.MdiParent = this;
+                thongKeDoanhThu.Show();
+            }
+            else
+            {
+                thongKeDoanhThu.Activate();
+            }
+        }
+
+        private void mnuThongKe_HoaDon_Click(object sender, EventArgs e)
+        {
+            if(thongKeHoaDon ==null || thongKeHoaDon.IsDisposed)
+            {
+                thongKeHoaDon = new frmInHoaDon();
+                thongKeHoaDon.MdiParent = this;
+                thongKeHoaDon.Show();
+            }
+            else
+            {
+                thongKeHoaDon.Activate();
+            }
         }
     }
 }

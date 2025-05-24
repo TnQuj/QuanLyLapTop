@@ -1,13 +1,8 @@
-﻿using QuanLyLapTop.Data;
-using System;
-using System.Collections.Generic;
+﻿
+using Microsoft.EntityFrameworkCore;
+using QuanLyLapTop.Data;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace QuanLyLapTop.Forms
 {
@@ -15,12 +10,11 @@ namespace QuanLyLapTop.Forms
     {
         QLBHDbContext context = new QLBHDbContext();
         int id;
-        BindingList<DanhSachHoaDon_ChiTiet> hoaDonChiTiet = new BindingList<DanhSachHoaDon_ChiTiet>();
-
+        BindingList<HoaDon_ChiTiet> hoaDonChiTiet = new BindingList<HoaDon_ChiTiet>();
         public frmHoaDon_ChiTiet(int maHoaDon = 0)
         {
-            id = maHoaDon;
             InitializeComponent();
+            id = maHoaDon;
         }
         public void LayNhanVienVaoComBoBox()
         {
@@ -36,15 +30,22 @@ namespace QuanLyLapTop.Forms
         }
         public void LaySanPhamVaoComboBox()
         {
-            cboSanPham.DataSource = context.SanPham.ToList();
+            var danhSachSanPham = context.SanPham.Include(sp => sp.KhuyenMai).ToList();
+            var sanPhams = context.SanPham.ToList();
+            cboSanPham.DataSource = sanPhams;
             cboSanPham.ValueMember = "ID";
             cboSanPham.DisplayMember = "TenSanPham";
         }
         public void LayHinhThucThanhToanVaoComboBox()
         {
-            cboHinhThucThanhToan.DataSource = context.HoaDon.ToList();
-            cboHinhThucThanhToan.ValueMember = "ID";
-            cboHinhThucThanhToan.DisplayMember = "HinhThucThanhToan";
+            var dsHinhThuc = context.HoaDon
+                .Select(hd => hd.HinhThucThanhToan)
+                .Distinct()
+                .ToList();
+
+            cboHinhThucThanhToan.DataSource = dsHinhThuc;
+            cboHinhThucThanhToan.DisplayMember = null;
+            cboHinhThucThanhToan.ValueMember = null;
         }
         public void BatTatChucNang()
         {
@@ -56,6 +57,8 @@ namespace QuanLyLapTop.Forms
                 cboNhanVien.Text = "";
                 cboSanPham.Text = "";
                 cboHinhThucThanhToan.Text = "";
+                txtGiamGia.Text = "";
+                txtGiaSauKhiGiam.Text = "";
                 numSoLuongBan.Value = 1;
                 numDonGiaBan.Value = 0;
             }
@@ -63,54 +66,104 @@ namespace QuanLyLapTop.Forms
             btnLuuHoaDon.Enabled = dataGridView.Rows.Count > 0;
             btnXoa.Enabled = dataGridView.Rows.Count > 0;
         }
-
         private void frmHoaDon_ChiTiet_Load(object sender, EventArgs e)
         {
             dataGridView.AutoGenerateColumns = false;
-
             LayKhachHangVaoComboBox();
             LayNhanVienVaoComBoBox();
             LaySanPhamVaoComboBox();
             LayHinhThucThanhToanVaoComboBox();
+            txtGiamGia.Enabled = false;
+            txtGiaSauKhiGiam.Enabled = false;
 
             if (id != 0)
             {
-                var hd = context.HoaDon.Find(id)!;
-                cboNhanVien.SelectedValue = hd.NhanVienID;
-                cboKhachHang.SelectedValue = hd.KhachHangID;
-                //cboHinhThucThanhToan.SelectedValue = hd.HinhThucThanhToan!;
-                txtGhiChuHoaDon.Text = hd.GhiChuHoaDon;
-                var ct = context.HoaDon_ChiTiet.Where(r => r.HoaDonID == id).Select(r => new DanhSachHoaDon_ChiTiet
+                var ct = context.HoaDon_ChiTiet
+                .Where(r => r.HoaDonID == id)
+                .Include(r => r.SanPham) 
+                .Select(r => new HoaDon_ChiTiet
                 {
                     ID = r.ID,
                     HoaDonID = r.HoaDonID,
                     SanPhamID = r.SanPhamID,
-                    TenSanPham = r.SanPham.TenSanPham!,
                     SoLuongBan = r.SoLuongBan,
                     DonGiaBan = r.DonGiaBan,
-                    ThanhTien = r.SoLuongBan * r.DonGiaBan
-                }).ToList();
+                    TenSanPham = r.SanPham.TenSanPham!,
+                    GiamGia = 0,
+                    GiaSauKhiGiam = r.DonGiaBan,
+                    ThanhTien = r.SoLuongBan * r.GiaSauKhiGiam,
+                })
+                .ToList();
 
+                foreach (var item in ct)
+                {
+                    // Lấy thông tin sản phẩm và khuyến mãi từ SanPham
+                    var sanPham = context.SanPham
+                        .Where(sp => sp.ID == item.SanPhamID)
+                        .Select(sp => new
+                        {
+                            sp.KhuyenMai,  
+                            sp.KhuyenMai!.GiamGia
+                        })
+                        .FirstOrDefault();
+
+                    if (sanPham != null && sanPham.KhuyenMai != null) 
+                    {
+                        item.GiamGia = sanPham.KhuyenMai.GiamGia ;
+                        double tlgg =Convert.ToDouble(item.GiamGia / 100.0);
+                        item.GiaSauKhiGiam = item.DonGiaBan * (1 - tlgg);
+                        if (item.GiaSauKhiGiam < 0) item.GiaSauKhiGiam = 0;
+                        item.ThanhTien = item.SoLuongBan * item.GiaSauKhiGiam; 
+                    }
+                    else
+                    {
+                        item.GiamGia = 0; // Nếu không có khuyến mãi, giảm giá = 0
+                        item.GiaSauKhiGiam = item.DonGiaBan; // Giá bán gốc
+                        item.ThanhTien = item.SoLuongBan * item.DonGiaBan; // Thành tiền theo giá gốc
+                    }
+                }
+
+                // BindingList cho DataGridView
+                hoaDonChiTiet = new BindingList<HoaDon_ChiTiet>(ct);
+                dataGridView.DataSource = hoaDonChiTiet;
+
+                // Dùng BindingSource để hỗ trợ tự động cập nhật khi chọn dòng khác
+                var bindingSource = new BindingSource();
+                bindingSource.DataSource = hoaDonChiTiet;
+
+                // Gán BindingSource cho DataGridView
+                dataGridView.DataSource = bindingSource;
+
+                // Gán DataBindings cho các controls từ BindingSource (chứ không phải từ ct trực tiếp)
                 cboSanPham.DataBindings.Clear();
-                cboSanPham.DataBindings.Add("Text", ct, "TenSanPham", false, DataSourceUpdateMode.Never);
+                cboSanPham.DataBindings.Add("Text", bindingSource, "TenSanPham", false, DataSourceUpdateMode.Never);
 
                 numSoLuongBan.DataBindings.Clear();
-                numSoLuongBan.DataBindings.Add("Value", ct, "SoLuongBan", false, DataSourceUpdateMode.Never);
+                numSoLuongBan.DataBindings.Add("Value", bindingSource, "SoLuongBan", false, DataSourceUpdateMode.OnPropertyChanged);
 
                 numDonGiaBan.DataBindings.Clear();
-                numDonGiaBan.DataBindings.Add("Value", ct, "DonGiaBan", false, DataSourceUpdateMode.Never);
+                numDonGiaBan.DataBindings.Add("Value", bindingSource, "DonGiaBan", false, DataSourceUpdateMode.OnPropertyChanged);
 
-                hoaDonChiTiet = new BindingList<DanhSachHoaDon_ChiTiet>(ct);
+                txtGiamGia.DataBindings.Clear();
+                txtGiamGia.DataBindings.Add("Text", bindingSource, "GiamGia", true, DataSourceUpdateMode.OnPropertyChanged, "0", "0.##");
+
+                txtGiaSauKhiGiam.DataBindings.Clear();
+                txtGiaSauKhiGiam.DataBindings.Add("Text", bindingSource, "GiaSauKhiGiam", true, DataSourceUpdateMode.OnPropertyChanged, "0", "0,0 VNĐ");
+
+                hoaDonChiTiet = new BindingList<HoaDon_ChiTiet>(ct);
             }
+
+            // Gán dữ liệu cho DataGridView
             dataGridView.DataSource = hoaDonChiTiet;
             BatTatChucNang();
-
         }
 
         private void btnXacNhanBan_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(cboSanPham.Text))
-                MessageBox.Show("Vui lòng chọn sản phẩm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); cboSanPham.Focus();
+            }
             else if (numSoLuongBan.Value <= 0)
                 MessageBox.Show("Số lượng bán phải lớn hơn 0.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (numDonGiaBan.Value <= 0)
@@ -122,51 +175,103 @@ namespace QuanLyLapTop.Forms
                 // Nếu đã tồn tại sản phẩm thì cập nhật thông tin
                 if (chiTiet != null)
                 {
-                    chiTiet.SoLuongBan = Convert.ToInt16(numSoLuongBan.Value);
-                    chiTiet.DonGiaBan = Convert.ToInt32(numDonGiaBan.Value);
-                    chiTiet.ThanhTien = Convert.ToInt32(numSoLuongBan.Value * numDonGiaBan.Value);
+                    int soLuong = Convert.ToInt16(numSoLuongBan.Value);
+                    int donGia = Convert.ToInt32(numDonGiaBan.Value);
+                    double giamGia = 0;
+                    double giaSauGiam = donGia;
+
+                    // Kiểm tra khuyến mãi
+                    var sanPham = context.SanPham
+                        .Where(sp => sp.ID == maSanPham)
+                        .Select(sp => new
+                        {
+                            sp.KhuyenMai
+                        })
+                        .FirstOrDefault();
+
+                    if (sanPham != null && sanPham.KhuyenMai != null)
+                    {
+                        giamGia = sanPham.KhuyenMai.GiamGia / 100.0; // ví dụ: 0.2
+                        giaSauGiam = donGia * (1 - giamGia);
+                    }
+                    chiTiet.SoLuongBan = soLuong;
+                    chiTiet.DonGiaBan = donGia;
+                    chiTiet.GiamGia = giamGia * 100; // phần trăm
+                    chiTiet.GiaSauKhiGiam = giaSauGiam;
+                    chiTiet.ThanhTien = soLuong * giaSauGiam;
+
                     dataGridView.Refresh();
                 }
                 else // Nếu chưa có sản phẩm thì thêm vào
                 {
+                    int soLuong = Convert.ToInt32(numSoLuongBan.Value);
+                    int donGia = Convert.ToInt32(numDonGiaBan.Value);
+                    double giamGia = 0;
+                    double giaSauGiam = donGia;
+
+                    // Kiểm tra khuyến mãi
+                    var sanPham = context.SanPham
+                        .Where(sp => sp.ID == maSanPham)
+                        .Select(sp => new
+                        {
+                            sp.KhuyenMai
+                        })
+                        .FirstOrDefault();
+
+                    if (sanPham != null && sanPham.KhuyenMai != null)
+                    {
+                        giamGia = sanPham.KhuyenMai.GiamGia / 100.0; // ví dụ: 0.2
+                        giaSauGiam = donGia * (1 - giamGia);
+                    }
                     // Nếu chưa có sản phẩm nào
-                    DanhSachHoaDon_ChiTiet ct = new DanhSachHoaDon_ChiTiet
+                    HoaDon_ChiTiet ct = new HoaDon_ChiTiet
                     {
                         ID = 0,
                         HoaDonID = id,
                         SanPhamID = maSanPham,
                         TenSanPham = cboSanPham.Text,
-                        SoLuongBan = Convert.ToInt16(numSoLuongBan.Value),
-                        DonGiaBan = Convert.ToInt32(numDonGiaBan.Value),
-                        ThanhTien = Convert.ToInt32(numSoLuongBan.Value * numDonGiaBan.Value)
+                        SoLuongBan = soLuong,
+                        DonGiaBan = donGia,
+                        GiamGia = giamGia,
+                        GiaSauKhiGiam = giaSauGiam,
+                        ThanhTien = soLuong * giaSauGiam
                     };
                     hoaDonChiTiet.Add(ct);
                 }
                 BatTatChucNang();
-
-
             }
-
         }
-
         private void btnXoa_Click(object sender, EventArgs e)
         {
             if (dataGridView.CurrentRow != null)
             {
-                int maSanPham = Convert.ToInt32(dataGridView.CurrentRow.Cells["ID"].Value!.ToString());
-                var chiTiet = hoaDonChiTiet.FirstOrDefault(x => x.ID == maSanPham)!;
-                if (chiTiet != null)
+                // Lấy chỉ số dòng đang chọn 
+                int selectedIndex = dataGridView.CurrentRow.Index;
+
+                // Kiểm tra chỉ số hợp lệ
+                if (selectedIndex >= 0 && selectedIndex < hoaDonChiTiet.Count)
                 {
-                    hoaDonChiTiet.Remove(chiTiet);
+                    // Xóa mục tương ứng trong danh sách
+                    hoaDonChiTiet.RemoveAt(selectedIndex);
+
+                    // Cập nhật lại trạng thái nút
+                    BatTatChucNang();
+
+                    // Nếu còn dòng, tự chọn lại dòng gần nhất
+                    if (hoaDonChiTiet.Count > 0)
+                    {
+                        int newIndex = Math.Min(selectedIndex, hoaDonChiTiet.Count - 1);
+                        dataGridView.ClearSelection();
+                        dataGridView.Rows[newIndex].Selected = true;
+                        dataGridView.CurrentCell = dataGridView.Rows[newIndex].Cells[1];
+                    }
                 }
-                BatTatChucNang();
             }
             else
             {
                 MessageBox.Show("Vui lòng chọn một dòng để xóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void btnLuuHoaDon_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(cboNhanVien.Text))
@@ -177,7 +282,7 @@ namespace QuanLyLapTop.Forms
                 MessageBox.Show("Vui lòng chọn hình thức thanh toán.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                // Kiểm tra trước: số lượng tồn kho đủ không?
+                // Kiểm tra trước: số lượng tồn kho đủ  không?
                 foreach (var item in hoaDonChiTiet)
                 {
                     var sanPham = context.SanPham.Find(item.SanPhamID);
@@ -192,7 +297,6 @@ namespace QuanLyLapTop.Forms
                         return;
                     }
                 }
-
                 if (id != 0) // Cập nhật hóa đơn cũ
                 {
                     HoaDon hd = context.HoaDon.Find(id)!;
@@ -209,7 +313,7 @@ namespace QuanLyLapTop.Forms
                         var old = context.HoaDon_ChiTiet.Where(r => r.HoaDonID == id).ToList();
                         context.HoaDon_ChiTiet.RemoveRange(old);
 
-                        // Thêm lại chi tiết mới + trừ tồn kho
+                        // Thêm lại chi tiết mới và trừ tồn kho
                         foreach (var item in hoaDonChiTiet)
                         {
                             HoaDon_ChiTiet ct = new HoaDon_ChiTiet
@@ -217,7 +321,11 @@ namespace QuanLyLapTop.Forms
                                 HoaDonID = id,
                                 SanPhamID = item.SanPhamID,
                                 SoLuongBan = item.SoLuongBan,
-                                DonGiaBan = item.DonGiaBan
+                                DonGiaBan = item.DonGiaBan,
+                                GiamGia = item.GiamGia,
+                                GiaSauKhiGiam = item.GiaSauKhiGiam,
+                                ThanhTien = item.ThanhTien,
+                                TenSanPham = item.TenSanPham
                             };
                             context.HoaDon_ChiTiet.Add(ct);
 
@@ -253,7 +361,11 @@ namespace QuanLyLapTop.Forms
                             HoaDonID = hd.ID,
                             SanPhamID = item.SanPhamID,
                             SoLuongBan = item.SoLuongBan,
-                            DonGiaBan = item.DonGiaBan
+                            DonGiaBan = item.DonGiaBan,
+                            GiamGia = item.GiamGia,
+                            GiaSauKhiGiam = item.GiaSauKhiGiam,
+                            ThanhTien = item.ThanhTien,
+                            TenSanPham = item.TenSanPham
                         };
                         context.HoaDon_ChiTiet.Add(ct);
 
@@ -274,16 +386,103 @@ namespace QuanLyLapTop.Forms
                 frmHoaDon hoaDon = new frmHoaDon();
                 hoaDon.Show();
             }
-
         }
 
         private void cboSanPham_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (cboSanPham.SelectedValue != null)
             {
-                int maSanPham = Convert.ToInt32(cboSanPham.SelectedValue?.ToString());
-                var sanPham = context.SanPham.Find(maSanPham)!;
-                numDonGiaBan.Value = sanPham.GiaBan;
+                int maSanPham = Convert.ToInt32(cboSanPham.SelectedValue.ToString());
+                var sanPham = context.SanPham
+                    .Include(sp => sp.KhuyenMai)
+                    .FirstOrDefault(sp => sp.ID == maSanPham);
+
+                if (sanPham != null)
+                {
+                    // Hiển thị giá gốc
+                    numDonGiaBan.Value = Convert.ToDecimal(sanPham.GiaBan);
+
+                    double giamGia = 0;
+                    if (sanPham.KhuyenMai != null)
+                    {
+                        giamGia = sanPham.KhuyenMai.GiamGia;
+                        txtGiamGia.Text = giamGia.ToString("0.##") + " %";
+                    }
+                    else
+                    {
+                        txtGiamGia.Text = "0 %";
+                    }
+                    double giaGoc = Convert.ToDouble(sanPham.GiaBan);
+                    double giaSauGiam = giaGoc - (giaGoc * giamGia / 100);
+
+                    txtGiaSauKhiGiam.Text = giaSauGiam.ToString("N0") + " VND";
+                }
+            }
+        }
+        private void btnInHoaDon_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dgv = (DataGridView)sender;
+
+            if (e.Value != null)
+            {
+                string columnName = dgv.Columns[e.ColumnIndex].Name;
+
+                if (columnName == "DonGiaBan" || columnName == "GiaSauKhiGiam" || columnName == "ThanhTien")
+                {
+                    if (decimal.TryParse(e.Value.ToString(), out decimal value))
+                    {
+                        e.Value = string.Format("{0:#,0} VND", value);
+                        e.FormattingApplied = true;
+
+                        // Màu cho từng cột
+                        if (columnName == "DonGiaBan")
+                            e.CellStyle.ForeColor = System.Drawing.Color.Red;
+                        else if (columnName == "GiaSauKhiGiam" || columnName == "ThanhTien")
+                            e.CellStyle.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
+            }
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn quay lại trang hóa đơn không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                var frmHoaDon = Application.OpenForms["frmHoaDon"];
+                if (frmHoaDon != null)
+                {
+                    frmHoaDon.Show();
+                    frmHoaDon.Activate();
+                }
+                else
+                {
+                    frmHoaDon hoaDon = new frmHoaDon();
+                    hoaDon.Show();
+                }
+                this.Close(); // Close luôn form con
+            }
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string tuKhoa = txtTuKhoa.Text.Trim();
+            var sp = context.SanPham
+                .Where(r => r.TenSanPham!.Contains(tuKhoa)).ToList();
+            dataGridView.DataSource = sp;
+        }
+
+        private void txtTuKhoa_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnTimKiem_Click(sender, e);
             }
         }
     }

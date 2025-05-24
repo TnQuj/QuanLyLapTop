@@ -220,7 +220,7 @@ namespace QuanLyLapTop.Forms
                     context.SaveChanges();
                 }
                 DialogResult result = MessageBox.Show("Lập phiếu nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if(result == DialogResult.OK)
+                if (result == DialogResult.OK)
                 {
                     this.Close();
                     frmPhieuNhap fpn = new frmPhieuNhap();
@@ -413,6 +413,11 @@ namespace QuanLyLapTop.Forms
             {
                 MessageBox.Show("Vui lòng chọn dòng để xóa?", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnInPhieuNhap_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

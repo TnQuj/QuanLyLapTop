@@ -840,3 +840,9 @@ D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-w
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmDoiMatKhau.resources
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Reports.frmThongKeSanPham.resources
 D:\LapTrinhQuanLy\DoAn\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Reports.frmInPhieuNhap.resources
+D:\HK2-NH2024-2025\Lập trình quản lý\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmDoiMatKhau.resources
+D:\HK2-NH2024-2025\Lập trình quản lý\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Reports.frmInPhieuNhap.resources
+D:\HK2-NH2024-2025\Lập trình quản lý\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Reports.frmThongKeSanPham.resources
+D:\HK2-NH2024-2025\Lập trình quản lý\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Forms.frmKhuyenMai.resources
+D:\HK2-NH2024-2025\Lập trình quản lý\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Reports.frmInHoaDon.resources
+D:\HK2-NH2024-2025\Lập trình quản lý\QuanLyLapTop\QuanLyLapTop\QuanLyLapTop\obj\Debug\net9.0-windows\QuanLyLapTop.Reports.frmThongKeDoanhThu.resources
